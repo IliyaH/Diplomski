@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klijent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv_klijenta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sediste" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ziroracun" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KlijentskiProjekti">
+          <Key>
+            <PropertyRef Name="Id_klijent" />
+            <PropertyRef Name="Id_projekat" />
+          </Key>
+          <Property Name="Id_klijent" Type="int" Nullable="false" />
+          <Property Name="Id_projekat" Type="int" Nullable="false" />
+          <Property Name="Datum_potpisivanja_ugovora" Type="datetime" Nullable="false" />
+          <Property Name="Vrednost_projekta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projekat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv_projekta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Datum_pocetka" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Radnik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_sef" Type="int" />
+        </EntityType>
+        <EntityType Name="RadnikNaProjektu">
+          <Key>
+            <PropertyRef Name="Id_radnika" />
+            <PropertyRef Name="Id_projekat" />
+          </Key>
+          <Property Name="Id_radnika" Type="int" Nullable="false" />
+          <Property Name="Id_projekat" Type="int" Nullable="false" />
+          <Property Name="Plata_po_satu" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Radnik_FK1">
+          <End Role="Radnik" Type="Self.Radnik" Multiplicity="0..1" />
+          <End Role="Radnik1" Type="Self.Radnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Radnik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Radnik1">
+              <PropertyRef Name="Id_sef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klijent" EntityType="Self.Klijent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KlijentskiProjekti" EntityType="Self.KlijentskiProjekti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projekat" EntityType="Self.Projekat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Radnik" EntityType="Self.Radnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RadnikNaProjektu" EntityType="Self.RadnikNaProjektu" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Radnik_FK1" Association="Self.Radnik_FK1">
+            <End Role="Radnik" EntitySet="Radnik" />
+            <End Role="Radnik1" EntitySet="Radnik" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klijent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv_klijenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sediste" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ziroracun" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KlijentskiProjekti">
+          <Key>
+            <PropertyRef Name="Id_klijent" />
+            <PropertyRef Name="Id_projekat" />
+          </Key>
+          <Property Name="Id_klijent" Type="Int32" Nullable="false" />
+          <Property Name="Id_projekat" Type="Int32" Nullable="false" />
+          <Property Name="Datum_potpisivanja_ugovora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Vrednost_projekta" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projekat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv_projekta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Datum_pocetka" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Radnik">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_sef" Type="Int32" />
+          <NavigationProperty Name="Radnik1" Relationship="Self.Radnik_FK1" FromRole="Radnik" ToRole="Radnik1" />
+          <NavigationProperty Name="Radnik2" Relationship="Self.Radnik_FK1" FromRole="Radnik1" ToRole="Radnik" />
+        </EntityType>
+        <EntityType Name="RadnikNaProjektu">
+          <Key>
+            <PropertyRef Name="Id_radnika" />
+            <PropertyRef Name="Id_projekat" />
+          </Key>
+          <Property Name="Id_radnika" Type="Int32" Nullable="false" />
+          <Property Name="Id_projekat" Type="Int32" Nullable="false" />
+          <Property Name="Plata_po_satu" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="Radnik_FK1">
+          <End Role="Radnik" Type="Self.Radnik" Multiplicity="0..1" />
+          <End Role="Radnik1" Type="Self.Radnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Radnik">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Radnik1">
+              <PropertyRef Name="Id_sef" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Klijents" EntityType="Self.Klijent" />
+          <EntitySet Name="KlijentskiProjektis" EntityType="Self.KlijentskiProjekti" />
+          <EntitySet Name="Projekats" EntityType="Self.Projekat" />
+          <EntitySet Name="Radniks" EntityType="Self.Radnik" />
+          <EntitySet Name="RadnikNaProjektus" EntityType="Self.RadnikNaProjektu" />
+          <AssociationSet Name="Radnik_FK1" Association="Self.Radnik_FK1">
+            <End Role="Radnik" EntitySet="Radniks" />
+            <End Role="Radnik1" EntitySet="Radniks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="Model.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klijents">
+            <EntityTypeMapping TypeName="Model.Klijent">
+              <MappingFragment StoreEntitySet="Klijent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Naziv_klijenta" ColumnName="Naziv_klijenta" />
+                <ScalarProperty Name="Sediste" ColumnName="Sediste" />
+                <ScalarProperty Name="Ziroracun" ColumnName="Ziroracun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KlijentskiProjektis">
+            <EntityTypeMapping TypeName="Model.KlijentskiProjekti">
+              <MappingFragment StoreEntitySet="KlijentskiProjekti">
+                <ScalarProperty Name="Id_klijent" ColumnName="Id_klijent" />
+                <ScalarProperty Name="Id_projekat" ColumnName="Id_projekat" />
+                <ScalarProperty Name="Datum_potpisivanja_ugovora" ColumnName="Datum_potpisivanja_ugovora" />
+                <ScalarProperty Name="Vrednost_projekta" ColumnName="Vrednost_projekta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projekats">
+            <EntityTypeMapping TypeName="Model.Projekat">
+              <MappingFragment StoreEntitySet="Projekat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Naziv_projekta" ColumnName="Naziv_projekta" />
+                <ScalarProperty Name="Datum_pocetka" ColumnName="Datum_pocetka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Radniks">
+            <EntityTypeMapping TypeName="Model.Radnik">
+              <MappingFragment StoreEntitySet="Radnik">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Id_sef" ColumnName="Id_sef" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RadnikNaProjektus">
+            <EntityTypeMapping TypeName="Model.RadnikNaProjektu">
+              <MappingFragment StoreEntitySet="RadnikNaProjektu">
+                <ScalarProperty Name="Id_radnika" ColumnName="Id_radnika" />
+                <ScalarProperty Name="Id_projekat" ColumnName="Id_projekat" />
+                <ScalarProperty Name="Plata_po_satu" ColumnName="Plata_po_satu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

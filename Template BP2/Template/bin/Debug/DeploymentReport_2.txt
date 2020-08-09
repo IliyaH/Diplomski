@@ -1,0 +1,48 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Grad] (Table)
+       [dbo].[Igra] (Table)
+       [dbo].[Igrac] (Table)
+       [dbo].[Karta] (Table)
+       [dbo].[Kupuje] (Table)
+       [dbo].[LicnaNagrada] (Table)
+       [dbo].[Nagrada] (Table)
+       [dbo].[Navijac] (Table)
+       [dbo].[Odrzava] (Table)
+       [dbo].[Posecuje] (Table)
+       [dbo].[Stadion] (Table)
+       [dbo].[sudija] (Table)
+       [dbo].[Tim] (Table)
+       [dbo].[TimskaNagrada] (Table)
+       [dbo].[Utakmica] (Table)
+       [dbo].[Igra_Sudija_FK] (Foreign Key)
+       [dbo].[Igra_Tim_FK] (Foreign Key)
+       [dbo].[Igra_Utakmica_FK] (Foreign Key)
+       [dbo].[Igrac_Tim_FK] (Foreign Key)
+       [dbo].[Karta_Odrzava_FK] (Foreign Key)
+       [dbo].[Kupuje_Karta_FK] (Foreign Key)
+       [dbo].[Kupuje_Navijac_FK] (Foreign Key)
+       [dbo].[LicnaNagrada_Igrac_FK] (Foreign Key)
+       [dbo].[LicnaNagrada_Nagrada_FK] (Foreign Key)
+       [dbo].[Odrzava_Stadion_FK] (Foreign Key)
+       [dbo].[Odrzava_Utakmica_FK] (Foreign Key)
+       [dbo].[Posecuje_Kupuje_FK] (Foreign Key)
+       [dbo].[Posecuje_Odrzava_FK] (Foreign Key)
+       [dbo].[Stadion_Grad_FK] (Foreign Key)
+       [dbo].[Tim_Grad_FK] (Foreign Key)
+       [dbo].[TimskaNagrada_Tim_FK] (Foreign Key)
+       [dbo].[TimskaNagrada_Nagrada_FK] (Foreign Key)
+       Check Constraint: <unnamed> (Check Constraint)
+       Check Constraint: <unnamed> (Check Constraint)
+
+** Supporting actions

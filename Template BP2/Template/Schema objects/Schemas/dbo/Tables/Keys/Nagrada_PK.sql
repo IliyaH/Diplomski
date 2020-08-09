@@ -1,0 +1,3 @@
+﻿ALTER TABLE Nagrada
+ADD CONSTRAINT Nagrada_PK
+PRIMARY KEY ( NagradaID );

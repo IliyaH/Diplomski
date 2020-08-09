@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BazaDiplomskiModelStoreContainer" CdmEntityContainer="BazaDiplomskiEntities">
+    <EntitySetMapping Name="C__RefactorLog">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.C__RefactorLog)">
+        <MappingFragment StoreEntitySet="C__RefactorLog">
+          <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grads">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Grad)">
+        <MappingFragment StoreEntitySet="Grads">
+          <ScalarProperty Name="GradID" ColumnName="GradID" />
+          <ScalarProperty Name="Drzava" ColumnName="Drzava" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Igras">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Igra)">
+        <MappingFragment StoreEntitySet="Igras">
+          <ScalarProperty Name="Tim_TimID" ColumnName="Tim_TimID" />
+          <ScalarProperty Name="Utakmica_UtakmicaID" ColumnName="Utakmica_UtakmicaID" />
+          <ScalarProperty Name="Sudija_SudijaID" ColumnName="Sudija_SudijaID" />
+          <ScalarProperty Name="BrojGolova" ColumnName="BrojGolova" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Igracs">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Igrac)">
+        <MappingFragment StoreEntitySet="Igracs">
+          <ScalarProperty Name="IgracID" ColumnName="IgracID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="BrojPostignutihGolova" ColumnName="BrojPostignutihGolova" />
+          <ScalarProperty Name="Tim_TimId" ColumnName="Tim_TimId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kartas">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Karta)">
+        <MappingFragment StoreEntitySet="Kartas">
+          <ScalarProperty Name="KartaID" ColumnName="KartaID" />
+          <ScalarProperty Name="Odrzava_UtakmicaID" ColumnName="Odrzava_UtakmicaID" />
+          <ScalarProperty Name="Odrzava_StadionID" ColumnName="Odrzava_StadionID" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kupujes">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Kupuje)">
+        <MappingFragment StoreEntitySet="Kupujes">
+          <ScalarProperty Name="Karta_KartaID" ColumnName="Karta_KartaID" />
+          <ScalarProperty Name="Navijac_NavijacID" ColumnName="Navijac_NavijacID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LicnaNagradas">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.LicnaNagrada)">
+        <MappingFragment StoreEntitySet="LicnaNagradas">
+          <ScalarProperty Name="NagradaID" ColumnName="NagradaID" />
+          <ScalarProperty Name="VrstaNagrade" ColumnName="VrstaNagrade" />
+          <ScalarProperty Name="Igrac_IgracID" ColumnName="Igrac_IgracID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Nagradas">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Nagrada)">
+        <MappingFragment StoreEntitySet="Nagradas">
+          <ScalarProperty Name="NagradaID" ColumnName="NagradaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Navijacs">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Navijac)">
+        <MappingFragment StoreEntitySet="Navijacs">
+          <ScalarProperty Name="NavijacID" ColumnName="NavijacID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+          <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Odrzavas">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Odrzava)">
+        <MappingFragment StoreEntitySet="Odrzavas">
+          <ScalarProperty Name="Utakmica_UtakmicaID" ColumnName="Utakmica_UtakmicaID" />
+          <ScalarProperty Name="Stadion_StadionID" ColumnName="Stadion_StadionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stadions">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Stadion)">
+        <MappingFragment StoreEntitySet="Stadions">
+          <ScalarProperty Name="StadionID" ColumnName="StadionID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Grad_GradID" ColumnName="Grad_GradID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sudijas">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.sudija)">
+        <MappingFragment StoreEntitySet="sudijas">
+          <ScalarProperty Name="SudijaID" ColumnName="SudijaID" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tims">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Tim)">
+        <MappingFragment StoreEntitySet="Tims">
+          <ScalarProperty Name="TimID" ColumnName="TimID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Grad_GradId" ColumnName="Grad_GradId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TimskaNagradas">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.TimskaNagrada)">
+        <MappingFragment StoreEntitySet="TimskaNagradas">
+          <ScalarProperty Name="NagradaID" ColumnName="NagradaID" />
+          <ScalarProperty Name="TipNagrade" ColumnName="TipNagrade" />
+          <ScalarProperty Name="Tim_TimID" ColumnName="Tim_TimID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Utakmicas">
+      <EntityTypeMapping TypeName="IsTypeOf(BazaDiplomskiModel.Utakmica)">
+        <MappingFragment StoreEntitySet="Utakmicas">
+          <ScalarProperty Name="UtakmicaID" ColumnName="UtakmicaID" />
+          <ScalarProperty Name="Odigrana" ColumnName="Odigrana" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="FazaTakmicenja" ColumnName="FazaTakmicenja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Posecuje" TypeName="BazaDiplomskiModel.Posecuje" StoreEntitySet="Posecuje">
+      <EndProperty Name="Kupuje">
+        <ScalarProperty Name="Karta_KartaID" ColumnName="Kupujes_Karta_KartaID" />
+        <ScalarProperty Name="Navijac_NavijacID" ColumnName="Kupujes_Navijac_NavijacID" />
+      </EndProperty>
+      <EndProperty Name="Odrzava">
+        <ScalarProperty Name="Utakmica_UtakmicaID" ColumnName="Odrzavas_Utakmica_UtakmicaID" />
+        <ScalarProperty Name="Stadion_StadionID" ColumnName="Odrzavas_Stadion_StadionID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

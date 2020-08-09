@@ -1,0 +1,3 @@
+﻿ALTER TABLE Sudija 
+ADD CONSTRAINT Sudija_PK 
+PRIMARY KEY ( SudijaID );

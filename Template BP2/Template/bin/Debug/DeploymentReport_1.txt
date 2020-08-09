@@ -1,0 +1,50 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Clan] (Table)
+       [dbo].[Film] (Table)
+       [dbo].[Izdaje] (Table)
+       [dbo].[Izdavac] (Table)
+       [dbo].[Iznajmljuje] (Table)
+       [dbo].[Opomena] (Table)
+       [dbo].[PrimerakFilma] (Table)
+       [dbo].[Pripada] (Table)
+       [dbo].[Radi] (Table)
+       [dbo].[Radnik] (Table)
+       [dbo].[Rezira] (Table)
+       [dbo].[Reziser] (Table)
+       [dbo].[Smena] (Table)
+       [dbo].[Zanr] (Table)
+       [dbo].[Zavodi] (Table)
+       [dbo].[Zavodi].[Zavodi__IDX] (Index)
+       [dbo].[Zavodi].[Zavodi__IDXv1] (Index)
+       [dbo].[Clan_FK1] (Foreign Key)
+       [dbo].[Izdaje_FK2] (Foreign Key)
+       [dbo].[Izdaje_FK1] (Foreign Key)
+       [dbo].[Iznajmljuje_FK2] (Foreign Key)
+       [dbo].[Iznajmljuje_FK3] (Foreign Key)
+       [dbo].[Iznajmljuje_FK1] (Foreign Key)
+       [dbo].[PrimerakFilma_FK2] (Foreign Key)
+       [dbo].[PrimerakFilma_FK1] (Foreign Key)
+       [dbo].[Pripada_FK1] (Foreign Key)
+       [dbo].[Pripada_FK2] (Foreign Key)
+       [dbo].[Radi_FK1] (Foreign Key)
+       [dbo].[Radi_FK2] (Foreign Key)
+       [dbo].[Zavodi_FK1] (Foreign Key)
+       [dbo].[Zavodi_FK2] (Foreign Key)
+       [dbo].[Zavodi_FK3] (Foreign Key)
+       Check Constraint: <unnamed> (Check Constraint)
+       Check Constraint: <unnamed> (Check Constraint)
+       Check Constraint: <unnamed> (Check Constraint)
+       Check Constraint: <unnamed> (Check Constraint)
+
+** Supporting actions

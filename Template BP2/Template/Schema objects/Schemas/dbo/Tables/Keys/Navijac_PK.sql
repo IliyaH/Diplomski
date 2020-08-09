@@ -1,0 +1,3 @@
+﻿ALTER TABLE Navijac 
+ADD CONSTRAINT Navijac_PK 
+PRIMARY KEY ( NavijacID );

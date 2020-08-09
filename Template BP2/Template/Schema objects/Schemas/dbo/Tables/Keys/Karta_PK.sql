@@ -1,0 +1,4 @@
+﻿ALTER TABLE Karta 
+ADD CONSTRAINT Karta_PK
+PRIMARY KEY ( KartaID );
+

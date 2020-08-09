@@ -1,0 +1,3 @@
+﻿ALTER TABLE Igrac 
+ADD CONSTRAINT Igrac_PK
+PRIMARY KEY ( IgracID );

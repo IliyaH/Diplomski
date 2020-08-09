@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Problems>
+  <Problem>
+    <Rule>Microsoft.Rules.Data.SR0009</Rule>
+    <ProblemDescription>Avoid VARCHAR of only one element.</ProblemDescription>
+    <SourceFile>C:\Users\Milica\Desktop\BazePodataka2\Projekat\ProjekatGit\Template BP2\Template\Schema objects\Schemas\dbo\Tables\PrimerakFilma.sql</SourceFile>
+    <Line>9</Line>
+    <Column>26</Column>
+    <Severity>Warning</Severity>
+  </Problem>
+</Problems>

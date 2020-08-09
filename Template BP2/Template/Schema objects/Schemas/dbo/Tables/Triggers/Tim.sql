@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[Tim]
+(
+	[Id] INT NOT NULL PRIMARY KEY
+)

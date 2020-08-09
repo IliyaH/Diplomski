@@ -1,0 +1,12 @@
+F:\Diplomski\Template BP2\test klassa\bin\Debug\test klassa.dll.config
+F:\Diplomski\Template BP2\test klassa\bin\Debug\test klassa.dll
+F:\Diplomski\Template BP2\test klassa\bin\Debug\test klassa.pdb
+F:\Diplomski\Template BP2\test klassa\bin\Debug\EntityFramework.dll
+F:\Diplomski\Template BP2\test klassa\bin\Debug\EntityFramework.SqlServer.dll
+F:\Diplomski\Template BP2\test klassa\bin\Debug\EntityFramework.xml
+F:\Diplomski\Template BP2\test klassa\bin\Debug\EntityFramework.SqlServer.xml
+F:\Diplomski\Template BP2\test klassa\obj\Debug\test klassa.csprojAssemblyReference.cache
+F:\Diplomski\Template BP2\test klassa\obj\Debug\test klassa.csproj.CoreCompileInputs.cache
+F:\Diplomski\Template BP2\test klassa\obj\Debug\test klassa.csproj.CopyComplete
+F:\Diplomski\Template BP2\test klassa\obj\Debug\test klassa.dll
+F:\Diplomski\Template BP2\test klassa\obj\Debug\test klassa.pdb
