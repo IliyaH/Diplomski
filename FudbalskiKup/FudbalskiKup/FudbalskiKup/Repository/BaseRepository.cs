@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
@@ -12,18 +13,18 @@ namespace FudbalskiKup.Models
         public BaseRepository() { }
         public void Delete(object id)
         {
-            using (var db = new BazaDiplomskiEntities())
+            using (var db = new DiplomskiBazaEntities())
             {
-               DbSet<TEntity> dbSet = db.Set<TEntity>();
-               TEntity entityToDelete = db.Set<TEntity>().Find(id);
-               db.Entry(entityToDelete).State = EntityState.Deleted;
-               db.SaveChanges();
+                DbSet<TEntity> dbSet = db.Set<TEntity>();
+                TEntity entityToDelete = db.Set<TEntity>().Find(id);
+                db.Entry(entityToDelete).State = EntityState.Deleted;
+                db.SaveChanges();
             }
         }
 
         public TEntity FindByID(object id)
         {
-            using (var db = new BazaDiplomskiEntities()) 
+            using (var db = new DiplomskiBazaEntities())
             {
                 return db.Set<TEntity>().Find(id);
             }
@@ -31,7 +32,7 @@ namespace FudbalskiKup.Models
 
         public List<TEntity> GetList()
         {
-            using (var db = new BazaDiplomskiEntities())
+            using (var db = new DiplomskiBazaEntities())
             {
                 return db.Set<TEntity>().ToList();
             }
@@ -39,7 +40,7 @@ namespace FudbalskiKup.Models
 
         public void Insert(TEntity entity)
         {
-            using (var db = new BazaDiplomskiEntities())
+            using (var db = new DiplomskiBazaEntities())
             {
                 db.Set<TEntity>().Add(entity);
                 db.SaveChanges();
@@ -48,12 +49,12 @@ namespace FudbalskiKup.Models
 
         public void Update(TEntity entityToUpdate)
         {
-            using (var db = new BazaDiplomskiEntities())
+            using (var db = new DiplomskiBazaEntities())
             {
                 db.Set<TEntity>().Attach(entityToUpdate);
                 db.Entry(entityToUpdate).State = EntityState.Modified;
                 db.SaveChanges();
-            }
+            }  
         }
     }
 }

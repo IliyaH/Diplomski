@@ -1,0 +1,87 @@
+﻿
+@model FudbalskiKup.Models.Navijac
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registration</title>
+    <style>
+        .field-validation-error{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="regDiv">
+        @using (Html.BeginForm("Registracija", "Home", FormMethod.Post))
+        {
+        <table>
+            <tr>
+                <td></td>
+                <td>Registration</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.KorisnickoIme)</td>
+                <td>@Html.EditorFor(model => model.KorisnickoIme)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(model => Model.KorisnickoIme)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Ime)</td>
+                <td>@Html.EditorFor(model => model.Ime)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(model => Model.Ime)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Prezime)</td>
+                <td>@Html.EditorFor(model => model.Prezime)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(model => Model.Prezime)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Email)</td>
+                <td>@Html.EditorFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(model => Model.Email)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.Sifra)</td>
+                <td>@Html.EditorFor(model => model.Sifra)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>@Html.ValidationMessageFor(model => Model.Sifra)</td>
+            </tr>
+            <tr> 
+                <td colspan="2">
+                    <label class="field-validation-error">@ViewBag.porukaGreske </label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Registruj se" />
+                    <input type="reset" value="Reset" />
+                </td>
+            </tr>
+        </table>
+        <a href="~/Home/LogovanjeStranica">Ulogujte se ukoliko vec imate nalog</a>
+        }
+
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    </div>
+</body>
+</html>

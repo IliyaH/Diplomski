@@ -22,3 +22,9 @@ F:\Diplomski\Template BP2\Template\obj\Debug\Template.dll
 F:\Diplomski\Template BP2\Template\obj\Debug\Template.pdb
 F:\Diplomski\Template BP2\Template\bin\Debug\Template.dll
 F:\Diplomski\Template BP2\Template\bin\Debug\Template.pdb
+F:\Diplomski\Diplomski\Template BP2\Template\bin\Debug\Template.dacpac
+F:\Diplomski\Diplomski\Template BP2\Template\bin\Debug\Template.dll
+F:\Diplomski\Diplomski\Template BP2\Template\bin\Debug\Template.pdb
+F:\Diplomski\Diplomski\Template BP2\Template\obj\Debug\Template.sqlprojAssemblyReference.cache
+F:\Diplomski\Diplomski\Template BP2\Template\obj\Debug\Template.dll
+F:\Diplomski\Diplomski\Template BP2\Template\obj\Debug\Template.pdb

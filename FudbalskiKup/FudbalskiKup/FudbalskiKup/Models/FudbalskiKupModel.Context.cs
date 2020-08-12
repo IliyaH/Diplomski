@@ -13,10 +13,10 @@ namespace FudbalskiKup.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BazaDiplomskiEntities : DbContext
+    public partial class DiplomskiBazaEntities : DbContext
     {
-        public BazaDiplomskiEntities()
-            : base("name=BazaDiplomskiEntities")
+        public DiplomskiBazaEntities()
+            : base("name=DiplomskiBazaEntities")
         {
         }
     

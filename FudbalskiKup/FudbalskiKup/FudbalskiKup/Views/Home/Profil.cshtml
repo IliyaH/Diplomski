@@ -1,0 +1,97 @@
+﻿
+@model FudbalskiKup.Models.Navijac
+
+@{
+    Layout = null;
+    if (Session["NavijacID"] == null)
+    {
+        Response.Redirect("~/Home/RegistracijaStranica");
+    }
+}
+
+    <div id="regDiv">
+        @using (Html.BeginForm("IzmenaNaloga", "Home", FormMethod.Post))
+        {
+            <table>
+                <tr style='visibility:collapse'>
+                    <td> @Html.EditorFor(model => model.NavijacID, new { htmlAttributes = new { placeholder = Model.NavijacID } })</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Profil</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.KorisnickoIme)</td>
+                    <td>@Html.EditorFor(model => model.KorisnickoIme, new { htmlAttributes = new { placeholder = Model.KorisnickoIme } })</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => Model.KorisnickoIme)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Ime)</td>
+                    <td>@Html.EditorFor(model => model.Ime, new { htmlAttributes = new { placeholder = Model.Ime } })
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => Model.Ime)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Prezime)</td>
+                    <td>@Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { placeholder = Model.Prezime } })</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => Model.Prezime)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Email)</td>
+                    <td>@Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = Model.Email } })</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => Model.Email)</td>
+                </tr>
+
+                <tr>
+                    <td>@Html.LabelFor(model => model.Sifra)</td>
+                    <td>@Html.EditorFor(model => model.Sifra)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => Model.Sifra) </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <label class="field-validation-error">@ViewBag.porukaGreske </label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" name="submitButton" value="Izmeni Nalog" />
+                        <input type="submit" name="submitButton" value="Obrisi Nalog" />
+
+                    </td>
+                </tr>
+            </table>
+
+        } 
+
+        @using (Html.BeginForm("Izloguj", "Home", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit"  value="Izloguj Se" />
+                    </td>
+                </tr>
+            </table>
+         }
+         <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+         <script src="~/Scripts/jquery.validate.min.js"></script>
+          <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    </div>

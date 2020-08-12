@@ -1,0 +1,77 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Grad]
+       [dbo].[Igrac]
+       [dbo].[Karta]
+       [dbo].[LicnaNagrada]
+       [dbo].[Nagrada]
+       [dbo].[Navijac]
+       [dbo].[Stadion]
+       [dbo].[sudija]
+       [dbo].[Tim]
+       [dbo].[TimskaNagrada]
+       [dbo].[Utakmica]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The type for column Prezime in table [dbo].[Navijac] is currently  VARCHAR (30) NOT NULL but is being changed to  INT
+         NOT NULL. Data loss could occur.
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[LicnaNagrada] (Check Constraint)
+       unnamed constraint on [dbo].[TimskaNagrada] (Check Constraint)
+     Table rebuild
+       [dbo].[Grad] (Table)
+       [dbo].[Igrac] (Table)
+       [dbo].[Karta] (Table)
+       [dbo].[LicnaNagrada] (Table)
+       [dbo].[Nagrada] (Table)
+       [dbo].[Navijac] (Table)
+       [dbo].[Stadion] (Table)
+       [dbo].[sudija] (Table)
+       [dbo].[Tim] (Table)
+       [dbo].[TimskaNagrada] (Table)
+       [dbo].[Utakmica] (Table)
+     Create
+       Check Constraint: <unnamed> (Check Constraint)
+       Check Constraint: <unnamed> (Check Constraint)
+
+** Supporting actions
+     Drop
+       [dbo].[Stadion_Grad_FK] (Foreign Key)
+       [dbo].[Tim_Grad_FK] (Foreign Key)
+       [dbo].[Igrac_Tim_FK] (Foreign Key)
+       [dbo].[LicnaNagrada_Igrac_FK] (Foreign Key)
+       [dbo].[Karta_Odrzava_FK] (Foreign Key)
+       [dbo].[Kupuje_Karta_FK] (Foreign Key)
+       [dbo].[LicnaNagrada_Nagrada_FK] (Foreign Key)
+       [dbo].[TimskaNagrada_Nagrada_FK] (Foreign Key)
+       [dbo].[Kupuje_Navijac_FK] (Foreign Key)
+       [dbo].[Odrzava_Stadion_FK] (Foreign Key)
+       [dbo].[Igra_Sudija_FK] (Foreign Key)
+       [dbo].[Igra_Tim_FK] (Foreign Key)
+       [dbo].[TimskaNagrada_Tim_FK] (Foreign Key)
+       [dbo].[Igra_Utakmica_FK] (Foreign Key)
+       [dbo].[Odrzava_Utakmica_FK] (Foreign Key)
+     Create
+       [dbo].[Stadion_Grad_FK] (Foreign Key)
+       [dbo].[Tim_Grad_FK] (Foreign Key)
+       [dbo].[Igrac_Tim_FK] (Foreign Key)
+       [dbo].[LicnaNagrada_Igrac_FK] (Foreign Key)
+       [dbo].[Karta_Odrzava_FK] (Foreign Key)
+       [dbo].[Kupuje_Karta_FK] (Foreign Key)
+       [dbo].[LicnaNagrada_Nagrada_FK] (Foreign Key)
+       [dbo].[TimskaNagrada_Nagrada_FK] (Foreign Key)
+       [dbo].[Kupuje_Navijac_FK] (Foreign Key)
+       [dbo].[Odrzava_Stadion_FK] (Foreign Key)
+       [dbo].[Igra_Sudija_FK] (Foreign Key)
+       [dbo].[Igra_Tim_FK] (Foreign Key)
+       [dbo].[TimskaNagrada_Tim_FK] (Foreign Key)
+       [dbo].[Igra_Utakmica_FK] (Foreign Key)
+       [dbo].[Odrzava_Utakmica_FK] (Foreign Key)
+
+The type for column Prezime in table [dbo].[Navijac] is currently  VARCHAR (30) NOT NULL but is being changed to  INT NOT NULL. Data loss could occur.
+

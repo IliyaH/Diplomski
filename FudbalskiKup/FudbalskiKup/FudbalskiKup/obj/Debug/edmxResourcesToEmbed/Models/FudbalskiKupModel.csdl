@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="BazaDiplomskiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="DiplomskiBazaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="C__RefactorLog">
     <Key>
       <PropertyRef Name="OperationKey" />
@@ -10,7 +10,7 @@
     <Key>
       <PropertyRef Name="GradID" />
     </Key>
-    <Property Name="GradID" Type="Int32" Nullable="false" />
+    <Property Name="GradID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Drzava" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Stadions" Relationship="Self.Stadion_Grad_FK" FromRole="Grad" ToRole="Stadion" />
@@ -33,7 +33,7 @@
     <Key>
       <PropertyRef Name="IgracID" />
     </Key>
-    <Property Name="IgracID" Type="Int32" Nullable="false" />
+    <Property Name="IgracID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Prezime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="BrojPostignutihGolova" Type="Int32" Nullable="false" />
@@ -47,7 +47,7 @@
     </Key>
     <Property Name="Odrzava_UtakmicaID" Type="Int32" Nullable="false" />
     <Property Name="Odrzava_StadionID" Type="Int32" Nullable="false" />
-    <Property Name="KartaID" Type="Int32" Nullable="false" />
+    <Property Name="KartaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Cena" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Odrzava" Relationship="Self.Karta_Odrzava_FK" FromRole="Karta" ToRole="Odrzava" />
     <NavigationProperty Name="Kupujes" Relationship="Self.Kupuje_Karta_FK" FromRole="Karta" ToRole="Kupuje" />
@@ -67,7 +67,7 @@
     <Key>
       <PropertyRef Name="NagradaID" />
     </Key>
-    <Property Name="NagradaID" Type="Int32" Nullable="false" />
+    <Property Name="NagradaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="VrstaNagrade" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Igrac_IgracID" Type="Int32" />
     <NavigationProperty Name="Igrac" Relationship="Self.LicnaNagrada_Igrac_FK" FromRole="LicnaNagrada" ToRole="Igrac" />
@@ -77,7 +77,7 @@
     <Key>
       <PropertyRef Name="NagradaID" />
     </Key>
-    <Property Name="NagradaID" Type="Int32" Nullable="false" />
+    <Property Name="NagradaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="LicnaNagrada" Relationship="Self.LicnaNagrada_Nagrada_FK" FromRole="Nagrada" ToRole="LicnaNagrada" />
     <NavigationProperty Name="TimskaNagrada" Relationship="Self.TimskaNagrada_Nagrada_FK" FromRole="Nagrada" ToRole="TimskaNagrada" />
   </EntityType>
@@ -85,11 +85,13 @@
     <Key>
       <PropertyRef Name="NavijacID" />
     </Key>
-    <Property Name="NavijacID" Type="Int32" Nullable="false" />
+    <Property Name="NavijacID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Prezime" Type="String" Nullable="false" />
+    <Property Name="KorisnickoIme" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sifra" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Kupujes" Relationship="Self.Kupuje_Navijac_FK" FromRole="Navijac" ToRole="Kupuje" />
-    <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="KorisnickoIme" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="Sifra" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
   </EntityType>
   <EntityType Name="Odrzava">
     <Key>
@@ -107,7 +109,7 @@
     <Key>
       <PropertyRef Name="StadionID" />
     </Key>
-    <Property Name="StadionID" Type="Int32" Nullable="false" />
+    <Property Name="StadionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Grad_GradID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Grad" Relationship="Self.Stadion_Grad_FK" FromRole="Stadion" ToRole="Grad" />
@@ -117,7 +119,7 @@
     <Key>
       <PropertyRef Name="SudijaID" />
     </Key>
-    <Property Name="SudijaID" Type="Int32" Nullable="false" />
+    <Property Name="SudijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Prezime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Igras" Relationship="Self.Igra_Sudija_FK" FromRole="sudija" ToRole="Igra" />
@@ -126,7 +128,7 @@
     <Key>
       <PropertyRef Name="TimID" />
     </Key>
-    <Property Name="TimID" Type="Int32" Nullable="false" />
+    <Property Name="TimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Grad_GradId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Grad" Relationship="Self.Tim_Grad_FK" FromRole="Tim" ToRole="Grad" />
@@ -138,7 +140,7 @@
     <Key>
       <PropertyRef Name="NagradaID" />
     </Key>
-    <Property Name="NagradaID" Type="Int32" Nullable="false" />
+    <Property Name="NagradaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TipNagrade" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Tim_TimID" Type="Int32" />
     <NavigationProperty Name="Nagrada" Relationship="Self.TimskaNagrada_Nagrada_FK" FromRole="TimskaNagrada" ToRole="Nagrada" />
@@ -148,9 +150,9 @@
     <Key>
       <PropertyRef Name="UtakmicaID" />
     </Key>
-    <Property Name="UtakmicaID" Type="Int32" Nullable="false" />
-    <Property Name="Odigrana" Type="Boolean" Nullable="false" />
-    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UtakmicaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Odigrana" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="FazaTakmicenja" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Igras" Relationship="Self.Igra_Utakmica_FK" FromRole="Utakmica" ToRole="Igra" />
     <NavigationProperty Name="Odrzavas" Relationship="Self.Odrzava_Utakmica_FK" FromRole="Utakmica" ToRole="Odrzava" />
@@ -341,7 +343,7 @@
     <End Role="Kupuje" Type="Self.Kupuje" Multiplicity="*" />
     <End Role="Odrzava" Type="Self.Odrzava" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="BazaDiplomskiEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DiplomskiBazaEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
     <EntitySet Name="Grads" EntityType="Self.Grad" />
     <EntitySet Name="Igras" EntityType="Self.Igra" />

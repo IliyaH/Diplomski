@@ -22,7 +22,7 @@ namespace FudbalskiKup.Models
         }
     
         public int UtakmicaID { get; set; }
-        public bool Odigrana { get; set; }
+        public string Odigrana { get; set; }
         public System.DateTime Datum { get; set; }
         public string FazaTakmicenja { get; set; }
     

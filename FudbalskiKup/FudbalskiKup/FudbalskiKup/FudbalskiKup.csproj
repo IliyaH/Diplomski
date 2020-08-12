@@ -218,8 +218,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\C__RefactorLog.cs">
       <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Extended\LogovanjePodaci.cs" />
+    <Compile Include="Models\FudbalskiKupModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FudbalskiKupModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FudbalskiKupModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FudbalskiKupModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FudbalskiKupModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Grad.cs">
       <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
@@ -263,35 +286,12 @@
     <Compile Include="Models\Utakmica.cs">
       <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FudbalskiKupModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FudbalskiKupModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FudbalskiKupModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FudbalskiKupModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FudbalskiKupModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\NavijacRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\FudbalskiKupModel.edmx.sql" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -302,8 +302,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\FudbalskiKupModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FudbalskiKupModel.Context.cs</LastGenOutput>
       <DependentUpon>FudbalskiKupModel.edmx</DependentUpon>
+      <LastGenOutput>FudbalskiKupModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\FudbalskiKupModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -338,11 +338,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Register.cshtml" />
-    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Home\RegistracijaStranica.cshtml" />
+    <Content Include="Views\Home\Profil.cshtml" />
+    <Content Include="Views\Home\LogovanjeStranica.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
