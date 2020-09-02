@@ -1,0 +1,62 @@
+﻿
+@model FudbalskiKup.Models.Utakmica
+@{
+    Layout = null;
+    if (Session["NavijacID"] == null)
+    {
+        Response.Redirect("~/Home/RegistracijaStranica");
+    }
+}
+
+<head>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Tim</title>
+        <style>
+            #timDiv {
+                position: absolute;
+                left: 40%;
+                top: 20%;
+                border: 1px solid #ccc;
+                padding: 50px 50px;
+            }
+        </style>
+    </head>
+</head>
+
+<body>
+    <div id="timDiv">
+        <table>
+            <tr>
+                <td> <h3>Informacije o timu</h3></td>
+            </tr>
+            <tr>
+                <td> Grad :</td>
+                <td> @ViewBag.Grad.Ime, @ViewBag.Grad.Drzava </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td> Tim:</td>
+                <td> @ViewBag.Tim.Ime</td>
+
+            </tr>
+            <tr></tr>
+            <tr>
+                <td> Igraci:</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td></td>
+                <td>
+                    @foreach (var igrac in ViewBag.Igraci)
+                    {
+                        @igrac.Ime @igrac.Prezime <br />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+ 
+
+

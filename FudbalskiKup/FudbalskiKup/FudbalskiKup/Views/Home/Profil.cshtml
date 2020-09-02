@@ -9,7 +9,27 @@
     }
 }
 
-    <div id="regDiv">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Profil</title>
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+
+        #profilDiv {
+            position: absolute;
+            left: 40%;
+            top: 20%;
+            border: 1px solid #ccc;
+            padding: 50px 50px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="profilDiv">
+       
         @using (Html.BeginForm("IzmenaNaloga", "Home", FormMethod.Post))
         {
             <table>
@@ -18,7 +38,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td>Profil</td>
+                    <td> <h3>Profil</h3></td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(model => model.KorisnickoIme)</td>
@@ -69,29 +89,50 @@
                 </tr>
 
                 <tr>
-                    <td></td>
                     <td>
                         <input type="submit" name="submitButton" value="Izmeni Nalog" />
                         <input type="submit" name="submitButton" value="Obrisi Nalog" />
-
-                    </td>
-                </tr>
-            </table>
-
-        } 
-
-        @using (Html.BeginForm("Izloguj", "Home", FormMethod.Post))
-        {
-            <table>
-                <tr>
-                    <td></td>
-                    <td>
-                        <input type="submit"  value="Izloguj Se" />
                     </td>
                 </tr>
             </table>
          }
-         <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-         <script src="~/Scripts/jquery.validate.min.js"></script>
-          <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+            <table>
+                <tr>                  
+                    <td colspan="2">
+                        @using (Html.BeginForm("Izloguj", "Home", FormMethod.Post))
+                        {
+                            <input type="submit" value="Izloguj Se" />
+
+                        }
+                    </td>
+
+                    <td colspan="2">
+                        @using (Html.BeginForm("PrikazTima", "Tim", FormMethod.Get))
+                        {
+                            <select name="timID" id="timID">
+                                @foreach (var tim in ViewBag.Tim)
+                                {
+                                    <option value="@tim.TimID">@tim.Ime</option>
+                                }
+                            </select>
+                            <input type="submit" value="Prikaži tim" />
+                        }
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a href="~/Karta/KartaPocetak">Kupi kartu</a>
+                    </td>
+                    <td>
+                        <a href="~/Utakmice/Utakmice">Prikaži utakmice</a>
+                    </td>
+                </tr>
+            </table>
+
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     </div>
+</body>

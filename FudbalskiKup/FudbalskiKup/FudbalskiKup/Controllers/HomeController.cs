@@ -1,5 +1,6 @@
 ﻿using FudbalskiKup.Models;
 using FudbalskiKup.Models.Extended;
+using FudbalskiKup.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,11 @@ namespace FudbalskiKup.Controllers
 {
     public class HomeController : Controller
     {
+        NavijacRepository navijacRepository = new NavijacRepository();
+        TimRepository timRepository = new TimRepository();
+        List<Tim> timoviLista = new List<Tim>();
+        Navijac navijac = new Navijac();
+
         //Get Register View
         public ActionResult RegistracijaStranica()
         {
@@ -22,7 +28,6 @@ namespace FudbalskiKup.Controllers
         [HttpPost]
         public ActionResult Registracija(Navijac navijac)
         {
-            NavijacRepository navijacRepository = new NavijacRepository();
             string porukaGreske = navijacRepository.ProveriKorisnickoIme(navijac);
 
             if (porukaGreske == null)
@@ -46,14 +51,17 @@ namespace FudbalskiKup.Controllers
         [HttpPost]
         public ActionResult Logovanje(LogovanjePodaci logovanjePodaci)
         {
-            NavijacRepository navijacRepository = new NavijacRepository();
-            Navijac navijac = navijacRepository.ProveriPostojanjeProfila(logovanjePodaci.KorisnickoIme, logovanjePodaci.Sifra);
+           // NavijacRepository navijacRepository = new NavijacRepository();
+            navijac = navijacRepository.ProveriPostojanjeProfila(logovanjePodaci.KorisnickoIme, logovanjePodaci.Sifra);
 
             if (navijac == null)
             {
                 ViewBag.porukaGreske = "Korisnicko ime ili sifra nisu ispravni";
                 return View("LogovanjeStranica");
             }
+
+            timoviLista = timRepository.GetList();
+            ViewBag.Tim = timoviLista;
 
             Session["NavijacID"] = navijac.NavijacID;
             Session["KorsinickoIme"] = navijac.KorisnickoIme;
@@ -78,8 +86,6 @@ namespace FudbalskiKup.Controllers
 
         private ActionResult  IzmeniNalog(Navijac izmenjeniNavijac)
         {
- 
-            NavijacRepository navijacRepository = new NavijacRepository();
             Tuple<Navijac , string> tupleNavijac = navijacRepository.IzmeniNavijaca(izmenjeniNavijac);
             ViewBag.porukaGreske = tupleNavijac.Item2;
             return View("Profil" , tupleNavijac.Item1);
@@ -87,7 +93,6 @@ namespace FudbalskiKup.Controllers
 
         private ActionResult ObrisiNalog(Navijac navijac)
         {
-            NavijacRepository navijacRepository = new NavijacRepository();
             navijacRepository.Delete(navijac.NavijacID);
             Session.Abandon();
             return RedirectToAction("RegistracijaStranica");

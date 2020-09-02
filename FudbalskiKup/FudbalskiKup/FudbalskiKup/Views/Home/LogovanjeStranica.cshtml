@@ -12,16 +12,23 @@
         .field-validation-error {
             color: red;
         }
+        #logDiv {
+            position: absolute;
+            left: 40%;
+            top: 20%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+        }
     </style>
 </head>
 <body>
-    <div id="regDiv">
+    <div id="logDiv">
         @using (Html.BeginForm("Logovanje", "Home", FormMethod.Post))
         {
             <table>
                 <tr>
                     <td></td>
-                    <td>Logovanje</td>
+                    <td><h3>Logovanje</h3></td>
                 </tr>
                 <tr>
                     <td>@Html.LabelFor(model => model.KorisnickoIme)</td>

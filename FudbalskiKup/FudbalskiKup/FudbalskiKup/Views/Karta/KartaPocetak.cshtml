@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "KartaPocetak";
+    if (Session["NavijacID"] == null)
+    {
+        Response.Redirect("~/Home/RegistracijaStranica");
+    }
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kupovina Karte</title>
+    <style>
+
+        #kartaDiv {
+            position: absolute;
+            left: 40%;
+            top: 20%;
+            border: 1px solid #ccc;
+            padding: 50px 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="kartaDiv">
+    @using (Html.BeginForm("DodajKartu", "Karta", FormMethod.Get))
+    {
+        <table>
+            <tr>
+                
+                <td> <h3>Profil</h3></td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td>
+                    <select name="utakmicaID" id="utakmicaID">
+                        @foreach (var utakmica in ViewBag.utakmice)
+                        {
+                            <option value="@utakmica.Item3.ToString()"> @utakmica.Item1.ToString() : @utakmica.Item2.ToString() </option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td>
+                    <select name="cena" id="cena">
+                        <option value="1000"> 1000 </option>
+                        <option value="2000"> 2000 </option>
+                        <option value="5000"> 5000 </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Kupi Kartu" />
+                </td>
+            </tr>
+        </table>
+    }
+    </div>
+</body>

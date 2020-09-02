@@ -222,6 +222,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KartaController.cs" />
+    <Compile Include="Controllers\TimController.cs" />
+    <Compile Include="Controllers\UtakmiceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,6 +232,7 @@
       <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\LogovanjePodaci.cs" />
+    <Compile Include="Models\Extended\UtakmicaInfo.cs" />
     <Compile Include="Models\FudbalskiKupModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -288,8 +292,11 @@
     </Compile>
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\KartaRepository.cs" />
     <Compile Include="Repository\NavijacRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\TimRepository.cs" />
+    <Compile Include="Repository\UtakmicaRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -342,6 +349,11 @@
     <Content Include="Views\Home\RegistracijaStranica.cshtml" />
     <Content Include="Views\Home\Profil.cshtml" />
     <Content Include="Views\Home\LogovanjeStranica.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Tim\Tim.cshtml" />
+    <Content Include="Views\Utakmice\Utakmice.cshtml" />
+    <Content Include="Views\Karta\KartaPocetak.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

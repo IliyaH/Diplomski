@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "Utakmice";
+}
+
+<h2>Utakmice</h2>
+
+@foreach (var utakmicaInfo in ViewBag.utakmice)
+{
+    @utakmicaInfo.ImePrviTim @utakmicaInfo.BrojGolovaPrviTim
+    @utakmicaInfo.BrojGolovaDrugiTim @utakmicaInfo.ImeDrugiTim
+
+
+}
+
+
+@using (Html.BeginForm("OdigrajUtakmicu", "Utakmice", FormMethod.Post))
+{
+<table>
+    <tr>
+        <td>
+            <select name="utakmicaID" id="utakmicaID">
+                @foreach (var utakmicaInfo in ViewBag.neodigraneUtakmice)
+                {
+                    <option value="@utakmicaInfo.UtakmicaID">@utakmicaInfo.ImePrviTim @utakmicaInfo.ImeDrugiTim</option>
+                }
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <input type="submit" value="Odigraj Utakmicu" />
+        </td>
+    </tr>
+</table>
+}
+

@@ -7,21 +7,28 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Registration</title>
+    <title>Registracija</title>
     <style>
         .field-validation-error{
             color: red;
         }
+        #regDiv{
+            position: absolute;
+            left: 40%;
+            top: 20%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+        }
     </style>
 </head>
 <body>
-    <div id="regDiv">
+    <div id="regDiv" class="form-style">
         @using (Html.BeginForm("Registracija", "Home", FormMethod.Post))
         {
         <table>
             <tr>
                 <td></td>
-                <td>Registration</td>
+                <td><h3>Registration</h3></td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(model => model.KorisnickoIme)</td>
@@ -63,7 +70,7 @@
                 <td></td>
                 <td>@Html.ValidationMessageFor(model => Model.Sifra)</td>
             </tr>
-            <tr> 
+            <tr>
                 <td colspan="2">
                     <label class="field-validation-error">@ViewBag.porukaGreske </label>
                 </td>
@@ -75,8 +82,15 @@
                     <input type="reset" value="Reset" />
                 </td>
             </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <a href="~/Home/LogovanjeStranica">Vec imate nalog? Ulogujte se!</a>
+                </td>
+            </tr>
         </table>
-        <a href="~/Home/LogovanjeStranica">Ulogujte se ukoliko vec imate nalog</a>
+           
+           
         }
 
         <script src="~/Scripts/jquery-3.4.1.min.js"></script>
