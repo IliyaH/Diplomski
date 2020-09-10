@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DiplomskiBazaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DiplomskiBazaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -48,6 +48,18 @@
           <Property Name="KartaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cena" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KorisnikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Prezime" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="KorisnickoIme" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Sifra" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Rola" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityType Name="Kupuje">
           <Key>
             <PropertyRef Name="Karta_KartaID" />
@@ -69,17 +81,6 @@
             <PropertyRef Name="NagradaID" />
           </Key>
           <Property Name="NagradaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Navijac">
-          <Key>
-            <PropertyRef Name="NavijacID" />
-          </Key>
-          <Property Name="NavijacID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Ime" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Prezime" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="KorisnickoIme" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Sifra" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Odrzava">
           <Key>
@@ -116,6 +117,16 @@
           <Property Name="SudijaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Prezime" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Ime" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Tim">
           <Key>
@@ -217,11 +228,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Kupuje_Navijac_FK">
-          <End Role="Navijac" Type="Self.Navijac" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
           <End Role="Kupuje" Type="Self.Kupuje" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Navijac">
-              <PropertyRef Name="NavijacID" />
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
             </Principal>
             <Dependent Role="Kupuje">
               <PropertyRef Name="Navijac_NavijacID" />
@@ -358,14 +369,15 @@
           <EntitySet Name="Igra" EntityType="Self.Igra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Igrac" EntityType="Self.Igrac" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Karta" EntityType="Self.Karta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kupuje" EntityType="Self.Kupuje" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LicnaNagrada" EntityType="Self.LicnaNagrada" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Nagrada" EntityType="Self.Nagrada" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Navijac" EntityType="Self.Navijac" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Odrzava" EntityType="Self.Odrzava" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posecuje" EntityType="Self.Posecuje" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stadion" EntityType="Self.Stadion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sudija" EntityType="Self.sudija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tim" EntityType="Self.Tim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TimskaNagrada" EntityType="Self.TimskaNagrada" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utakmica" EntityType="Self.Utakmica" Schema="dbo" store:Type="Tables" />
@@ -394,7 +406,7 @@
             <End Role="Kupuje" EntitySet="Kupuje" />
           </AssociationSet>
           <AssociationSet Name="Kupuje_Navijac_FK" Association="Self.Kupuje_Navijac_FK">
-            <End Role="Navijac" EntitySet="Navijac" />
+            <End Role="Korisnik" EntitySet="Korisnik" />
             <End Role="Kupuje" EntitySet="Kupuje" />
           </AssociationSet>
           <AssociationSet Name="LicnaNagrada_Igrac_FK" Association="Self.LicnaNagrada_Igrac_FK">
@@ -438,7 +450,8 @@
             <End Role="TimskaNagrada" EntitySet="TimskaNagrada" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DiplomskiBazaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -455,8 +468,8 @@
           <Property Name="GradID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Drzava" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Stadions" Relationship="Self.Stadion_Grad_FK" FromRole="Grad" ToRole="Stadion" />
-          <NavigationProperty Name="Tims" Relationship="Self.Tim_Grad_FK" FromRole="Grad" ToRole="Tim" />
+          <NavigationProperty Name="Stadion" Relationship="Self.Stadion_Grad_FK" FromRole="Grad" ToRole="Stadion" />
+          <NavigationProperty Name="Tim" Relationship="Self.Tim_Grad_FK" FromRole="Grad" ToRole="Tim" />
         </EntityType>
         <EntityType Name="Igra">
           <Key>
@@ -481,7 +494,7 @@
           <Property Name="BrojPostignutihGolova" Type="Int32" Nullable="false" />
           <Property Name="Tim_TimId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tim" Relationship="Self.Igrac_Tim_FK" FromRole="Igrac" ToRole="Tim" />
-          <NavigationProperty Name="LicnaNagradas" Relationship="Self.LicnaNagrada_Igrac_FK" FromRole="Igrac" ToRole="LicnaNagrada" />
+          <NavigationProperty Name="LicnaNagrada" Relationship="Self.LicnaNagrada_Igrac_FK" FromRole="Igrac" ToRole="LicnaNagrada" />
         </EntityType>
         <EntityType Name="Karta">
           <Key>
@@ -492,7 +505,20 @@
           <Property Name="KartaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cena" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Odrzava" Relationship="Self.Karta_Odrzava_FK" FromRole="Karta" ToRole="Odrzava" />
-          <NavigationProperty Name="Kupujes" Relationship="Self.Kupuje_Karta_FK" FromRole="Karta" ToRole="Kupuje" />
+          <NavigationProperty Name="Kupuje" Relationship="Self.Kupuje_Karta_FK" FromRole="Karta" ToRole="Kupuje" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnikID" />
+          </Key>
+          <Property Name="KorisnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prezime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KorisnickoIme" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sifra" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rola" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Kupuje" Relationship="Self.Kupuje_Navijac_FK" FromRole="Korisnik" ToRole="Kupuje" />
         </EntityType>
         <EntityType Name="Kupuje">
           <Key>
@@ -502,8 +528,8 @@
           <Property Name="Karta_KartaID" Type="Int32" Nullable="false" />
           <Property Name="Navijac_NavijacID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Karta" Relationship="Self.Kupuje_Karta_FK" FromRole="Kupuje" ToRole="Karta" />
-          <NavigationProperty Name="Navijac" Relationship="Self.Kupuje_Navijac_FK" FromRole="Kupuje" ToRole="Navijac" />
-          <NavigationProperty Name="Odrzavas" Relationship="Self.Posecuje" FromRole="Kupuje" ToRole="Odrzava" />
+          <NavigationProperty Name="Korisnik" Relationship="Self.Kupuje_Navijac_FK" FromRole="Kupuje" ToRole="Korisnik" />
+          <NavigationProperty Name="Odrzava" Relationship="Self.Posecuje" FromRole="Kupuje" ToRole="Odrzava" />
         </EntityType>
         <EntityType Name="LicnaNagrada">
           <Key>
@@ -523,18 +549,6 @@
           <NavigationProperty Name="LicnaNagrada" Relationship="Self.LicnaNagrada_Nagrada_FK" FromRole="Nagrada" ToRole="LicnaNagrada" />
           <NavigationProperty Name="TimskaNagrada" Relationship="Self.TimskaNagrada_Nagrada_FK" FromRole="Nagrada" ToRole="TimskaNagrada" />
         </EntityType>
-        <EntityType Name="Navijac">
-          <Key>
-            <PropertyRef Name="NavijacID" />
-          </Key>
-          <Property Name="NavijacID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Prezime" Type="String" Nullable="false" />
-          <Property Name="KorisnickoIme" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Sifra" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Kupujes" Relationship="Self.Kupuje_Navijac_FK" FromRole="Navijac" ToRole="Kupuje" />
-        </EntityType>
         <EntityType Name="Odrzava">
           <Key>
             <PropertyRef Name="Utakmica_UtakmicaID" />
@@ -542,10 +556,10 @@
           </Key>
           <Property Name="Utakmica_UtakmicaID" Type="Int32" Nullable="false" />
           <Property Name="Stadion_StadionID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Kartas" Relationship="Self.Karta_Odrzava_FK" FromRole="Odrzava" ToRole="Karta" />
+          <NavigationProperty Name="Karta" Relationship="Self.Karta_Odrzava_FK" FromRole="Odrzava" ToRole="Karta" />
           <NavigationProperty Name="Stadion" Relationship="Self.Odrzava_Stadion_FK" FromRole="Odrzava" ToRole="Stadion" />
           <NavigationProperty Name="Utakmica" Relationship="Self.Odrzava_Utakmica_FK" FromRole="Odrzava" ToRole="Utakmica" />
-          <NavigationProperty Name="Kupujes" Relationship="Self.Posecuje" FromRole="Odrzava" ToRole="Kupuje" />
+          <NavigationProperty Name="Kupuje" Relationship="Self.Posecuje" FromRole="Odrzava" ToRole="Kupuje" />
         </EntityType>
         <EntityType Name="Stadion">
           <Key>
@@ -555,7 +569,7 @@
           <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Grad_GradID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Grad" Relationship="Self.Stadion_Grad_FK" FromRole="Stadion" ToRole="Grad" />
-          <NavigationProperty Name="Odrzavas" Relationship="Self.Odrzava_Stadion_FK" FromRole="Stadion" ToRole="Odrzava" />
+          <NavigationProperty Name="Odrzava" Relationship="Self.Odrzava_Stadion_FK" FromRole="Stadion" ToRole="Odrzava" />
         </EntityType>
         <EntityType Name="sudija">
           <Key>
@@ -564,7 +578,17 @@
           <Property Name="SudijaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Prezime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Igras" Relationship="Self.Igra_Sudija_FK" FromRole="sudija" ToRole="Igra" />
+          <NavigationProperty Name="Igra" Relationship="Self.Igra_Sudija_FK" FromRole="sudija" ToRole="Igra" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Tim">
           <Key>
@@ -574,9 +598,9 @@
           <Property Name="Ime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Grad_GradId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Grad" Relationship="Self.Tim_Grad_FK" FromRole="Tim" ToRole="Grad" />
-          <NavigationProperty Name="Igras" Relationship="Self.Igra_Tim_FK" FromRole="Tim" ToRole="Igra" />
-          <NavigationProperty Name="Igracs" Relationship="Self.Igrac_Tim_FK" FromRole="Tim" ToRole="Igrac" />
-          <NavigationProperty Name="TimskaNagradas" Relationship="Self.TimskaNagrada_Tim_FK" FromRole="Tim" ToRole="TimskaNagrada" />
+          <NavigationProperty Name="Igra" Relationship="Self.Igra_Tim_FK" FromRole="Tim" ToRole="Igra" />
+          <NavigationProperty Name="Igrac" Relationship="Self.Igrac_Tim_FK" FromRole="Tim" ToRole="Igrac" />
+          <NavigationProperty Name="TimskaNagrada" Relationship="Self.TimskaNagrada_Tim_FK" FromRole="Tim" ToRole="TimskaNagrada" />
         </EntityType>
         <EntityType Name="TimskaNagrada">
           <Key>
@@ -596,8 +620,8 @@
           <Property Name="Odigrana" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FazaTakmicenja" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Igras" Relationship="Self.Igra_Utakmica_FK" FromRole="Utakmica" ToRole="Igra" />
-          <NavigationProperty Name="Odrzavas" Relationship="Self.Odrzava_Utakmica_FK" FromRole="Utakmica" ToRole="Odrzava" />
+          <NavigationProperty Name="Igra" Relationship="Self.Igra_Utakmica_FK" FromRole="Utakmica" ToRole="Igra" />
+          <NavigationProperty Name="Odrzava" Relationship="Self.Odrzava_Utakmica_FK" FromRole="Utakmica" ToRole="Odrzava" />
         </EntityType>
         <Association Name="Stadion_Grad_FK">
           <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
@@ -710,11 +734,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Kupuje_Navijac_FK">
-          <End Role="Navijac" Type="Self.Navijac" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
           <End Role="Kupuje" Type="Self.Kupuje" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Navijac">
-              <PropertyRef Name="NavijacID" />
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnikID" />
             </Principal>
             <Dependent Role="Kupuje">
               <PropertyRef Name="Navijac_NavijacID" />
@@ -785,85 +809,86 @@
           <End Role="Kupuje" Type="Self.Kupuje" Multiplicity="*" />
           <End Role="Odrzava" Type="Self.Odrzava" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DiplomskiBazaEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DiplomskiBazaEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
-          <EntitySet Name="Grads" EntityType="Self.Grad" />
-          <EntitySet Name="Igras" EntityType="Self.Igra" />
-          <EntitySet Name="Igracs" EntityType="Self.Igrac" />
-          <EntitySet Name="Kartas" EntityType="Self.Karta" />
-          <EntitySet Name="Kupujes" EntityType="Self.Kupuje" />
-          <EntitySet Name="LicnaNagradas" EntityType="Self.LicnaNagrada" />
-          <EntitySet Name="Nagradas" EntityType="Self.Nagrada" />
-          <EntitySet Name="Navijacs" EntityType="Self.Navijac" />
-          <EntitySet Name="Odrzavas" EntityType="Self.Odrzava" />
-          <EntitySet Name="Stadions" EntityType="Self.Stadion" />
-          <EntitySet Name="sudijas" EntityType="Self.sudija" />
-          <EntitySet Name="Tims" EntityType="Self.Tim" />
-          <EntitySet Name="TimskaNagradas" EntityType="Self.TimskaNagrada" />
-          <EntitySet Name="Utakmicas" EntityType="Self.Utakmica" />
+          <EntitySet Name="Grad" EntityType="Self.Grad" />
+          <EntitySet Name="Igra" EntityType="Self.Igra" />
+          <EntitySet Name="Igrac" EntityType="Self.Igrac" />
+          <EntitySet Name="Karta" EntityType="Self.Karta" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" />
+          <EntitySet Name="Kupuje" EntityType="Self.Kupuje" />
+          <EntitySet Name="LicnaNagrada" EntityType="Self.LicnaNagrada" />
+          <EntitySet Name="Nagrada" EntityType="Self.Nagrada" />
+          <EntitySet Name="Odrzava" EntityType="Self.Odrzava" />
+          <EntitySet Name="Stadion" EntityType="Self.Stadion" />
+          <EntitySet Name="sudija" EntityType="Self.sudija" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tim" EntityType="Self.Tim" />
+          <EntitySet Name="TimskaNagrada" EntityType="Self.TimskaNagrada" />
+          <EntitySet Name="Utakmica" EntityType="Self.Utakmica" />
           <AssociationSet Name="Stadion_Grad_FK" Association="Self.Stadion_Grad_FK">
-            <End Role="Grad" EntitySet="Grads" />
-            <End Role="Stadion" EntitySet="Stadions" />
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Stadion" EntitySet="Stadion" />
           </AssociationSet>
           <AssociationSet Name="Tim_Grad_FK" Association="Self.Tim_Grad_FK">
-            <End Role="Grad" EntitySet="Grads" />
-            <End Role="Tim" EntitySet="Tims" />
+            <End Role="Grad" EntitySet="Grad" />
+            <End Role="Tim" EntitySet="Tim" />
           </AssociationSet>
           <AssociationSet Name="Igra_Sudija_FK" Association="Self.Igra_Sudija_FK">
-            <End Role="sudija" EntitySet="sudijas" />
-            <End Role="Igra" EntitySet="Igras" />
+            <End Role="sudija" EntitySet="sudija" />
+            <End Role="Igra" EntitySet="Igra" />
           </AssociationSet>
           <AssociationSet Name="Igra_Tim_FK" Association="Self.Igra_Tim_FK">
-            <End Role="Tim" EntitySet="Tims" />
-            <End Role="Igra" EntitySet="Igras" />
+            <End Role="Tim" EntitySet="Tim" />
+            <End Role="Igra" EntitySet="Igra" />
           </AssociationSet>
           <AssociationSet Name="Igra_Utakmica_FK" Association="Self.Igra_Utakmica_FK">
-            <End Role="Utakmica" EntitySet="Utakmicas" />
-            <End Role="Igra" EntitySet="Igras" />
+            <End Role="Utakmica" EntitySet="Utakmica" />
+            <End Role="Igra" EntitySet="Igra" />
           </AssociationSet>
           <AssociationSet Name="Igrac_Tim_FK" Association="Self.Igrac_Tim_FK">
-            <End Role="Tim" EntitySet="Tims" />
-            <End Role="Igrac" EntitySet="Igracs" />
+            <End Role="Tim" EntitySet="Tim" />
+            <End Role="Igrac" EntitySet="Igrac" />
           </AssociationSet>
           <AssociationSet Name="LicnaNagrada_Igrac_FK" Association="Self.LicnaNagrada_Igrac_FK">
-            <End Role="Igrac" EntitySet="Igracs" />
-            <End Role="LicnaNagrada" EntitySet="LicnaNagradas" />
+            <End Role="Igrac" EntitySet="Igrac" />
+            <End Role="LicnaNagrada" EntitySet="LicnaNagrada" />
           </AssociationSet>
           <AssociationSet Name="Karta_Odrzava_FK" Association="Self.Karta_Odrzava_FK">
-            <End Role="Odrzava" EntitySet="Odrzavas" />
-            <End Role="Karta" EntitySet="Kartas" />
+            <End Role="Odrzava" EntitySet="Odrzava" />
+            <End Role="Karta" EntitySet="Karta" />
           </AssociationSet>
           <AssociationSet Name="Kupuje_Karta_FK" Association="Self.Kupuje_Karta_FK">
-            <End Role="Karta" EntitySet="Kartas" />
-            <End Role="Kupuje" EntitySet="Kupujes" />
+            <End Role="Karta" EntitySet="Karta" />
+            <End Role="Kupuje" EntitySet="Kupuje" />
           </AssociationSet>
           <AssociationSet Name="Kupuje_Navijac_FK" Association="Self.Kupuje_Navijac_FK">
-            <End Role="Navijac" EntitySet="Navijacs" />
-            <End Role="Kupuje" EntitySet="Kupujes" />
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Kupuje" EntitySet="Kupuje" />
           </AssociationSet>
           <AssociationSet Name="LicnaNagrada_Nagrada_FK" Association="Self.LicnaNagrada_Nagrada_FK">
-            <End Role="Nagrada" EntitySet="Nagradas" />
-            <End Role="LicnaNagrada" EntitySet="LicnaNagradas" />
+            <End Role="Nagrada" EntitySet="Nagrada" />
+            <End Role="LicnaNagrada" EntitySet="LicnaNagrada" />
           </AssociationSet>
           <AssociationSet Name="TimskaNagrada_Nagrada_FK" Association="Self.TimskaNagrada_Nagrada_FK">
-            <End Role="Nagrada" EntitySet="Nagradas" />
-            <End Role="TimskaNagrada" EntitySet="TimskaNagradas" />
+            <End Role="Nagrada" EntitySet="Nagrada" />
+            <End Role="TimskaNagrada" EntitySet="TimskaNagrada" />
           </AssociationSet>
           <AssociationSet Name="Odrzava_Stadion_FK" Association="Self.Odrzava_Stadion_FK">
-            <End Role="Stadion" EntitySet="Stadions" />
-            <End Role="Odrzava" EntitySet="Odrzavas" />
+            <End Role="Stadion" EntitySet="Stadion" />
+            <End Role="Odrzava" EntitySet="Odrzava" />
           </AssociationSet>
           <AssociationSet Name="Odrzava_Utakmica_FK" Association="Self.Odrzava_Utakmica_FK">
-            <End Role="Utakmica" EntitySet="Utakmicas" />
-            <End Role="Odrzava" EntitySet="Odrzavas" />
+            <End Role="Utakmica" EntitySet="Utakmica" />
+            <End Role="Odrzava" EntitySet="Odrzava" />
           </AssociationSet>
           <AssociationSet Name="TimskaNagrada_Tim_FK" Association="Self.TimskaNagrada_Tim_FK">
-            <End Role="Tim" EntitySet="Tims" />
-            <End Role="TimskaNagrada" EntitySet="TimskaNagradas" />
+            <End Role="Tim" EntitySet="Tim" />
+            <End Role="TimskaNagrada" EntitySet="TimskaNagrada" />
           </AssociationSet>
           <AssociationSet Name="Posecuje" Association="Self.Posecuje">
-            <End Role="Kupuje" EntitySet="Kupujes" />
-            <End Role="Odrzava" EntitySet="Odrzavas" />
+            <End Role="Kupuje" EntitySet="Kupuje" />
+            <End Role="Odrzava" EntitySet="Odrzava" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -871,7 +896,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DiplomskiBazaModelStoreContainer" CdmEntityContainer="DiplomskiBazaEntities1">
+        <EntityContainerMapping StorageEntityContainer="DiplomskiBazaModelStoreContainer" CdmEntityContainer="DiplomskiBazaEntities2">
           <EntitySetMapping Name="C__RefactorLog">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
@@ -879,7 +904,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Grads">
+          <EntitySetMapping Name="Grad">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Grad">
               <MappingFragment StoreEntitySet="Grad">
                 <ScalarProperty Name="GradID" ColumnName="GradID" />
@@ -888,7 +913,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Igras">
+          <EntitySetMapping Name="Igra">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Igra">
               <MappingFragment StoreEntitySet="Igra">
                 <ScalarProperty Name="Tim_TimID" ColumnName="Tim_TimID" />
@@ -898,7 +923,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Igracs">
+          <EntitySetMapping Name="Igrac">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Igrac">
               <MappingFragment StoreEntitySet="Igrac">
                 <ScalarProperty Name="IgracID" ColumnName="IgracID" />
@@ -909,7 +934,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Kartas">
+          <EntitySetMapping Name="Karta">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Karta">
               <MappingFragment StoreEntitySet="Karta">
                 <ScalarProperty Name="Odrzava_UtakmicaID" ColumnName="Odrzava_UtakmicaID" />
@@ -919,7 +944,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Kupujes">
+          <EntitySetMapping Name="Korisnik">
+            <EntityTypeMapping TypeName="DiplomskiBazaModel.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="KorisnikID" ColumnName="KorisnikID" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Sifra" ColumnName="Sifra" />
+                <ScalarProperty Name="Rola" ColumnName="Rola" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kupuje">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Kupuje">
               <MappingFragment StoreEntitySet="Kupuje">
                 <ScalarProperty Name="Karta_KartaID" ColumnName="Karta_KartaID" />
@@ -927,7 +965,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LicnaNagradas">
+          <EntitySetMapping Name="LicnaNagrada">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.LicnaNagrada">
               <MappingFragment StoreEntitySet="LicnaNagrada">
                 <ScalarProperty Name="NagradaID" ColumnName="NagradaID" />
@@ -936,26 +974,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Nagradas">
+          <EntitySetMapping Name="Nagrada">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Nagrada">
               <MappingFragment StoreEntitySet="Nagrada">
                 <ScalarProperty Name="NagradaID" ColumnName="NagradaID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Navijacs">
-            <EntityTypeMapping TypeName="DiplomskiBazaModel.Navijac">
-              <MappingFragment StoreEntitySet="Navijac">
-                <ScalarProperty Name="NavijacID" ColumnName="NavijacID" />
-                <ScalarProperty Name="Ime" ColumnName="Ime" />
-                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
-                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Sifra" ColumnName="Sifra" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Odrzavas">
+          <EntitySetMapping Name="Odrzava">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Odrzava">
               <MappingFragment StoreEntitySet="Odrzava">
                 <ScalarProperty Name="Utakmica_UtakmicaID" ColumnName="Utakmica_UtakmicaID" />
@@ -963,7 +989,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Stadions">
+          <EntitySetMapping Name="Stadion">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Stadion">
               <MappingFragment StoreEntitySet="Stadion">
                 <ScalarProperty Name="StadionID" ColumnName="StadionID" />
@@ -972,7 +998,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sudijas">
+          <EntitySetMapping Name="sudija">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.sudija">
               <MappingFragment StoreEntitySet="sudija">
                 <ScalarProperty Name="SudijaID" ColumnName="SudijaID" />
@@ -981,7 +1007,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tims">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DiplomskiBazaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tim">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Tim">
               <MappingFragment StoreEntitySet="Tim">
                 <ScalarProperty Name="TimID" ColumnName="TimID" />
@@ -990,7 +1027,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TimskaNagradas">
+          <EntitySetMapping Name="TimskaNagrada">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.TimskaNagrada">
               <MappingFragment StoreEntitySet="TimskaNagrada">
                 <ScalarProperty Name="NagradaID" ColumnName="NagradaID" />
@@ -999,7 +1036,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Utakmicas">
+          <EntitySetMapping Name="Utakmica">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Utakmica">
               <MappingFragment StoreEntitySet="Utakmica">
                 <ScalarProperty Name="UtakmicaID" ColumnName="UtakmicaID" />
@@ -1033,7 +1070,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

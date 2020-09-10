@@ -17,9 +17,9 @@ namespace FudbalskiKup.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tim()
         {
-            this.Igras = new HashSet<Igra>();
-            this.Igracs = new HashSet<Igrac>();
-            this.TimskaNagradas = new HashSet<TimskaNagrada>();
+            this.Igra = new HashSet<Igra>();
+            this.Igrac = new HashSet<Igrac>();
+            this.TimskaNagrada = new HashSet<TimskaNagrada>();
         }
     
         public int TimID { get; set; }
@@ -28,10 +28,10 @@ namespace FudbalskiKup.Models
     
         public virtual Grad Grad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Igra> Igras { get; set; }
+        public virtual ICollection<Igra> Igra { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Igrac> Igracs { get; set; }
+        public virtual ICollection<Igrac> Igrac { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TimskaNagrada> TimskaNagradas { get; set; }
+        public virtual ICollection<TimskaNagrada> TimskaNagrada { get; set; }
     }
 }

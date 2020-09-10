@@ -2,7 +2,7 @@
 @model FudbalskiKup.Models.Utakmica
 @{
     Layout = null;
-    if (Session["NavijacID"] == null)
+    if (Session["KorisnikID"] == null)
     {
         Response.Redirect("~/Home/RegistracijaStranica");
     }

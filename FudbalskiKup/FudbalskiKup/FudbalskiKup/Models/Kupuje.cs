@@ -17,15 +17,15 @@ namespace FudbalskiKup.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kupuje()
         {
-            this.Odrzavas = new HashSet<Odrzava>();
+            this.Odrzava = new HashSet<Odrzava>();
         }
     
         public int Karta_KartaID { get; set; }
         public int Navijac_NavijacID { get; set; }
     
         public virtual Karta Karta { get; set; }
-        public virtual Navijac Navijac { get; set; }
+        public virtual Korisnik Korisnik { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Odrzava> Odrzavas { get; set; }
+        public virtual ICollection<Odrzava> Odrzava { get; set; }
     }
 }

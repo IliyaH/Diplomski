@@ -17,7 +17,7 @@ namespace FudbalskiKup.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Karta()
         {
-            this.Kupujes = new HashSet<Kupuje>();
+            this.Kupuje = new HashSet<Kupuje>();
         }
     
         public int Odrzava_UtakmicaID { get; set; }
@@ -27,6 +27,6 @@ namespace FudbalskiKup.Models
     
         public virtual Odrzava Odrzava { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kupuje> Kupujes { get; set; }
+        public virtual ICollection<Kupuje> Kupuje { get; set; }
     }
 }

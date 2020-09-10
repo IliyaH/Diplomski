@@ -19,8 +19,8 @@ namespace FudbalskiKup.Repository
 
             using (var db = new DiplomskiBazaEntities())
             {
-                listaIgraca = db.Igracs.Where(x => x.Tim_TimId == tim.TimID).ToList();
-                grad = db.Grads.Where(x => x.GradID == tim.Grad_GradId).FirstOrDefault();             
+                listaIgraca = db.Igrac.Where(x => x.Tim_TimId == tim.TimID).ToList();
+                grad = db.Grad.Where(x => x.GradID == tim.Grad_GradId).FirstOrDefault();             
             }
 
             return Tuple.Create(tim, grad, listaIgraca);

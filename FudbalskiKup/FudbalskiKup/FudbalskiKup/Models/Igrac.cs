@@ -17,7 +17,7 @@ namespace FudbalskiKup.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Igrac()
         {
-            this.LicnaNagradas = new HashSet<LicnaNagrada>();
+            this.LicnaNagrada = new HashSet<LicnaNagrada>();
         }
     
         public int IgracID { get; set; }
@@ -28,6 +28,6 @@ namespace FudbalskiKup.Models
     
         public virtual Tim Tim { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LicnaNagrada> LicnaNagradas { get; set; }
+        public virtual ICollection<LicnaNagrada> LicnaNagrada { get; set; }
     }
 }

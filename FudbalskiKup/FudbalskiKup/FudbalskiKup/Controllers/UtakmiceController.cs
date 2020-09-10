@@ -1,4 +1,5 @@
-﻿using FudbalskiKup.Models.Extended;
+﻿using FudbalskiKup.Models;
+using FudbalskiKup.Models.Extended;
 using FudbalskiKup.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace FudbalskiKup.Controllers
     public class UtakmiceController : Controller
     {
         UtakmicaRepository utakmicaRepository = new UtakmicaRepository();
+        LicnaNagradaRepository LicnaNagradaRepository = new LicnaNagradaRepository();
+        TimskaNagradaRepository TimskaNagradaRepository = new TimskaNagradaRepository();
+
         List<UtakmicaInfo> sveUtakmice = new List<UtakmicaInfo>();
         List<UtakmicaInfo> neodigraneUtakmice = new List<UtakmicaInfo>();
 
@@ -25,20 +29,15 @@ namespace FudbalskiKup.Controllers
                 {
                     neodigraneUtakmice.Add(utakmica);
                 }
-               
+                if (utakmica.FazaTakmicenja == "Finale") 
+                {
+                  
+                }
             }
             ViewBag.neodigraneUtakmice = neodigraneUtakmice;
-
             ViewBag.utakmice = sveUtakmice;
-
             return View();
         }
-
-        //TODO : Metoda za odigravanje izabrane utakmice
-        //Potreban ID utakmice
-        //Proveri da li je neki od timova String.Empty i da li je odigrana == 0
-        //Edit broj golova oba tima i odigrana => 1
-        //Vrati se na pocetak sa svim utakmicama
 
         public ActionResult OdigrajUtakmicu(int utakmicaID) 
         {
@@ -46,7 +45,27 @@ namespace FudbalskiKup.Controllers
             return RedirectToAction("Utakmice");
         }
 
+        public ActionResult PrikaziNagrade() 
+        {
+            Tuple<LicnaNagrada, Igrac> najboljiIgrac = LicnaNagradaRepository.PribaviLicneNagrad("Najbolji Igrac");
+            Tuple<LicnaNagrada, Igrac> ferplejIgrac = LicnaNagradaRepository.PribaviLicneNagrad("Ferplej");
+            Tuple<LicnaNagrada, Igrac> najboljiStrelac = LicnaNagradaRepository.PribaviLicneNagrad("Najbolji Strelac");
 
-        //Napravi dodelu nagrada
+            ViewBag.NajboljiIgrac = najboljiIgrac;
+            ViewBag.FerplejIgrac = ferplejIgrac;
+            ViewBag.NajboljiStrelac = najboljiStrelac;
+
+            Tuple<TimskaNagrada, Tim> prviTim = TimskaNagradaRepository.PribaviTimskeNagrade("Prvo Mesto");
+            Tuple<TimskaNagrada, Tim> drugiTim = TimskaNagradaRepository.PribaviTimskeNagrade("Drugo Mesto");
+
+            ViewBag.PrvoMesto = prviTim;
+            ViewBag.DrugoMesto = drugiTim;
+
+            return View();
+        }
+
+       
+
+
     }
 }

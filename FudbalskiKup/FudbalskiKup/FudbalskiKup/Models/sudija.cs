@@ -17,7 +17,7 @@ namespace FudbalskiKup.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public sudija()
         {
-            this.Igras = new HashSet<Igra>();
+            this.Igra = new HashSet<Igra>();
         }
     
         public int SudijaID { get; set; }
@@ -25,6 +25,6 @@ namespace FudbalskiKup.Models
         public string Ime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Igra> Igras { get; set; }
+        public virtual ICollection<Igra> Igra { get; set; }
     }
 }

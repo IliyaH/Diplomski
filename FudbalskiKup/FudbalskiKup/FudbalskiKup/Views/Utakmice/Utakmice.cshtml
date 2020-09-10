@@ -4,36 +4,46 @@
     ViewBag.Title = "Utakmice";
 }
 
-<h2>Utakmice</h2>
-
-@foreach (var utakmicaInfo in ViewBag.utakmice)
-{
-    @utakmicaInfo.ImePrviTim @utakmicaInfo.BrojGolovaPrviTim
-    @utakmicaInfo.BrojGolovaDrugiTim @utakmicaInfo.ImeDrugiTim
+    <h2>Utakmice</h2>
 
 
-}
+
+    @using (Html.BeginForm("OdigrajUtakmicu", "Utakmice", FormMethod.Post))
+    {
+            <table>
+                    
+                    @foreach (var utakmicaInfo in ViewBag.utakmice)
+                    {
+                        <tr>
+                            <td>
+                            @utakmicaInfo.ImePrviTim @utakmicaInfo.BrojGolovaPrviTim
+                            @utakmicaInfo.BrojGolovaDrugiTim @utakmicaInfo.ImeDrugiTim
+                            </td>
+                        </tr>
+                    }
+                    
+                <tr>
+                    <td>
+                        <select name="utakmicaID" id="utakmicaID">
+                            @foreach (var utakmicaInfo in ViewBag.neodigraneUtakmice)
+                            {
+                                <option value="@utakmicaInfo.UtakmicaID">@utakmicaInfo.ImePrviTim @utakmicaInfo.ImeDrugiTim</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Odigraj Utakmicu" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a href="~/Utakmice/PrikaziNagrade">Prikazi Nagrade</a>
+                    </td>
+                </tr>
+            </table>
+    }
 
 
-@using (Html.BeginForm("OdigrajUtakmicu", "Utakmice", FormMethod.Post))
-{
-<table>
-    <tr>
-        <td>
-            <select name="utakmicaID" id="utakmicaID">
-                @foreach (var utakmicaInfo in ViewBag.neodigraneUtakmice)
-                {
-                    <option value="@utakmicaInfo.UtakmicaID">@utakmicaInfo.ImePrviTim @utakmicaInfo.ImeDrugiTim</option>
-                }
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <input type="submit" value="Odigraj Utakmicu" />
-        </td>
-    </tr>
-</table>
-}
 

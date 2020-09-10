@@ -17,18 +17,18 @@ namespace FudbalskiKup.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Odrzava()
         {
-            this.Kartas = new HashSet<Karta>();
-            this.Kupujes = new HashSet<Kupuje>();
+            this.Karta = new HashSet<Karta>();
+            this.Kupuje = new HashSet<Kupuje>();
         }
     
         public int Utakmica_UtakmicaID { get; set; }
         public int Stadion_StadionID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Karta> Kartas { get; set; }
+        public virtual ICollection<Karta> Karta { get; set; }
         public virtual Stadion Stadion { get; set; }
         public virtual Utakmica Utakmica { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kupuje> Kupujes { get; set; }
+        public virtual ICollection<Kupuje> Kupuje { get; set; }
     }
 }

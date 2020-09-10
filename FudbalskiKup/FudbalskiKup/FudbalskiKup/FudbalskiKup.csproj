@@ -229,73 +229,78 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\C__RefactorLog.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\LogovanjePodaci.cs" />
     <Compile Include="Models\Extended\UtakmicaInfo.cs" />
-    <Compile Include="Models\FudbalskiKupModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FudbalskiKupModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FudbalskiKupModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\FudbalskiKupModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FudbalskiKupModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Grad.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Igra.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Igrac.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Karta.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Korisnik.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Kupuje.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LicnaNagrada.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Nagrada.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Navijac.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Odrzava.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Stadion.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sudija.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tim.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TimskaNagrada.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Utakmica.cs">
-      <DependentUpon>FudbalskiKupModel.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\KartaRepository.cs" />
+    <Compile Include="Repository\LicnaNagradaRepository.cs" />
     <Compile Include="Repository\NavijacRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\TimRepository.cs" />
+    <Compile Include="Repository\TimskaNagradaRepository.cs" />
     <Compile Include="Repository\UtakmicaRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -307,24 +312,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\FudbalskiKupModel.Context.tt">
+    <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FudbalskiKupModel.edmx</DependentUpon>
-      <LastGenOutput>FudbalskiKupModel.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\FudbalskiKupModel.tt">
+    <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FudbalskiKupModel.edmx</DependentUpon>
-      <LastGenOutput>FudbalskiKupModel.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\FudbalskiKupModel.edmx">
+    <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FudbalskiKupModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\FudbalskiKupModel.edmx.diagram">
-      <DependentUpon>FudbalskiKupModel.edmx</DependentUpon>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -354,6 +359,7 @@
     <Content Include="Views\Tim\Tim.cshtml" />
     <Content Include="Views\Utakmice\Utakmice.cshtml" />
     <Content Include="Views\Karta\KartaPocetak.cshtml" />
+    <Content Include="Views\Utakmice\PrikaziNagrade.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

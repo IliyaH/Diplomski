@@ -26,19 +26,20 @@ namespace FudbalskiKup.Models
         }
     
         public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
-        public virtual DbSet<Grad> Grads { get; set; }
-        public virtual DbSet<Igra> Igras { get; set; }
-        public virtual DbSet<Igrac> Igracs { get; set; }
-        public virtual DbSet<Karta> Kartas { get; set; }
-        public virtual DbSet<Kupuje> Kupujes { get; set; }
-        public virtual DbSet<LicnaNagrada> LicnaNagradas { get; set; }
-        public virtual DbSet<Nagrada> Nagradas { get; set; }
-        public virtual DbSet<Navijac> Navijacs { get; set; }
-        public virtual DbSet<Odrzava> Odrzavas { get; set; }
-        public virtual DbSet<Stadion> Stadions { get; set; }
-        public virtual DbSet<sudija> sudijas { get; set; }
-        public virtual DbSet<Tim> Tims { get; set; }
-        public virtual DbSet<TimskaNagrada> TimskaNagradas { get; set; }
-        public virtual DbSet<Utakmica> Utakmicas { get; set; }
+        public virtual DbSet<Grad> Grad { get; set; }
+        public virtual DbSet<Igra> Igra { get; set; }
+        public virtual DbSet<Igrac> Igrac { get; set; }
+        public virtual DbSet<Karta> Karta { get; set; }
+        public virtual DbSet<Korisnik> Korisnik { get; set; }
+        public virtual DbSet<Kupuje> Kupuje { get; set; }
+        public virtual DbSet<LicnaNagrada> LicnaNagrada { get; set; }
+        public virtual DbSet<Nagrada> Nagrada { get; set; }
+        public virtual DbSet<Odrzava> Odrzava { get; set; }
+        public virtual DbSet<Stadion> Stadion { get; set; }
+        public virtual DbSet<sudija> sudija { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Tim> Tim { get; set; }
+        public virtual DbSet<TimskaNagrada> TimskaNagrada { get; set; }
+        public virtual DbSet<Utakmica> Utakmica { get; set; }
     }
 }

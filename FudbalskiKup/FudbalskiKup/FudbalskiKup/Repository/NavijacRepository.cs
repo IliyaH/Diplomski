@@ -5,13 +5,13 @@ using System.Web;
 
 namespace FudbalskiKup.Models
 {
-    public class NavijacRepository : BaseRepository<Navijac>
+    public class NavijacRepository : BaseRepository<Korisnik>
     {
-        public string ProveriKorisnickoIme(Navijac navijac) 
+        public string ProveriKorisnickoIme(Korisnik korisnik) 
         {
             using (var db = new DiplomskiBazaEntities()) 
             {
-                var navijacInfo = db.Navijacs.Where(x => x.KorisnickoIme == navijac.KorisnickoIme).FirstOrDefault();
+                var navijacInfo = db.Korisnik.Where(x => x.KorisnickoIme == korisnik.KorisnickoIme).FirstOrDefault();
                 if (navijacInfo != null) 
                 {
                     return "Korisnicko ime je zauzeto";
@@ -20,11 +20,11 @@ namespace FudbalskiKup.Models
             }
         }
 
-        public Navijac ProveriPostojanjeProfila(string korisnickoIme, string sifra) 
+        public Korisnik ProveriPostojanjeProfila(string korisnickoIme, string sifra) 
         {
             using (var db = new DiplomskiBazaEntities()) 
             {
-                var navijacInfo = db.Navijacs.Where(x => (x.KorisnickoIme == korisnickoIme) && ( x.Sifra == sifra)).FirstOrDefault();
+                var navijacInfo = db.Korisnik.Where(x => (x.KorisnickoIme == korisnickoIme) && ( x.Sifra == sifra)).FirstOrDefault();
                 if (navijacInfo == null)
                 {
                     return null;
@@ -33,17 +33,17 @@ namespace FudbalskiKup.Models
             }
         }
 
-        public Tuple<Navijac , string> IzmeniNavijaca(Navijac izmenjenNavijac)
+        public Tuple<Korisnik , string> IzmeniNavijaca(Korisnik izmenjenKorisnik)
         {
-            Navijac orginalniNavijac = null; 
+            Korisnik orginalniNavijac = null; 
             using (var db = new DiplomskiBazaEntities())
             {
-                 orginalniNavijac = db.Navijacs.Where(orginal => orginal.NavijacID == izmenjenNavijac.NavijacID).FirstOrDefault();
+                 orginalniNavijac = db.Korisnik.Where(orginal => orginal.KorisnikID == izmenjenKorisnik.KorisnikID).FirstOrDefault();
             }
-            if (orginalniNavijac.Sifra == izmenjenNavijac.Sifra)
+            if (orginalniNavijac.Sifra == izmenjenKorisnik.Sifra)
             {
-                Update(izmenjenNavijac);
-                return Tuple.Create(izmenjenNavijac , string.Empty);
+                Update(izmenjenKorisnik);
+                return Tuple.Create(izmenjenKorisnik, string.Empty);
             }
             else
             {

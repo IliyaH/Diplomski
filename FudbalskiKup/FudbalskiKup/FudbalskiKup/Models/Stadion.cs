@@ -17,7 +17,7 @@ namespace FudbalskiKup.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Stadion()
         {
-            this.Odrzavas = new HashSet<Odrzava>();
+            this.Odrzava = new HashSet<Odrzava>();
         }
     
         public int StadionID { get; set; }
@@ -26,6 +26,6 @@ namespace FudbalskiKup.Models
     
         public virtual Grad Grad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Odrzava> Odrzavas { get; set; }
+        public virtual ICollection<Odrzava> Odrzava { get; set; }
     }
 }

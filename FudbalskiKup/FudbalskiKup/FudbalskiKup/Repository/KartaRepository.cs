@@ -17,7 +17,7 @@ namespace FudbalskiKup.Repository
             using (var db = new DiplomskiBazaEntities())
             {
                 int i = 0;
-                var tempUtakmice = db.Igras.GroupBy(x => x.Utakmica_UtakmicaID).ToList();
+                var tempUtakmice = db.Igra.GroupBy(x => x.Utakmica_UtakmicaID).ToList();
                 string ime1 = String.Empty;
                 string ime2 = String.Empty;
                 int id = 0;
@@ -29,12 +29,12 @@ namespace FudbalskiKup.Repository
                         i++;
                         if (i == 1)
                         {
-                            ime1 = db.Tims.Where(x => x.TimID == tim.Tim_TimID).Select(c => c.Ime).FirstOrDefault();
-                            id = db.Utakmicas.Where(x => x.UtakmicaID == tim.Utakmica_UtakmicaID).Select(c => c.UtakmicaID).FirstOrDefault();
+                            ime1 = db.Tim.Where(x => x.TimID == tim.Tim_TimID).Select(c => c.Ime).FirstOrDefault();
+                            id = db.Utakmica.Where(x => x.UtakmicaID == tim.Utakmica_UtakmicaID).Select(c => c.UtakmicaID).FirstOrDefault();
                         }
                         if (i == 2)
                         {
-                            ime2 = db.Tims.Where(x => x.TimID == tim.Tim_TimID).Select(c => c.Ime).FirstOrDefault();
+                            ime2 = db.Tim.Where(x => x.TimID == tim.Tim_TimID).Select(c => c.Ime).FirstOrDefault();
                         }
                     }
                     i = 0;
@@ -52,7 +52,7 @@ namespace FudbalskiKup.Repository
 
             using (var db = new DiplomskiBazaEntities())
             {
-                int stadionID = db.Odrzavas.Where(x => x.Utakmica_UtakmicaID == utakmicaID).Select(x => x.Stadion_StadionID).FirstOrDefault();
+                int stadionID = db.Odrzava.Where(x => x.Utakmica_UtakmicaID == utakmicaID).Select(x => x.Stadion_StadionID).FirstOrDefault();
                 karta.Odrzava_StadionID = stadionID;
                 karta.Cena = cena;
                 karta.Odrzava_UtakmicaID = utakmicaID;

@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "PrikaziNagrade";
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Nagrade</title>
+    <style>
+        #nagradeDiv {
+            position: absolute;
+            left: 40%;
+            top: 20%;
+            border: 1px solid #ccc;
+            padding: 50px 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="nagradeDiv">
+        <table>
+            <tr>
+                <td style="align-content:center" colspan="3">Licne Nagrade</td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td>@ViewBag.FerplejIgrac.Item1.VrstaNagrade</td>
+                <td> @ViewBag.FerplejIgrac.Item2.Ime </td>
+                <td> @ViewBag.FerplejIgrac.Item2.Prezime</td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td>@ViewBag.NajboljiIgrac.Item1.VrstaNagrade </td>
+                <td> @ViewBag.NajboljiIgrac.Item2.Ime </td>
+                <td> @ViewBag.NajboljiIgrac.Item2.Prezime</td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td>@ViewBag.NajboljiStrelac.Item1.VrstaNagrade</td>
+                <td> @ViewBag.NajboljiStrelac.Item2.Ime </td>
+                <td> @ViewBag.NajboljiStrelac.Item2.Prezime</td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <td style="align-content:center" colspan="3">Timske Nagrade</td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td>@ViewBag.PrvoMesto.Item1.TipNagrade </td>
+                <td>  </td>
+                <td> @ViewBag.PrvoMesto.Item2.Ime</td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>@ViewBag.DrugoMesto.Item1.TipNagrade </td>
+                <td>  </td>
+                <td>
+                    @ViewBag.DrugoMesto.Item2.Ime
+                </td>
+            </tr>
+        </table>
+
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    </div>
+</body>

@@ -11,38 +11,24 @@ namespace FudbalskiKup.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class Navijac
+    
+    public partial class Korisnik
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Navijac()
+        public Korisnik()
         {
-            this.Kupujes = new HashSet<Kupuje>();
+            this.Kupuje = new HashSet<Kupuje>();
         }
-
-        public int NavijacID { get; set; }
-
-        [Required(ErrorMessage = "Polje mora biti popunjeno")]
+    
+        public int KorisnikID { get; set; }
         public string Ime { get; set; }
-
-        [Required(ErrorMessage = "Polje mora biti popunjeno")]
         public string Prezime { get; set; }
-
-        [Required(ErrorMessage = "Polje mora biti popunjeno")]
-        [DisplayName("Korisnicko Ime")]
         public string KorisnickoIme { get; set; }
-
-        [DataType(DataType.EmailAddress)]
-        [Required(ErrorMessage = "Polje mora biti popunjeno")]
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "Polje mora biti popunjeno")]
-        [DataType(DataType.Password)]
         public string Sifra { get; set; }
+        public string Rola { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kupuje> Kupujes { get; set; }
+        public virtual ICollection<Kupuje> Kupuje { get; set; }
     }
 }

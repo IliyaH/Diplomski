@@ -1,9 +1,9 @@
 ﻿
-@model FudbalskiKup.Models.Navijac
+@model FudbalskiKup.Models.Korisnik
 
 @{
     Layout = null;
-    if (Session["NavijacID"] == null)
+    if (Session["KorisnikID"] == null)
     {
         Response.Redirect("~/Home/RegistracijaStranica");
     }
@@ -34,7 +34,7 @@
         {
             <table>
                 <tr style='visibility:collapse'>
-                    <td> @Html.EditorFor(model => model.NavijacID, new { htmlAttributes = new { placeholder = Model.NavijacID } })</td>
+                    <td> @Html.EditorFor(model => model.KorisnikID, new { htmlAttributes = new { placeholder = Model.KorisnikID } })</td>
                 </tr>
                 <tr>
                     <td></td>

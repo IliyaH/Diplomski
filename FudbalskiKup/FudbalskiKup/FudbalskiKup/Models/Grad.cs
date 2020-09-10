@@ -17,8 +17,8 @@ namespace FudbalskiKup.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Grad()
         {
-            this.Stadions = new HashSet<Stadion>();
-            this.Tims = new HashSet<Tim>();
+            this.Stadion = new HashSet<Stadion>();
+            this.Tim = new HashSet<Tim>();
         }
     
         public int GradID { get; set; }
@@ -26,8 +26,8 @@ namespace FudbalskiKup.Models
         public string Ime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Stadion> Stadions { get; set; }
+        public virtual ICollection<Stadion> Stadion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tim> Tims { get; set; }
+        public virtual ICollection<Tim> Tim { get; set; }
     }
 }

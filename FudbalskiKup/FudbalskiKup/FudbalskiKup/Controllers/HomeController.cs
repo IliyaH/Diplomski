@@ -16,7 +16,7 @@ namespace FudbalskiKup.Controllers
         NavijacRepository navijacRepository = new NavijacRepository();
         TimRepository timRepository = new TimRepository();
         List<Tim> timoviLista = new List<Tim>();
-        Navijac navijac = new Navijac();
+        Korisnik korisnik = new Korisnik();
 
         //Get Register View
         public ActionResult RegistracijaStranica()
@@ -26,17 +26,21 @@ namespace FudbalskiKup.Controllers
 
         //Add Navijac in Base
         [HttpPost]
-        public ActionResult Registracija(Navijac navijac)
+        public ActionResult Registracija(Korisnik korisnik)
         {
-            string porukaGreske = navijacRepository.ProveriKorisnickoIme(navijac);
+            string porukaGreske = navijacRepository.ProveriKorisnickoIme(korisnik);
 
             if (porukaGreske == null)
             {
-                navijacRepository.Insert(navijac);
-                Session["NavijacID"] = navijac.NavijacID;
-                Session["KorisnickoIme"] = navijac.KorisnickoIme;
+                korisnik.Rola = "user";
+                navijacRepository.Insert(korisnik);
+                Session["KorisnikID"] = korisnik.KorisnikID;
+                Session["KorisnickoIme"] = korisnik.KorisnickoIme;
 
-                return View("Profil", navijac);
+                timoviLista = timRepository.GetList();
+                ViewBag.Tim = timoviLista;
+
+                return View("Profil", korisnik);
             }
 
             ViewBag.porukaGreske = porukaGreske;
@@ -52,9 +56,9 @@ namespace FudbalskiKup.Controllers
         public ActionResult Logovanje(LogovanjePodaci logovanjePodaci)
         {
            // NavijacRepository navijacRepository = new NavijacRepository();
-            navijac = navijacRepository.ProveriPostojanjeProfila(logovanjePodaci.KorisnickoIme, logovanjePodaci.Sifra);
+            korisnik = navijacRepository.ProveriPostojanjeProfila(logovanjePodaci.KorisnickoIme, logovanjePodaci.Sifra);
 
-            if (navijac == null)
+            if (korisnik == null)
             {
                 ViewBag.porukaGreske = "Korisnicko ime ili sifra nisu ispravni";
                 return View("LogovanjeStranica");
@@ -63,37 +67,37 @@ namespace FudbalskiKup.Controllers
             timoviLista = timRepository.GetList();
             ViewBag.Tim = timoviLista;
 
-            Session["NavijacID"] = navijac.NavijacID;
-            Session["KorsinickoIme"] = navijac.KorisnickoIme;
-            return View("Profil", navijac);
+            Session["KorisnikID"] = korisnik.KorisnikID;
+            Session["KorsinickoIme"] = korisnik.KorisnickoIme;
+            return View("Profil", korisnik);
 
         }
 
-        public ActionResult IzmenaNaloga(Navijac navijac,string submitButton)
+        public ActionResult IzmenaNaloga(Korisnik korisnik,string submitButton)
         {
             switch (submitButton)
             {
                 case "Izmeni Nalog":
                     // delegate sending to another controller action
-                    return (IzmeniNalog(navijac));
+                    return (IzmeniNalog(korisnik));
                 case "Obrisi Nalog":
                     // call another action to perform the cancellation
-                    return (ObrisiNalog(navijac));
+                    return (ObrisiNalog(korisnik));
                 default:
                     return View("RegistracijaStranica");
             }
         }
 
-        private ActionResult  IzmeniNalog(Navijac izmenjeniNavijac)
+        private ActionResult  IzmeniNalog(Korisnik izmenjeniKorisnik)
         {
-            Tuple<Navijac , string> tupleNavijac = navijacRepository.IzmeniNavijaca(izmenjeniNavijac);
+            Tuple<Korisnik , string> tupleNavijac = navijacRepository.IzmeniNavijaca(izmenjeniKorisnik);
             ViewBag.porukaGreske = tupleNavijac.Item2;
             return View("Profil" , tupleNavijac.Item1);
         }
 
-        private ActionResult ObrisiNalog(Navijac navijac)
+        private ActionResult ObrisiNalog(Korisnik korisnik)
         {
-            navijacRepository.Delete(navijac.NavijacID);
+            navijacRepository.Delete(korisnik.KorisnikID);
             Session.Abandon();
             return RedirectToAction("RegistracijaStranica");
         }
