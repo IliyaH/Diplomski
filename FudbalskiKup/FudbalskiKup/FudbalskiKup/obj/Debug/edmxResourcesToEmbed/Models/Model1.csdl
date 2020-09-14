@@ -38,6 +38,7 @@
     <Property Name="Prezime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="BrojPostignutihGolova" Type="Int32" Nullable="false" />
     <Property Name="Tim_TimId" Type="Int32" Nullable="false" />
+    <Property Name="BrojAsistencija" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Tim" Relationship="Self.Igrac_Tim_FK" FromRole="Igrac" ToRole="Tim" />
     <NavigationProperty Name="LicnaNagrada" Relationship="Self.LicnaNagrada_Igrac_FK" FromRole="Igrac" ToRole="LicnaNagrada" />
   </EntityType>
@@ -354,7 +355,7 @@
     <End Role="Kupuje" Type="Self.Kupuje" Multiplicity="*" />
     <End Role="Odrzava" Type="Self.Odrzava" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="DiplomskiBazaEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="DiplomskiBazaEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
     <EntitySet Name="Grad" EntityType="Self.Grad" />
     <EntitySet Name="Igra" EntityType="Self.Igra" />

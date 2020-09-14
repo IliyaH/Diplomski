@@ -18,31 +18,34 @@ namespace FudbalskiKup.Controllers
         List<Tim> timoviLista = new List<Tim>();
         Korisnik korisnik = new Korisnik();
 
-        //Get Register View
         public ActionResult RegistracijaStranica()
         {
             return View();
         }
 
-        //Add Navijac in Base
         [HttpPost]
         public ActionResult Registracija(Korisnik korisnik)
         {
+            //Proveri da li korisnicko ime postoji
             string porukaGreske = navijacRepository.ProveriKorisnickoIme(korisnik);
 
+            //ako ne postoji, unesi ga i napravi sesiju
             if (porukaGreske == null)
             {
                 korisnik.Rola = "user";
                 navijacRepository.Insert(korisnik);
                 Session["KorisnikID"] = korisnik.KorisnikID;
                 Session["KorisnickoIme"] = korisnik.KorisnickoIme;
+                Session["Rola"] = korisnik.Rola;
 
+                //pribavi listu timova ya profil
                 timoviLista = timRepository.GetList();
                 ViewBag.Tim = timoviLista;
 
                 return View("Profil", korisnik);
             }
 
+            //ako korisnicko ime postoji - greska
             ViewBag.porukaGreske = porukaGreske;
             return View("RegistracijaStranica");
         }
@@ -55,33 +58,36 @@ namespace FudbalskiKup.Controllers
         [HttpPost]
         public ActionResult Logovanje(LogovanjePodaci logovanjePodaci)
         {
-           // NavijacRepository navijacRepository = new NavijacRepository();
+            //uproveri da li postoji nalog
             korisnik = navijacRepository.ProveriPostojanjeProfila(logovanjePodaci.KorisnickoIme, logovanjePodaci.Sifra);
 
+            // ne postoji
             if (korisnik == null)
             {
                 ViewBag.porukaGreske = "Korisnicko ime ili sifra nisu ispravni";
                 return View("LogovanjeStranica");
             }
 
+            //postoji - pribavi timove i uloguj se
             timoviLista = timRepository.GetList();
             ViewBag.Tim = timoviLista;
 
             Session["KorisnikID"] = korisnik.KorisnikID;
             Session["KorsinickoIme"] = korisnik.KorisnickoIme;
+            Session["Rola"] = korisnik.Rola;
+
             return View("Profil", korisnik);
 
         }
 
         public ActionResult IzmenaNaloga(Korisnik korisnik,string submitButton)
-        {
+        {   
+            //u zavisnosti od kliknutog dugmeta odradi akciju
             switch (submitButton)
             {
                 case "Izmeni Nalog":
-                    // delegate sending to another controller action
                     return (IzmeniNalog(korisnik));
-                case "Obrisi Nalog":
-                    // call another action to perform the cancellation
+                case "Obrisi Nalog":  
                     return (ObrisiNalog(korisnik));
                 default:
                     return View("RegistracijaStranica");

@@ -33,6 +33,7 @@
     <Property Name="Prezime" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="BrojPostignutihGolova" Type="int" Nullable="false" />
     <Property Name="Tim_TimId" Type="int" Nullable="false" />
+    <Property Name="BrojAsistencija" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Karta">
     <Key>
@@ -358,6 +359,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="funkcija" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+    <Parameter Name="brojgolova1" Type="int" Mode="In" />
+    <Parameter Name="brojgolova2" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="DiplomskiBazaModelStoreContainer">
     <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />

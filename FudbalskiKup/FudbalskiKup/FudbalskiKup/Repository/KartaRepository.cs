@@ -12,8 +12,7 @@ namespace FudbalskiKup.Repository
         List<Tuple<string, string , int>> utakmice = new List<Tuple<string, string , int>>();
         public List<Tuple<string, string, int>> DobaviImeiIdUtakmice()
         {
-            //select email from mytable group by email having count(*) > 1
-
+            //Proadji utakmicu sa izabranim id i imenom(prosledjenim sa fronta)
             using (var db = new DiplomskiBazaEntities())
             {
                 int i = 0;
@@ -26,6 +25,7 @@ namespace FudbalskiKup.Repository
                 {
                     foreach (var tim in utakmica)
                     {
+                        //Proveri da li je prvi tim iy utakmice ili drugi(kako ne bismo ponovili utakmicu)
                         i++;
                         if (i == 1)
                         {
@@ -37,16 +37,20 @@ namespace FudbalskiKup.Repository
                             ime2 = db.Tim.Where(x => x.TimID == tim.Tim_TimID).Select(c => c.Ime).FirstOrDefault();
                         }
                     }
+
                     i = 0;
+
                     Tuple<string, string, int> utakmicaTuple = Tuple.Create(ime1, ime2 , id);
                     utakmice.Add(utakmicaTuple);
                 }
+
                 return utakmice;
             }
         }
 
         public void DodajKartu(int utakmicaID, int cena , int navijacID) 
         {
+            //Dodaj kartu u tabelu kao Karta kao i id karte i korsnika u medjutabelu
             Karta karta = new Karta();
             Kupuje kupuje = new Kupuje();
 

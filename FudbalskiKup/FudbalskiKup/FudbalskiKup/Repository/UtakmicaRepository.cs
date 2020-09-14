@@ -1,14 +1,10 @@
 ﻿using FudbalskiKup.Models;
 using FudbalskiKup.Models.Extended;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
-using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+
 
 namespace FudbalskiKup.Repository
 {
@@ -33,22 +29,24 @@ namespace FudbalskiKup.Repository
                 bool odigranaUtakmica = false;
                 int utakmicaID = 0;
                 string odigranaUtakmicaBaza = "";
-
+                
+                //prodji kroz sve utakmice
                 foreach (var utakmica in tempUtakmice)
                 {
                     if (utakmica.Count() == 2)
                     {
+                        //prodji kroz timove za svaku utakmicu
                         foreach (var tim in utakmica)
                         {
                             i++;
                             if (i == 1)
-                            {
+                            {   //prikupi podatke prvi tim i utakmica
                                 imePrviTim = db.Tim.Where(x => x.TimID == tim.Tim_TimID).Select(c => c.Ime).FirstOrDefault();
                                 brojGolovaPrvogTima = db.Igra.Where(x => x.Tim_TimID == tim.Tim_TimID && x.Utakmica_UtakmicaID == tim.Utakmica_UtakmicaID).Select(x => x.BrojGolova).FirstOrDefault();
                                 fazaTakmičenja = db.Utakmica.Where(x => x.UtakmicaID == tim.Utakmica_UtakmicaID).Select(c => c.FazaTakmicenja).FirstOrDefault();
                                 odigranaUtakmicaBaza = db.Utakmica.Where(x => x.UtakmicaID == tim.Utakmica_UtakmicaID).Select(c => c.Odigrana).FirstOrDefault();
                                 utakmicaID = tim.Utakmica_UtakmicaID;
-                                //TODO: Pogresno kupljenje broja golova
+                                
                                 if (odigranaUtakmicaBaza == "0")
                                     odigranaUtakmica = false;
                                 else
@@ -56,11 +54,14 @@ namespace FudbalskiKup.Repository
                             }
                             if (i == 2)
                             {
+                                //prikupi podatke drugi tim
                                 imeDrugiTim = db.Tim.Where(x => x.TimID == tim.Tim_TimID).Select(c => c.Ime).FirstOrDefault();
                                 brojGolovaDrugogTima = db.Igra.Where(x => x.Tim_TimID == tim.Tim_TimID && x.Utakmica_UtakmicaID == tim.Utakmica_UtakmicaID).Select(x => x.BrojGolova).FirstOrDefault();
                             }
                         }
+
                         i = 0;
+                        //Popuni pomocnu klasu za utakmicu
                         UtakmicaInfo utakmicaInfo = new UtakmicaInfo
                         {
                             UtakmicaID = utakmicaID,
@@ -94,20 +95,23 @@ namespace FudbalskiKup.Repository
 
             using (var db = new DiplomskiBazaEntities())
             {
+                //pronadji utakmicu koju zelis odigrati
                 utakmica = FindByID(utakmicaID);
                 igras = db.Igra.Where(x => x.Utakmica_UtakmicaID == utakmicaID).ToList();
 
+                //ako nema pobedinka odaberi jedan tim
                 if (brojGolovaPrvogTima == brojGolovaDrugogTima)
                 {
                     brojGolovaDrugogTima++;
                 }
 
+                //izmeni podatke za odigranu utakmicu
                 igras[0].BrojGolova = brojGolovaPrvogTima;
                 igras[1].BrojGolova = brojGolovaDrugogTima;
 
                 utakmica.Odigrana = "1";
 
-
+                //Udate utakmica i igra
                 Update(utakmica);
 
                 db.Set<Igra>().Attach(igras[0]);
@@ -118,7 +122,7 @@ namespace FudbalskiKup.Repository
                 db.Entry(igras[1]).State = EntityState.Modified;
                 db.SaveChanges();
 
-
+                //U zavisnosti od faze i pobednika kreiraj novu ili dodeli nagrade
                 if (brojGolovaPrvogTima > brojGolovaDrugogTima && utakmica.FazaTakmicenja != "Finale")
                 {
                     kreirajUtakmicu(utakmica.FazaTakmicenja, igras[0].Tim_TimID);
@@ -143,8 +147,8 @@ namespace FudbalskiKup.Repository
                 igraciDrugiTim = db.Igrac.Where(x => x.Tim_TimId == timDrugiID).ToList();
 
              
-                dodeliGoloveIgracima(brojGolovaPrvogTima , igraciPrviTim);
-                dodeliGoloveIgracima(brojGolovaDrugogTima, igraciDrugiTim);
+                dodeliGoloveIAsistencijeIgracima(brojGolovaPrvogTima , igraciPrviTim);
+                dodeliGoloveIAsistencijeIgracima(brojGolovaDrugogTima, igraciDrugiTim);
             }
 
             UpdateIgraci(igraciPrviTim);
@@ -222,11 +226,9 @@ namespace FudbalskiKup.Repository
                 db.Set<Igra>().Add(igra);
                 db.SaveChanges();
             }
-
-
         }
 
-        public void dodeliGoloveIgracima(int brojGolova , List<Igrac> listaIgraca) 
+        public void dodeliGoloveIAsistencijeIgracima(int brojGolova , List<Igrac> listaIgraca) 
         {
             int index = 0;
             Random random = new Random();
@@ -234,6 +236,12 @@ namespace FudbalskiKup.Repository
             {
                 index = random.Next(listaIgraca.Count);
                 listaIgraca[index].BrojPostignutihGolova++;
+            }
+            int brojAsistencija = random.Next(brojGolova);
+            for (int i = brojAsistencija; i > 0; i--)
+            {
+                index = random.Next(listaIgraca.Count);
+                listaIgraca[index].BrojAsistencija++;
             }
         }
 
@@ -262,19 +270,17 @@ namespace FudbalskiKup.Repository
             using (var db = new DiplomskiBazaEntities())
             {
                 Random random = new Random();
-
                 timskaNagradaPrvoMesto = db.TimskaNagrada.Where(x => x.TipNagrade == "Prvo Mesto").FirstOrDefault();
                 timskaNagradaPrvoMesto.Tim_TimID = idPobednickogTima;
                 timskaNagradaDrugoMesto = db.TimskaNagrada.Where(x => x.TipNagrade == "Drugo Mesto").FirstOrDefault();
                 timskaNagradaDrugoMesto.Tim_TimID = idGubitnickogTima;
 
-                
                 //Nadji igrace pobednickog tima i odaberi najboljeg - random
-
                 List<Igrac> pobednickiIgraci = new List<Igrac>();
                 pobednickiIgraci = db.Igrac.Where(x => x.Tim_TimId == idPobednickogTima).ToList();
 
                 //najbolji igrac
+                //TODO: Saberi sve golove i asistencije igraca pobednickog tima i izaberi max
                 int index = random.Next(pobednickiIgraci.Count);
                 licnaNagradaNajbolji = db.LicnaNagrada.Where(x => x.VrstaNagrade == "Najbolji Igrac").FirstOrDefault();
                 licnaNagradaNajbolji.Igrac_IgracID = pobednickiIgraci[index].IgracID;

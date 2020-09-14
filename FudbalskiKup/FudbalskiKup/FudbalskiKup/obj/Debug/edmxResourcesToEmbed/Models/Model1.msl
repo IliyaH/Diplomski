@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DiplomskiBazaModelStoreContainer" CdmEntityContainer="DiplomskiBazaEntities2">
+  <EntityContainerMapping StorageEntityContainer="DiplomskiBazaModelStoreContainer" CdmEntityContainer="DiplomskiBazaEntities1">
     <EntitySetMapping Name="C__RefactorLog">
       <EntityTypeMapping TypeName="DiplomskiBazaModel.C__RefactorLog">
         <MappingFragment StoreEntitySet="__RefactorLog">
@@ -35,6 +35,7 @@
           <ScalarProperty Name="Prezime" ColumnName="Prezime" />
           <ScalarProperty Name="BrojPostignutihGolova" ColumnName="BrojPostignutihGolova" />
           <ScalarProperty Name="Tim_TimId" ColumnName="Tim_TimId" />
+          <ScalarProperty Name="BrojAsistencija" ColumnName="BrojAsistencija" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

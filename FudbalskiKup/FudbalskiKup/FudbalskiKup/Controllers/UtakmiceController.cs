@@ -29,10 +29,6 @@ namespace FudbalskiKup.Controllers
                 {
                     neodigraneUtakmice.Add(utakmica);
                 }
-                if (utakmica.FazaTakmicenja == "Finale") 
-                {
-                  
-                }
             }
             ViewBag.neodigraneUtakmice = neodigraneUtakmice;
             ViewBag.utakmice = sveUtakmice;

@@ -2,6 +2,10 @@
 @{
     Layout = null;
     ViewBag.Title = "Utakmice";
+    if (Session["KorisnikID"] == null)
+    {
+        Response.Redirect("~/Home/RegistracijaStranica");
+    }
 }
 
     <h2>Utakmice</h2>
@@ -22,21 +26,33 @@
                         </tr>
                     }
                     
-                <tr>
-                    <td>
-                        <select name="utakmicaID" id="utakmicaID">
-                            @foreach (var utakmicaInfo in ViewBag.neodigraneUtakmice)
+                    @if ((string)(Session["Rola"]) == "admin")
+                    {
+                        <tr>
+                            <td>
+                                <select name="utakmicaID" id="utakmicaID">
+                                    @foreach (var utakmicaInfo in ViewBag.neodigraneUtakmice)
+                                    {
+                                        <option value="@utakmicaInfo.UtakmicaID">@utakmicaInfo.ImePrviTim @utakmicaInfo.ImeDrugiTim</option>
+                                    }
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            @if (ViewBag.neodigraneUtakmice == null)
                             {
-                                <option value="@utakmicaInfo.UtakmicaID">@utakmicaInfo.ImePrviTim @utakmicaInfo.ImeDrugiTim</option>
+                                <td>
+                                    <input type="submit" disabled value="Odigraj Utakmicu" />
+                                </td>
                             }
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" value="Odigraj Utakmicu" />
-                    </td>
-                </tr>
+                            @if (ViewBag.neodigraneUtakmice != null)
+                            {
+                                <td>
+                                    <input type="submit" value="Odigraj Utakmicu" />
+                                </td>
+                            }
+                        </tr>
+                    }
                 <tr>
                     <td colspan="2">
                         <a href="~/Utakmice/PrikaziNagrade">Prikazi Nagrade</a>

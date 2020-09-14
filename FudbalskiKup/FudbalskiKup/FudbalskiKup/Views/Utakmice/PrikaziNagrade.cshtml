@@ -2,6 +2,10 @@
 @{
     Layout = null;
     ViewBag.Title = "PrikaziNagrade";
+    if (Session["KorisnikID"] == null)
+    {
+        Response.Redirect("~/Home/RegistracijaStranica");
+    }
 }
 <head>
     <meta name="viewport" content="width=device-width" />

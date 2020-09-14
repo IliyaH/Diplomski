@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DiplomskiBazaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DiplomskiBazaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__RefactorLog">
           <Key>
             <PropertyRef Name="OperationKey" />
@@ -38,6 +38,7 @@
           <Property Name="Prezime" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="BrojPostignutihGolova" Type="int" Nullable="false" />
           <Property Name="Tim_TimId" Type="int" Nullable="false" />
+          <Property Name="BrojAsistencija" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Karta">
           <Key>
@@ -363,6 +364,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="funkcija" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="brojgolova1" Type="int" Mode="In" />
+          <Parameter Name="brojgolova2" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DiplomskiBazaModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
@@ -450,8 +455,7 @@
             <End Role="TimskaNagrada" EntitySet="TimskaNagrada" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DiplomskiBazaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -493,6 +497,7 @@
           <Property Name="Prezime" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BrojPostignutihGolova" Type="Int32" Nullable="false" />
           <Property Name="Tim_TimId" Type="Int32" Nullable="false" />
+          <Property Name="BrojAsistencija" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tim" Relationship="Self.Igrac_Tim_FK" FromRole="Igrac" ToRole="Tim" />
           <NavigationProperty Name="LicnaNagrada" Relationship="Self.LicnaNagrada_Igrac_FK" FromRole="Igrac" ToRole="LicnaNagrada" />
         </EntityType>
@@ -809,7 +814,7 @@
           <End Role="Kupuje" Type="Self.Kupuje" Multiplicity="*" />
           <End Role="Odrzava" Type="Self.Odrzava" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DiplomskiBazaEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DiplomskiBazaEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Grad" EntityType="Self.Grad" />
           <EntitySet Name="Igra" EntityType="Self.Igra" />
@@ -896,7 +901,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DiplomskiBazaModelStoreContainer" CdmEntityContainer="DiplomskiBazaEntities2">
+        <EntityContainerMapping StorageEntityContainer="DiplomskiBazaModelStoreContainer" CdmEntityContainer="DiplomskiBazaEntities1">
           <EntitySetMapping Name="C__RefactorLog">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
@@ -931,6 +936,7 @@
                 <ScalarProperty Name="Prezime" ColumnName="Prezime" />
                 <ScalarProperty Name="BrojPostignutihGolova" ColumnName="BrojPostignutihGolova" />
                 <ScalarProperty Name="Tim_TimId" ColumnName="Tim_TimId" />
+                <ScalarProperty Name="BrojAsistencija" ColumnName="BrojAsistencija" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

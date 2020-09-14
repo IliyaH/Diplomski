@@ -11,7 +11,9 @@ namespace FudbalskiKup.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Korisnik
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +21,21 @@ namespace FudbalskiKup.Models
         {
             this.Kupuje = new HashSet<Kupuje>();
         }
-    
+
         public int KorisnikID { get; set; }
+        [Required(ErrorMessage = "Ovo Polje je obavezno")]
         public string Ime { get; set; }
+        [Required(ErrorMessage = "Ovo Polje je obavezno")]
         public string Prezime { get; set; }
+        [Required(ErrorMessage = "Ovo Polje je obavezno")]
+        [DisplayName("Korisnicko Ime")]
         public string KorisnickoIme { get; set; }
+        [Required(ErrorMessage = "Ovo Polje je obavezno")]
         public string Email { get; set; }
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Ovo Polje je obavezno")]
         public string Sifra { get; set; }
+        [Required(ErrorMessage = "Ovo Polje je obavezno")]
         public string Rola { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

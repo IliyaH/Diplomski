@@ -97,39 +97,45 @@
             </table>
          }
 
-            <table>
-                <tr>                  
-                    <td colspan="2">
-                        @using (Html.BeginForm("Izloguj", "Home", FormMethod.Post))
+    <table>
+        <tr>
+            <td colspan="2">
+                @using (Html.BeginForm("Izloguj", "Home", FormMethod.Post))
+                {
+                    <input type="submit" value="Izloguj Se" />
+
+                }
+            </td>
+
+            <td colspan="2">
+                @using (Html.BeginForm("PrikazTima", "Tim", FormMethod.Get))
+                {
+                    <select name="timID" id="timID">
+                        @foreach (var tim in ViewBag.Tim)
                         {
-                            <input type="submit" value="Izloguj Se" />
-
+                            <option value="@tim.TimID">@tim.Ime</option>
                         }
-                    </td>
+                    </select>
+                    <input type="submit" value="Prikaži tim" />
+                }
+            </td>
 
-                    <td colspan="2">
-                        @using (Html.BeginForm("PrikazTima", "Tim", FormMethod.Get))
-                        {
-                            <select name="timID" id="timID">
-                                @foreach (var tim in ViewBag.Tim)
-                                {
-                                    <option value="@tim.TimID">@tim.Ime</option>
-                                }
-                            </select>
-                            <input type="submit" value="Prikaži tim" />
-                        }
-                    </td>
+        </tr>
 
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <a href="~/Karta/KartaPocetak">Kupi kartu</a>
-                    </td>
-                    <td>
-                        <a href="~/Utakmice/Utakmice">Prikaži utakmice</a>
-                    </td>
-                </tr>
-            </table>
+        <tr>
+            @if ((string)(Session["Rola"]) == "user")
+            {
+                <td colspan="2">
+                    <a href="~/Karta/KartaPocetak">Kupi kartu</a>
+                </td>
+            }
+        <tr >
+            <td colspan="2">
+                <a href="~/Utakmice/Utakmice">Prikaži utakmice</a>
+            </td>
+        </tr>
+
+    </table>
 
         <script src="~/Scripts/jquery-3.4.1.min.js"></script>
         <script src="~/Scripts/jquery.validate.min.js"></script>

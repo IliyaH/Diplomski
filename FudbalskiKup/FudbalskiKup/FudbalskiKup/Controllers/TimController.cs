@@ -12,7 +12,7 @@ namespace FudbalskiKup.Controllers
     {
         TimRepository timRepository = new TimRepository();
         Tuple<Tim, Grad, List<Igrac>> timInfo;
-        // GET: Utakmica
+      
         public ActionResult PrikazTima(int timID)
         {
             timInfo = timRepository.PribaviInformacijeTima(timID);

@@ -25,6 +25,7 @@ namespace FudbalskiKup.Models
         public string Prezime { get; set; }
         public int BrojPostignutihGolova { get; set; }
         public int Tim_TimId { get; set; }
+        public int BrojAsistencija { get; set; }
     
         public virtual Tim Tim { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
