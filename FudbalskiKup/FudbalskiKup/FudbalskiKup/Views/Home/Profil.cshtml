@@ -12,133 +12,128 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Profil</title>
-    <style>
-        .field-validation-error {
-            color: red;
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <style type="text/css">
+        .centerDiv {
+            width: 85%;
+            /* height: 200px;*/
+            margin: 0 auto;
+            position: absolute;
+            left: 10%;
+            top: 10%;
+            padding: 10px 10px;
+        }
+        .color {
+            background-color: white;
         }
 
-        #profilDiv {
-            position: absolute;
-            left: 40%;
-            top: 20%;
-            border: 1px solid #ccc;
-            padding: 50px 50px;
+        .colorBody {
+            background-color: azure;
         }
     </style>
 </head>
-<body>
-    
-    <div id="profilDiv">
-       
-        @using (Html.BeginForm("IzmenaNaloga", "Home", FormMethod.Post))
-        {
-            <table>
-                <tr style='visibility:collapse'>
-                    <td> @Html.EditorFor(model => model.KorisnikID, new { htmlAttributes = new { placeholder = Model.KorisnikID } })</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td> <h3>Profil</h3></td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(model => model.KorisnickoIme)</td>
-                    <td>@Html.EditorFor(model => model.KorisnickoIme, new { htmlAttributes = new { placeholder = Model.KorisnickoIme } })</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>@Html.ValidationMessageFor(model => Model.KorisnickoIme)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(model => model.Ime)</td>
-                    <td>@Html.EditorFor(model => model.Ime, new { htmlAttributes = new { placeholder = Model.Ime } })
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>@Html.ValidationMessageFor(model => Model.Ime)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(model => model.Prezime)</td>
-                    <td>@Html.EditorFor(model => model.Prezime, new { htmlAttributes = new { placeholder = Model.Prezime } })</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>@Html.ValidationMessageFor(model => Model.Prezime)</td>
-                </tr>
-                <tr>
-                    <td>@Html.LabelFor(model => model.Email)</td>
-                    <td>@Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = Model.Email } })</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>@Html.ValidationMessageFor(model => Model.Email)</td>
-                </tr>
 
-                <tr>
-                    <td>@Html.LabelFor(model => model.Sifra)</td>
-                    <td>@Html.EditorFor(model => model.Sifra)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>@Html.ValidationMessageFor(model => Model.Sifra) </td>
-                </tr>
+<body class="colorBody">
+    <h1 class="text-center text-info">Korisnicki Nalog</h1>
+    <div id="login" class="centerDiv">
+        <div id="login-row" class="row justify-content-center color table-bordered">
+                <div id="login-column" class="col-md-4">
+                    <div class="login-box col-md-12">
+                        <h3 class="text-center text-info">Informacije Naloga</h3>
+                        <form id="nalog-form" class="form" action="IzmenaNaloga" method="post">
+                            <div hidden>
+                                <input type="text" required name="KorisnikID" id="KorisnikID" class="form-control" value="@Model.KorisnikID">
+                                <input type="text" required name="Rola" id="Rola" class="form-control" value="@Model.Rola">
+                            </div>
 
-                <tr>
-                    <td colspan="2">
-                        <label class="field-validation-error">@ViewBag.porukaGreske </label>
-                    </td>
-                </tr>
+                            <div class="form-group">
+                                <label for="KorisnickoIme" class="text-info">Korisnicko Ime:</label><br>
+                                <input type="text" required name="KorisnickoIme" id="KorisnickoIme" class="form-control" value="@Model.KorisnickoIme">
+                            </div>
 
-                <tr>
-                    <td>
-                        <input type="submit" name="submitButton" value="Izmeni Nalog" />
-                        <input type="submit" name="submitButton" value="Obrisi Nalog" />
-                    </td>
-                </tr>
-            </table>
-         }
+                            <div class="form-group">
+                                <label for="ime" class="text-info">Ime:</label><br>
+                                <input type="text" required name="Ime" id="Ime" class="form-control" value="@Model.Ime">
+                            </div>
 
-    <table>
-        <tr>
-            <td colspan="2">
-                @using (Html.BeginForm("Izloguj", "Home", FormMethod.Post))
-                {
-                    <input type="submit" value="Izloguj Se" />
+                            <div class="form-group">
+                                <label for="pezime" class="text-info">Prezime:</label><br>
+                                <input type="text" required name="Prezime" id="Prezime" class="form-control" value="@Model.Prezime">
+                            </div>
 
-                }
-            </td>
+                            <div class="form-group">
+                                <label for="email" class="text-info">Email:</label><br>
+                                <input type="email" required name="Email" id="Email" class="form-control" value="@Model.Email">
+                            </div>
 
-            <td colspan="2">
-                @using (Html.BeginForm("PrikazTima", "Tim", FormMethod.Get))
-                {
-                    <select name="timID" id="timID">
-                        @foreach (var tim in ViewBag.Tim)
+                            <div class="form-group">
+                                <label for="password" class="text-info">Sifra:</label><br>
+                                <input type="password" required name="Sifra" id="Sifra" class="form-control">
+                                (<i>unesite vasu lozinku kako biste mogli izvrsiti izmenu/brisanje naloga</i>)
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" name="submitButton" value="Izmeni Nalog" class="btn btn-info btn-md form-control" />
+                                <br /> <br />
+                                <input type="submit" name="submitButton" value="Obrisi Nalog" class="btn btn-info btn-md form-control" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+
+                <div id="login-column3" class="col-md-4 t">
+                    <div class=" col-md-12">
+                        <h3 class="text-center text-info">Opcije Naloga</h3>
+                        <hr />
+                        <label for="username" class="text-info">Prikazi izabrani tim:</label>
+                        <br /><br />
+                        @using (Html.BeginForm("PrikazTima", "Tim", FormMethod.Get))
                         {
-                            <option value="@tim.TimID">@tim.Ime</option>
+                            <select class="form-control" name="timID" id="timID">
+                                @foreach (var tim in ViewBag.Tim)
+                                {
+                                    <option class="form-control" value="@tim.TimID">@tim.Ime</option>
+                                }
+                            </select><br /><br />
+                            <input type="submit" value="Prikaži tim" class="btn btn-info btn-md form-control" />
                         }
-                    </select>
-                    <input type="submit" value="Prikaži tim" />
-                }
-            </td>
+                        @if ((string)(Session["Rola"]) == "user")
+                        {
+                            <hr />
+                            using (Html.BeginForm("KartaPocetak", "Karta", FormMethod.Get))
+                            {
+                                <label for="username" class="text-info">Kupi Kartu:</label>
+                                <br /><br />
+                                <input type="submit" value="Kupi" class="btn btn-info btn-md form-control" />
+                            }
 
-        </tr>
 
-        <tr>
-            @if ((string)(Session["Rola"]) == "user")
-            {
-                <td colspan="2">
-                    <a href="~/Karta/KartaPocetak">Kupi kartu</a>
-                </td>
-            }
-        <tr >
-            <td colspan="2">
-                <a href="~/Utakmice/Utakmice">Prikaži utakmice</a>
-            </td>
-        </tr>
+                        }
+                        <hr />
 
-    </table>
+                        <label for="username" class="text-info">Prikazi utakmice:</label>
+                        <br />
+                        @using (Html.BeginForm("Utakmice", "Utakmice", FormMethod.Get))
+                        {
+                            <input type="submit" value="Utakmice" class="btn btn-info btn-md form-control" />
+                        }
+                        <hr />
+                        <form id="login-form" class="form" action="Logovanje" method="post">
+                            <div class="form-group">
+                                <input type="submit" value="Izloguj Se" class="btn btn-info btn-md form-control">
+                            </div>
+                        </form>
 
-        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+   
 </body>

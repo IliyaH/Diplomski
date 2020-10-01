@@ -9,53 +9,63 @@
 }
 
 <head>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Tim</title>
-        <style>
-            #timDiv {
-                position: absolute;
-                left: 40%;
-                top: 20%;
-                border: 1px solid #ccc;
-                padding: 50px 50px;
-            }
-        </style>
-    </head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tim</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <style type="text/css">
+        .centerDiv {
+            width: 50%;
+            /* height: 200px;*/
+            margin: 0 auto;
+            position: absolute;
+            left: 25%;
+            top: 20%;
+            padding: 10px 10px;
+        }
+
+        .color {
+            background-color: white;
+        }
+
+        .colorBody {
+            background-color: azure;
+        }
+    </style>
+
 </head>
 
-<body>
-    <div id="timDiv">
-        <table>
-            <tr>
-                <td> <h3>Informacije o timu</h3></td>
-            </tr>
-            <tr>
-                <td> Grad :</td>
-                <td> @ViewBag.Grad.Ime, @ViewBag.Grad.Drzava </td>
-            </tr>
-            <tr></tr>
-            <tr>
-                <td> Tim:</td>
-                <td> @ViewBag.Tim.Ime</td>
 
-            </tr>
-            <tr></tr>
-            <tr>
-                <td> Igraci:</td>
-            </tr>
-            <tr></tr>
-            <tr>
-                <td></td>
-                <td>
-                    @foreach (var igrac in ViewBag.Igraci)
-                    {
-                        @igrac.Ime @igrac.Prezime <br />
-                    }
-                </td>
-            </tr>
-        </table>
+<body class="colorBody">
+    <div id="login" class="centerDiv">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-4 table-bordered color">
+                <div class="login-box col-md-12">
+                  
+                        <h3 class="text-center text-info">Informaciju o timu</h3>
+                        <div class="form-group">
+                            <label for="grad" class="text-info">Grad:</label><br>
+                            @ViewBag.Grad.Ime, @ViewBag.Grad.Drzava
+                        </div>
+                        <div class="form-group">
+                            <label for="Tim" class="text-info">Tim:</label><br>
+                            @ViewBag.Tim.Ime
+                        </div>
+                        <div class="form-group">
+                            <label for="Igraci" class="text-info">Igraci:</label><br>
+                            @foreach (var igrac in ViewBag.Igraci)
+                            {
+                                @igrac.Ime <text>&nbsp;</text> @igrac.Prezime <br />
+                            }
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
     </div>
+
 </body>
  
 

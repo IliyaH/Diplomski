@@ -13,6 +13,7 @@ namespace FudbalskiKup.Models.Extended
         public int? BrojGolovaPrviTim { get; set; }
         public int? BrojGolovaDrugiTim { get; set; }
         public bool Odigrana { get; set; }
-        public int UtakmicaID { get; set; }  
+        public int UtakmicaID { get; set; }
+        public string OznakaUtakmice { get; set; }
     }
 }

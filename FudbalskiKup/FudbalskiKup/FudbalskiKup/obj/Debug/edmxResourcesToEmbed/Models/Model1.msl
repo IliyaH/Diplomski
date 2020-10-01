@@ -144,6 +144,7 @@
     <EntitySetMapping Name="Utakmica">
       <EntityTypeMapping TypeName="DiplomskiBazaModel.Utakmica">
         <MappingFragment StoreEntitySet="Utakmica">
+          <ScalarProperty Name="OznakaUtakmice" ColumnName="OznakaUtakmice" />
           <ScalarProperty Name="UtakmicaID" ColumnName="UtakmicaID" />
           <ScalarProperty Name="Odigrana" ColumnName="Odigrana" />
           <ScalarProperty Name="Datum" ColumnName="Datum" />
@@ -161,5 +162,6 @@
         <ScalarProperty Name="Stadion_StadionID" ColumnName="Odrzava_StadionID" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="IzracunajUkopneGolove" FunctionName="DiplomskiBazaModel.Store.IzracunajUkopneGolove" />
   </EntityContainerMapping>
 </Mapping>

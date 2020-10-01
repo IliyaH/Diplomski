@@ -12,6 +12,8 @@ namespace FudbalskiKup.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class DiplomskiBazaEntities : DbContext
     {
@@ -41,5 +43,18 @@ namespace FudbalskiKup.Models
         public virtual DbSet<Tim> Tim { get; set; }
         public virtual DbSet<TimskaNagrada> TimskaNagrada { get; set; }
         public virtual DbSet<Utakmica> Utakmica { get; set; }
+    
+        public virtual int IzracunajUkopneGolove(Nullable<int> brGolova1, Nullable<int> brGolova2, ObjectParameter rezultat)
+        {
+            var brGolova1Parameter = brGolova1.HasValue ?
+                new ObjectParameter("brGolova1", brGolova1) :
+                new ObjectParameter("brGolova1", typeof(int));
+    
+            var brGolova2Parameter = brGolova2.HasValue ?
+                new ObjectParameter("brGolova2", brGolova2) :
+                new ObjectParameter("brGolova2", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IzracunajUkopneGolove", brGolova1Parameter, brGolova2Parameter, rezultat);
+        }
     }
 }

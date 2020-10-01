@@ -168,6 +168,7 @@
     <Property Name="FazaTakmicenja" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Igra" Relationship="Self.Igra_Utakmica_FK" FromRole="Utakmica" ToRole="Igra" />
     <NavigationProperty Name="Odrzava" Relationship="Self.Odrzava_Utakmica_FK" FromRole="Utakmica" ToRole="Odrzava" />
+    <Property Name="OznakaUtakmice" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="Stadion_Grad_FK">
     <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
@@ -436,5 +437,10 @@
       <End Role="Kupuje" EntitySet="Kupuje" />
       <End Role="Odrzava" EntitySet="Odrzava" />
     </AssociationSet>
+    <FunctionImport Name="IzracunajUkopneGolove">
+      <Parameter Name="brGolova1" Mode="In" Type="Int32" />
+      <Parameter Name="brGolova2" Mode="In" Type="Int32" />
+      <Parameter Name="rezultat" Mode="InOut" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>

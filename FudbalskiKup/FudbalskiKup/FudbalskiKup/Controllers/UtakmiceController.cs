@@ -17,22 +17,134 @@ namespace FudbalskiKup.Controllers
 
         List<UtakmicaInfo> sveUtakmice = new List<UtakmicaInfo>();
         List<UtakmicaInfo> neodigraneUtakmice = new List<UtakmicaInfo>();
+        List<UtakmicaInfo> utakmiceOsmina = new List<UtakmicaInfo>();
+        List<UtakmicaInfo> utakmiceCetvrtina = new List<UtakmicaInfo>();
+        List<UtakmicaInfo> utakmicePolu = new List<UtakmicaInfo>();
+        UtakmicaInfo finale = new UtakmicaInfo();
+        List<bool> osminaPomocnaLista = new List<bool>() { false, false, false, false , false, false, false, false };
+        List<bool> cetvrirnaPomocnaLista = new List<bool>() { false , false , false , false };
+        List<bool> poluPomocnaLista = new List<bool>() { false, false };
+
 
         // GET: Utakmice
         public ActionResult Utakmice()
         {
             sveUtakmice = utakmicaRepository.PribaviUtakmice();
-
+            
             foreach (var utakmica in sveUtakmice) 
             {
                 if (utakmica.Odigrana == false) 
                 {
                     neodigraneUtakmice.Add(utakmica);
                 }
+
+                if (utakmica.FazaTakmicenja == "Osmina Finala")
+                {
+                   
+                    if (utakmica.OznakaUtakmice == "A1")
+                    {
+                        osminaPomocnaLista[0] = true;
+                        utakmiceOsmina.Insert(0, utakmica);
+                    }
+                    else if (utakmica.OznakaUtakmice == "A2")
+                    {
+                        osminaPomocnaLista[1] = true;
+                        utakmiceOsmina.Insert(1, utakmica);
+                    }
+                    else if (utakmica.OznakaUtakmice == "A3")
+                    {
+                        osminaPomocnaLista[2] = true;
+                        utakmiceOsmina.Insert(2, utakmica);
+                    }
+                    else if (utakmica.OznakaUtakmice == "A4")
+                    {
+                        osminaPomocnaLista[3] = true;
+                        utakmiceOsmina.Insert(3, utakmica);
+                    }
+                    else if (utakmica.OznakaUtakmice == "A5")
+                    {
+                        osminaPomocnaLista[4] = true;
+                        utakmiceOsmina.Insert(4, utakmica);
+
+                    }
+                    else if (utakmica.OznakaUtakmice == "A6")
+                    {
+                        osminaPomocnaLista[5] = true;
+                        utakmiceOsmina.Insert(5, utakmica);
+                    }
+                    else if (utakmica.OznakaUtakmice == "A7")
+                    {
+                        osminaPomocnaLista[6] = true;
+                        utakmiceOsmina.Insert(6, utakmica);
+                    }
+                    else if (utakmica.OznakaUtakmice == "A8")
+                    {
+                        osminaPomocnaLista[7] = true;
+                        utakmiceOsmina.Insert(7, utakmica);
+                    }
+                }
+                else if (utakmica.FazaTakmicenja == "Cetvrtina Finala")
+                {
+                    if (utakmica.OznakaUtakmice == "B1")
+                    {
+                        cetvrirnaPomocnaLista[0] = true;
+                        utakmiceCetvrtina.Insert(0 , utakmica);
+                    }
+                    else if (utakmica.OznakaUtakmice == "B2")
+                    {
+                        cetvrirnaPomocnaLista[1] = true;
+                        utakmiceCetvrtina.Insert(1, utakmica);
+                    }
+                    else if (utakmica.OznakaUtakmice == "B3")
+                    {
+                        cetvrirnaPomocnaLista[2] = true;
+                        utakmiceCetvrtina.Insert(2, utakmica);
+                    }
+                    else if (utakmica.OznakaUtakmice == "B4")
+                    {
+                        cetvrirnaPomocnaLista[3] = true;
+                        utakmiceCetvrtina.Insert(3, utakmica);
+                    }
+                }
+                else if (utakmica.FazaTakmicenja == "Polu Finale")
+                {
+                   
+                    if (utakmica.OznakaUtakmice == "C1")
+                    {
+                        poluPomocnaLista[0] = true;
+                        utakmicePolu.Insert(0, utakmica);
+                    }
+                    else if (utakmica.OznakaUtakmice == "C2")
+                    {
+                        poluPomocnaLista[1] = true;
+                        utakmicePolu.Insert(1, utakmica);
+                    }
+                }
+                else if (utakmica.FazaTakmicenja == "Finale")
+                {
+                    finale = utakmica;
+                }
             }
+
+          
+
+            utakmiceOsmina = utakmiceOsmina.OrderBy(x => x.OznakaUtakmice).ToList();
+            utakmiceCetvrtina = utakmiceCetvrtina.OrderBy(x => x.OznakaUtakmice).ToList();
+            utakmicePolu = utakmicePolu.OrderBy(x => x.OznakaUtakmice).ToList();
+
+
             ViewBag.neodigraneUtakmice = neodigraneUtakmice;
-            ViewBag.utakmice = sveUtakmice;
-            return View();
+            ViewBag.Osmina = utakmiceOsmina;
+            if (utakmiceCetvrtina.Count != 0)
+                ViewBag.Cetvrtina = utakmiceCetvrtina;
+            if (utakmicePolu.Count != 0)
+                ViewBag.Polu = utakmicePolu;
+            ViewBag.Finale = finale;
+
+            ViewBag.osminaPomoc = osminaPomocnaLista;
+            ViewBag.cetvrtinaPomoc = cetvrirnaPomocnaLista;
+            ViewBag.poluPomoc = poluPomocnaLista;
+            return View("Utakmice");
         }
 
         public ActionResult OdigrajUtakmicu(int utakmicaID) 
@@ -59,9 +171,6 @@ namespace FudbalskiKup.Controllers
 
             return View();
         }
-
-       
-
-
+      
     }
 }

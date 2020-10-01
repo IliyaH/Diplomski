@@ -7,59 +7,420 @@
         Response.Redirect("~/Home/RegistracijaStranica");
     }
 }
+@model FudbalskiKup.Models.Extended.UtakmicaInfo
 
-    <h2>Utakmice</h2>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Utakmice</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <style type="text/css">
+        .centerDiv {
+            width: 85%;
+            /* height: 200px;*/
+            margin: 0 auto;
+            position: absolute;
+            left: 10%;
+            top: 10%;
+            padding: 10px 10px;
+        }
+
+        .color {
+            background-color: white;
+        }
+
+        .colorBody {
+            background-color: azure;
+        }
+    </style>
+</head>
 
 
+
+<body class="colorBody">
 
     @using (Html.BeginForm("OdigrajUtakmicu", "Utakmice", FormMethod.Post))
     {
-            <table>
-                    
-                    @foreach (var utakmicaInfo in ViewBag.utakmice)
+        <h1 class="text-center text-info">Utakmice</h1>
+        <div id="login" class="centerDiv">
+            <div id="login-row" class="row justify-content-center color table-bordered">
+
+                <div id="id1" class="col-md-3">
+
+                    @if (ViewBag.Osmina == null)
                     {
-                        <tr>
-                            <td>
-                            @utakmicaInfo.ImePrviTim @utakmicaInfo.BrojGolovaPrviTim
-                            @utakmicaInfo.BrojGolovaDrugiTim @utakmicaInfo.ImeDrugiTim
-                            </td>
-                        </tr>
+                        <label for="A1" class="text-info table-bordered  ">
+                            A1
+                        </label>
+                        <br /><br />
+                        <label for="A2" class="text-info table-bordered  ">
+                            A2
+                        </label>
+                        <br /><br />
+                        <label for="A3" class="text-info table-bordered  ">
+                            A3
+                        </label>
+                        <br /><br />
+                        <label for="A4" class="text-info table-bordered  ">
+                            A4
+                        </label>
+                        <br /><br />
+                        <label for="A5" class="text-info table-bordered  ">
+                            A5
+                        </label>
+                        <br /><br />
+                        <label for="A6" class="text-info table-bordered  ">
+                            A6
+                        </label>
+                        <br /><br />
+                        <label for="A7" class="text-info table-bordered  ">
+                            A7
+                        </label>
+                        <br /><br />
+                        <label for="A8" class="text-info table-bordered  ">
+                            A8
+                        </label>
                     }
-                    
+                    else
+                    {
+
+                        if (ViewBag.osminaPomoc[0] == true)
+                        {
+                            <label for="A1" class="text-info table-bordered  form-control ">
+                                A1
+                                @ViewBag.Osmina[0].ImePrviTim @ViewBag.Osmina[0].BrojGolovaPrviTim
+                                @ViewBag.Osmina[0].BrojGolovaDrugiTim @ViewBag.Osmina[0].ImeDrugiTim
+                            </label>
+                            <br /><br />
+                        }
+                        else
+                        {
+                            <label for="A1" class="text-info table-bordered  form-control ">
+                                A1
+                            </label>
+                            <br /><br />
+                        }
+
+                        if (ViewBag.osminaPomoc[1] == true)
+                        {
+                            <label for="A2" class="text-info table-bordered  form-control ">
+                                A2
+                                @ViewBag.Osmina[1].ImePrviTim @ViewBag.Osmina[1].BrojGolovaPrviTim
+                                @ViewBag.Osmina[1].BrojGolovaDrugiTim @ViewBag.Osmina[1].ImeDrugiTim
+                            </label>
+                            <br /><br />
+                        }
+                        else
+                        {
+                            <label for="A3" class="text-info table-bordered  form-control ">
+                                A3
+                            </label>
+                            <br /><br />
+                        }
+
+                        if (ViewBag.osminaPomoc[2] == true)
+                        {
+                            <label for="A3" class="text-info table-bordered  form-control ">
+                                A3
+                                @ViewBag.Osmina[2].ImePrviTim @ViewBag.Osmina[2].BrojGolovaPrviTim
+                                @ViewBag.Osmina[2].BrojGolovaDrugiTim @ViewBag.Osmina[2].ImeDrugiTim
+                            </label>
+                            <br /><br />
+                        }
+                        else
+                        {
+                            <label for="A3" class="text-info table-bordered  form-control ">
+                                A3
+                            </label>
+                            <br /><br />
+                        }
+                        if (ViewBag.osminaPomoc[3] == true)
+                        {
+                            <label for="A4" class="text-info table-bordered  form-control ">
+                                A4
+                                @ViewBag.Osmina[3].ImePrviTim @ViewBag.Osmina[3].BrojGolovaPrviTim
+                                @ViewBag.Osmina[3].BrojGolovaDrugiTim @ViewBag.Osmina[3].ImeDrugiTim
+                            </label>
+                            <br /><br />
+                        }
+                        else
+                        {
+                            <label for="A4" class="text-info table-bordered  form-control ">
+                                A4
+                            </label>
+                            <br /><br />
+                        }
+                        if (ViewBag.osminaPomoc[4] == true)
+                        {
+                            <label for="A5" class="text-info table-bordered  form-control ">
+                                A5
+                                @ViewBag.Osmina[4].ImePrviTim @ViewBag.Osmina[4].BrojGolovaPrviTim
+                                @ViewBag.Osmina[4].BrojGolovaDrugiTim @ViewBag.Osmina[4].ImeDrugiTim
+                            </label>
+                            <br /><br />
+                        }
+                        else
+                        {
+                            <label for="A5" class="text-info table-bordered  form-control ">
+                                A5
+                            </label>
+                            <br /><br />
+                        }
+
+                        if (ViewBag.osminaPomoc[5] == true)
+                        {
+                            <label for="A6" class="text-info table-bordered  form-control ">
+                                A6
+                                @ViewBag.Osmina[5].ImePrviTim @ViewBag.Osmina[5].BrojGolovaPrviTim
+                                @ViewBag.Osmina[5].BrojGolovaDrugiTim @ViewBag.Osmina[5].ImeDrugiTim
+                            </label>
+                            <br /><br />
+                        }
+                        else
+                        {
+                            <label for="A6" class="text-info table-bordered  form-control ">
+                                A6
+                            </label>
+                            <br /><br />
+                        }
+
+                        if (ViewBag.osminaPomoc[6] == true)
+                        {
+                            <label for="A7" class="text-info table-bordered  form-control ">
+                                A7
+                                @ViewBag.Osmina[6].ImePrviTim @ViewBag.Osmina[6].BrojGolovaPrviTim
+                                @ViewBag.Osmina[6].BrojGolovaDrugiTim @ViewBag.Osmina[6].ImeDrugiTim
+                            </label>
+                            <br /><br />
+                        }
+                        else
+                        {
+                            <label for="A7" class="text-info table-bordered  form-control ">
+                                A7
+                            </label>
+                            <br /><br />
+                        }
+                        if (ViewBag.osminaPomoc[7] == true)
+                        {
+                            <label for="A8" class="text-info table-bordered  form-control ">
+                                A8
+                                @ViewBag.Osmina[7].ImePrviTim @ViewBag.Osmina[7].BrojGolovaPrviTim
+                                @ViewBag.Osmina[7].BrojGolovaDrugiTim @ViewBag.Osmina[7].ImeDrugiTim
+                            </label>
+                            
+                        }
+                        else
+                        {
+                            <label for="A8" class="text-info table-bordered  form-control ">
+                                A8
+                            </label>
+                           
+                        }
+
+                    }
+
+                </div>
+
+                <div id="id2" class="col-md-3">
+                    @if (ViewBag.Cetvrtina == null)
+                    {
+                        <br /><br />
+                        <label for="B1" class="text-info table-bordered  form-control">
+                            B1
+                        </label>
+                        <br /><br /><br /><br /><br /><br />
+                        <label for="B1" class="text-info table-bordered form-control ">
+                            B2
+                        </label>
+                        <br /><br /><br /><br /><br /><br />
+                        <label for="B1" class="text-info table-bordered form-control ">
+                            B3
+                        </label>
+                        <br /><br /><br /><br /><br /><br />
+                        <label for="B1" class="text-info table-bordered  form-control">
+                            B4
+                        </label>
+                    }
+                    else
+                    {
+                        <br /><br />
+                        if (ViewBag.cetvrtinaPomoc[0] == true)
+                        {
+                            <label for="B1" class="text-info table-bordered  form-control ">
+                                B1
+                                @ViewBag.Cetvrtina[0].ImePrviTim @ViewBag.Cetvrtina[0].BrojGolovaPrviTim
+                                @ViewBag.Cetvrtina[0].BrojGolovaDrugiTim @ViewBag.Cetvrtina[0].ImeDrugiTim
+                            </label>
+                            <br /><br /><br /><br /><br /><br />
+                        }
+                        else
+                        {
+                            <label for="B1" class="text-info table-bordered  form-control ">
+                                B1
+                            </label>
+                            <br /><br /><br /><br /><br /><br />
+                        }
+
+
+
+                        if (ViewBag.cetvrtinaPomoc[1] == true)
+                        {<label for="B2" class="text-info table-bordered  form-control ">
+                                B2
+                                @ViewBag.Cetvrtina[1].ImePrviTim @ViewBag.Cetvrtina[1].BrojGolovaPrviTim
+                                @ViewBag.Cetvrtina[1].BrojGolovaDrugiTim @ViewBag.Cetvrtina[1].ImeDrugiTim
+
+                            </label>
+                            <br /><br /><br /><br /><br /><br />
+                        }
+                        else
+                        {
+                            <label for="B2" class="text-info table-bordered  form-control ">
+                                B2
+                            </label>
+                            <br /><br /><br /><br /><br /><br />
+                        }
+
+                        if (ViewBag.cetvrtinaPomoc[2] == true)
+                        {
+                            <label for="B3" class="text-info table-bordered  form-control ">
+                                B3
+                                @ViewBag.Cetvrtina[2].ImePrviTim  @ViewBag.Cetvrtina[2].BrojGolovaPrviTim
+                                @ViewBag.Cetvrtina[2].BrojGolovaDrugiTim  @ViewBag.Cetvrtina[2].ImeDrugiTim
+                            </label>
+                            <br /><br /><br /><br /><br /><br />
+                        }
+                        else
+                        {
+                            <label for="B3" class="text-info table-bordered  form-control ">
+                                B3
+                            </label>
+                            <br /><br /><br /><br /><br /><br />
+                        }
+
+                        if (ViewBag.cetvrtinaPomoc[3] == true)
+                        {
+                            <label for="B4" class="text-info table-bordered  form-control">
+                                B4
+                                @ViewBag.Cetvrtina[3].ImePrviTim  @ViewBag.Cetvrtina[3].BrojGolovaPrviTim
+                                @ViewBag.Cetvrtina[3].BrojGolovaDrugiTim  @ViewBag.Cetvrtina[3].ImeDrugiTim
+                            </label>
+                        }
+                        else
+                        {
+                            <label for="B4" class="text-info table-bordered  form-control ">
+                                B4
+                            </label>
+                        }
+                    }
+                </div>
+
+
+                <div id="id3" class="col-md-3">
+                    @if (ViewBag.Polu == null)
+                    {
+
+                        <br /><br /><br /><br /><br /><br />
+                        <label for="C1" class="text-info table-bordered   form-control">
+                            C1
+                        </label>
+                        <br /><br /> <br /> <br /> <br /> <br /><br /><br /><br /> <br /><br /> <br /><br /> <br />
+                        <label for="C2" class="text-info table-bordered  form-control ">
+                            C2
+                        </label>
+                    }
+                    else
+                    {
+                        <br /><br /><br /><br /><br /><br />
+                        if (ViewBag.poluPomoc[0] == true)
+                        {
+                            <label for="C1" class="text-info table-bordered form-control">
+                                C1
+                                @ViewBag.Polu[0].ImePrviTim  @ViewBag.Polu[0].BrojGolovaPrviTim
+                                @ViewBag.Polu[0].BrojGolovaDrugiTim  @ViewBag.Polu[0].ImeDrugiTim
+                            </label>
+                            <br /><br /> <br /> <br /> <br /> <br /><br /><br /><br /> <br /><br /> <br /><br /> <br />
+                        }
+                        else
+                        {
+                            <label for="C1" class="text-info table-bordered form-control">
+                                C1
+                            </label>
+                            <br /><br /> <br /> <br /> <br /> <br /><br /><br /><br /> <br /><br /> <br /><br /> <br />
+                        }
+                        if (ViewBag.poluPomoc[1] == true)
+                        {
+                            <label for="C2" class="text-info table-bordered  form-control">
+                                C2
+                                @ViewBag.Polu[1].ImePrviTim  @ViewBag.Polu[1].BrojGolovaPrviTim
+                                @ViewBag.Polu[1].BrojGolovaDrugiTim  @ViewBag.Polu[1].ImeDrugiTim
+                            </label>
+
+                        }
+                        else
+                        {
+                            <label for="B4" class="text-info table-bordered  form-control ">
+                                B4
+                            </label>
+                        }
+                    }
+                </div>
+
+                <div id="id4" class="col-md-3">
+                    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    @if (ViewBag.Finale.OznakaUtakmice == "D1")
+                    {
+                        <label for="D1" class="text-info table-bordered  form-control">
+                            D1
+                            @ViewBag.Finale.ImePrviTim  @ViewBag.Finale.BrojGolovaPrviTim
+                            @ViewBag.Finale.BrojGolovaDrugiTim @ViewBag.Finale.ImeDrugiTim
+                        </label>
+                    }
+                    else if (ViewBag.Finale.OznakaUtakmice != "D1")
+                    {
+                        <label for="D1" class="text-info table-bordered  form-control">
+                            D1      
+                        </label>
+                    }
+                </div>
+            </div>
+
+            <div id="login-row" class="row justify-content-center  colorBody ">
+                <div id="id5" class="col-md-6">
                     @if ((string)(Session["Rola"]) == "admin")
                     {
-                        <tr>
-                            <td>
-                                <select name="utakmicaID" id="utakmicaID">
-                                    @foreach (var utakmicaInfo in ViewBag.neodigraneUtakmice)
-                                    {
-                                        <option value="@utakmicaInfo.UtakmicaID">@utakmicaInfo.ImePrviTim @utakmicaInfo.ImeDrugiTim</option>
-                                    }
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            @if (ViewBag.neodigraneUtakmice == null)
-                            {
-                                <td>
-                                    <input type="submit" disabled value="Odigraj Utakmicu" />
-                                </td>
-                            }
-                            @if (ViewBag.neodigraneUtakmice != null)
-                            {
-                                <td>
-                                    <input type="submit" value="Odigraj Utakmicu" />
-                                </td>
-                            }
-                        </tr>
+                        if (ViewBag.neodigraneUtakmice.Count == 0)
+                        {
+                            <select name="utakmicaID" id="utakmicaID">
+
+                                <option value="1">Sve utakmice su odigrane</option>
+
+                            </select>
+
+                            <input type="submit" disabled value="Odigraj Utakmicu" />
+
+
+                        }
+                        else
+                        {
+                            <select name="utakmicaID" id="utakmicaID">
+                                @foreach (var utakmicaInfo in ViewBag.neodigraneUtakmice)
+                                {
+                                    <option value="@utakmicaInfo.UtakmicaID">@utakmicaInfo.ImePrviTim @utakmicaInfo.ImeDrugiTim</option>
+                                }
+                            </select>
+
+                            <input type="submit" value="Odigraj Utakmicu" />
+                        }
+
                     }
-                <tr>
-                    <td colspan="2">
+                </div>
+                 <div id="id4" class="col-md-3">
                         <a href="~/Utakmice/PrikaziNagrade">Prikazi Nagrade</a>
-                    </td>
-                </tr>
-            </table>
+                 </div>
+            </div>
+        </div>
     }
-
-
-
+</body>

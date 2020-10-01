@@ -153,6 +153,7 @@
           <Property Name="Odigrana" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="Datum" Type="date" Nullable="false" />
           <Property Name="FazaTakmicenja" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="OznakaUtakmice" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <Association Name="Igra_Sudija_FK">
           <End Role="sudija" Type="Self.sudija" Multiplicity="1" />
@@ -367,6 +368,11 @@
         <Function Name="funkcija" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
           <Parameter Name="brojgolova1" Type="int" Mode="In" />
           <Parameter Name="brojgolova2" Type="int" Mode="In" />
+        </Function>
+        <Function Name="IzracunajUkopneGolove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="brGolova1" Type="int" Mode="In" />
+          <Parameter Name="brGolova2" Type="int" Mode="In" />
+          <Parameter Name="rezultat" Type="int" Mode="InOut" />
         </Function>
         <EntityContainer Name="DiplomskiBazaModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
@@ -627,6 +633,7 @@
           <Property Name="FazaTakmicenja" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Igra" Relationship="Self.Igra_Utakmica_FK" FromRole="Utakmica" ToRole="Igra" />
           <NavigationProperty Name="Odrzava" Relationship="Self.Odrzava_Utakmica_FK" FromRole="Utakmica" ToRole="Odrzava" />
+          <Property Name="OznakaUtakmice" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="Stadion_Grad_FK">
           <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
@@ -895,6 +902,11 @@
             <End Role="Kupuje" EntitySet="Kupuje" />
             <End Role="Odrzava" EntitySet="Odrzava" />
           </AssociationSet>
+          <FunctionImport Name="IzracunajUkopneGolove">
+            <Parameter Name="brGolova1" Mode="In" Type="Int32" />
+            <Parameter Name="brGolova2" Mode="In" Type="Int32" />
+            <Parameter Name="rezultat" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -1045,6 +1057,7 @@
           <EntitySetMapping Name="Utakmica">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Utakmica">
               <MappingFragment StoreEntitySet="Utakmica">
+                <ScalarProperty Name="OznakaUtakmice" ColumnName="OznakaUtakmice" />
                 <ScalarProperty Name="UtakmicaID" ColumnName="UtakmicaID" />
                 <ScalarProperty Name="Odigrana" ColumnName="Odigrana" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
@@ -1062,6 +1075,7 @@
               <ScalarProperty Name="Stadion_StadionID" ColumnName="Odrzava_StadionID" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="IzracunajUkopneGolove" FunctionName="DiplomskiBazaModel.Store.IzracunajUkopneGolove" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

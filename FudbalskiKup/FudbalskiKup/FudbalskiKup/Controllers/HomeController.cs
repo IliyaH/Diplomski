@@ -98,7 +98,9 @@ namespace FudbalskiKup.Controllers
         {
             Tuple<Korisnik , string> tupleNavijac = navijacRepository.IzmeniNavijaca(izmenjeniKorisnik);
             ViewBag.porukaGreske = tupleNavijac.Item2;
-            return View("Profil" , tupleNavijac.Item1);
+            timoviLista = timRepository.GetList();
+            ViewBag.Tim = timoviLista;
+            return View("Profil" , tupleNavijac.Item1);//TODO :
         }
 
         private ActionResult ObrisiNalog(Korisnik korisnik)

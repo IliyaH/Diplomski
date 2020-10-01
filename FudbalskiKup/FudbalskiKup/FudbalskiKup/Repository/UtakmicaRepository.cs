@@ -3,6 +3,7 @@ using FudbalskiKup.Models.Extended;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 
 
@@ -15,6 +16,7 @@ namespace FudbalskiKup.Repository
         LicnaNagradaRepository LicnaNagradaRepository = new LicnaNagradaRepository();
 
         Random rand = new Random();
+
         public List<UtakmicaInfo> PribaviUtakmice()
         {
             using (var db = new DiplomskiBazaEntities())
@@ -29,10 +31,12 @@ namespace FudbalskiKup.Repository
                 bool odigranaUtakmica = false;
                 int utakmicaID = 0;
                 string odigranaUtakmicaBaza = "";
-                
+                string oznakaUtakmice = "";
+
                 //prodji kroz sve utakmice
                 foreach (var utakmica in tempUtakmice)
                 {
+                    
                     if (utakmica.Count() == 2)
                     {
                         //prodji kroz timove za svaku utakmicu
@@ -46,7 +50,7 @@ namespace FudbalskiKup.Repository
                                 fazaTakmičenja = db.Utakmica.Where(x => x.UtakmicaID == tim.Utakmica_UtakmicaID).Select(c => c.FazaTakmicenja).FirstOrDefault();
                                 odigranaUtakmicaBaza = db.Utakmica.Where(x => x.UtakmicaID == tim.Utakmica_UtakmicaID).Select(c => c.Odigrana).FirstOrDefault();
                                 utakmicaID = tim.Utakmica_UtakmicaID;
-                                
+                                oznakaUtakmice = db.Utakmica.Where(x => x.UtakmicaID == tim.Utakmica_UtakmicaID).Select(c => c.OznakaUtakmice).FirstOrDefault();
                                 if (odigranaUtakmicaBaza == "0")
                                     odigranaUtakmica = false;
                                 else
@@ -59,8 +63,8 @@ namespace FudbalskiKup.Repository
                                 brojGolovaDrugogTima = db.Igra.Where(x => x.Tim_TimID == tim.Tim_TimID && x.Utakmica_UtakmicaID == tim.Utakmica_UtakmicaID).Select(x => x.BrojGolova).FirstOrDefault();
                             }
                         }
-
                         i = 0;
+
                         //Popuni pomocnu klasu za utakmicu
                         UtakmicaInfo utakmicaInfo = new UtakmicaInfo
                         {
@@ -70,7 +74,8 @@ namespace FudbalskiKup.Repository
                             FazaTakmicenja = fazaTakmičenja,
                             ImePrviTim = imePrviTim,
                             ImeDrugiTim = imeDrugiTim,
-                            Odigrana = odigranaUtakmica
+                            Odigrana = odigranaUtakmica,
+                            OznakaUtakmice = oznakaUtakmice
                         };
 
                         utakmice.Add(utakmicaInfo);
@@ -80,6 +85,8 @@ namespace FudbalskiKup.Repository
                         //TODO: ISPISI AKO PRONADJES UTAKMICU SA SAMO JEDNIM TIMOM
                     }
                 }
+     
+
                 return utakmice;
             }
         }
@@ -92,6 +99,8 @@ namespace FudbalskiKup.Repository
             List<Igra> igras = new List<Igra>();
             List<Igrac> igraciPrviTim = new List<Igrac>();
             List<Igrac> igraciDrugiTim = new List<Igrac>();
+
+            //int rezultat = IzracunajUkopneGolove(brojGolovaPrvogTima, brojGolovaDrugogTima);
 
             using (var db = new DiplomskiBazaEntities())
             {
@@ -109,6 +118,8 @@ namespace FudbalskiKup.Repository
                 igras[0].BrojGolova = brojGolovaPrvogTima;
                 igras[1].BrojGolova = brojGolovaDrugogTima;
 
+
+
                 utakmica.Odigrana = "1";
 
                 //Udate utakmica i igra
@@ -125,13 +136,13 @@ namespace FudbalskiKup.Repository
                 //U zavisnosti od faze i pobednika kreiraj novu ili dodeli nagrade
                 if (brojGolovaPrvogTima > brojGolovaDrugogTima && utakmica.FazaTakmicenja != "Finale")
                 {
-                    kreirajUtakmicu(utakmica.FazaTakmicenja, igras[0].Tim_TimID);
+                    kreirajUtakmicu(utakmica.FazaTakmicenja, igras[0].Tim_TimID , utakmica.OznakaUtakmice);
                 }
                 else if (brojGolovaPrvogTima < brojGolovaDrugogTima && utakmica.FazaTakmicenja != "Finale")
                 {
-                    kreirajUtakmicu(utakmica.FazaTakmicenja, igras[1].Tim_TimID);
+                    kreirajUtakmicu(utakmica.FazaTakmicenja, igras[1].Tim_TimID, utakmica.OznakaUtakmice);
                 }
-                else if (brojGolovaPrvogTima > brojGolovaDrugogTima && utakmica.FazaTakmicenja == "Finale") 
+                else if (brojGolovaPrvogTima > brojGolovaDrugogTima && utakmica.FazaTakmicenja == "Finale")
                 {
                     DodeliNagrade(igras[0].Tim_TimID, igras[1].Tim_TimID);
                 }
@@ -146,15 +157,15 @@ namespace FudbalskiKup.Repository
                 igraciPrviTim = db.Igrac.Where(x => x.Tim_TimId == timPrviID).ToList();
                 igraciDrugiTim = db.Igrac.Where(x => x.Tim_TimId == timDrugiID).ToList();
 
-             
-                dodeliGoloveIAsistencijeIgracima(brojGolovaPrvogTima , igraciPrviTim);
+
+                dodeliGoloveIAsistencijeIgracima(brojGolovaPrvogTima, igraciPrviTim);
                 dodeliGoloveIAsistencijeIgracima(brojGolovaDrugogTima, igraciDrugiTim);
             }
 
             UpdateIgraci(igraciPrviTim);
             UpdateIgraci(igraciDrugiTim);
 
-            for (int i = 0; i < 6; i++) 
+            for (int i = 0; i < 6; i++)
             {
                 Nagrada nagrada = new Nagrada();
                 using (var db = new DiplomskiBazaEntities())
@@ -165,36 +176,75 @@ namespace FudbalskiKup.Repository
             }
         }
 
-        public void kreirajUtakmicu(string fazaTakmicenja, int pobednickiTimID)
+        public void kreirajUtakmicu(string fazaTakmicenja, int pobednickiTimID , string oznakaUtakmice)
         {
             Random random = new Random();
             bool pronasao = false;
             int utakmicaID = 0;
+            string novaOznakaUtakmice = "";
+
+            if (oznakaUtakmice == "A1" || oznakaUtakmice == "A2") 
+            {
+                novaOznakaUtakmice = "B1";
+            }
+            else if (oznakaUtakmice == "A3" || oznakaUtakmice == "A4")
+            {
+                novaOznakaUtakmice = "B2";
+            }
+            else if (oznakaUtakmice == "A5" || oznakaUtakmice == "A6")
+            {
+                novaOznakaUtakmice = "B3";
+            }
+            else if (oznakaUtakmice == "A7" || oznakaUtakmice == "A8")
+            {
+                novaOznakaUtakmice = "B4";
+            }
+            else if (oznakaUtakmice == "B1" || oznakaUtakmice == "B2")
+            {
+                novaOznakaUtakmice = "C1";
+            }
+            else if (oznakaUtakmice == "B3" || oznakaUtakmice == "B4")
+            {
+                novaOznakaUtakmice = "C2";
+            }
+            else if (oznakaUtakmice == "C1" || oznakaUtakmice == "C2")
+            {
+                novaOznakaUtakmice = "D1";
+            }
+
 
             using (var db = new DiplomskiBazaEntities())
             {
                 var tempUtakmice = db.Igra.GroupBy(x => x.Utakmica_UtakmicaID).ToList();
+
+                //Provera da li postoji vec napravljena utakmica
                 foreach (var utakmicaGrupa in tempUtakmice)
                 {
                     if (utakmicaGrupa.Count() == 1)
                     {
                         foreach (var tim in utakmicaGrupa)
                         {
-                            utakmicaID = tim.Utakmica_UtakmicaID;
-                            pronasao = true;
-                            break;
+                            string oznakaUtakmiceSaSlobodnimMestom = db.Utakmica.Where(x => x.UtakmicaID == tim.Utakmica_UtakmicaID).Select(x => x.OznakaUtakmice).FirstOrDefault();
+                            if (oznakaUtakmiceSaSlobodnimMestom == novaOznakaUtakmice){ 
+                                utakmicaID = tim.Utakmica_UtakmicaID;
+                                pronasao = true;
+                                break;
+                            }
                         }
                     }
                     if (pronasao)
                         break;
                 }
             }
+
             if (!pronasao)
             {
                 Utakmica utakmica = new Utakmica();
                 var dateAndTime = DateTime.Now;
                 utakmica.Datum = dateAndTime.Date;
+                utakmica.Datum.AddDays(3);
                 utakmica.Odigrana = "0";
+                utakmica.OznakaUtakmice = novaOznakaUtakmice;
 
                 if (fazaTakmicenja == "Osmina Finala")
                 {
@@ -228,11 +278,11 @@ namespace FudbalskiKup.Repository
             }
         }
 
-        public void dodeliGoloveIAsistencijeIgracima(int brojGolova , List<Igrac> listaIgraca) 
+        public void dodeliGoloveIAsistencijeIgracima(int brojGolova, List<Igrac> listaIgraca)
         {
             int index = 0;
             Random random = new Random();
-            for (int i = brojGolova; i > 0; i--) 
+            for (int i = brojGolova; i > 0; i--)
             {
                 index = random.Next(listaIgraca.Count);
                 listaIgraca[index].BrojPostignutihGolova++;
@@ -246,7 +296,7 @@ namespace FudbalskiKup.Repository
         }
 
         public void UpdateIgraci(List<Igrac> igraci)
-        { 
+        {
             using (var db = new DiplomskiBazaEntities())
             {
                 foreach (var igrac in igraci)
@@ -255,10 +305,10 @@ namespace FudbalskiKup.Repository
                     db.Entry(igrac).State = EntityState.Modified;
                     db.SaveChanges();
                 }
-            }       
+            }
         }
 
-        public void DodeliNagrade(int idPobednickogTima, int idGubitnickogTima) 
+        public void DodeliNagrade(int idPobednickogTima, int idGubitnickogTima)
         {
             LicnaNagrada licnaNagradaFerplej = new LicnaNagrada();
             LicnaNagrada licnaNagradaNajbolji = new LicnaNagrada();
@@ -305,6 +355,17 @@ namespace FudbalskiKup.Repository
 
         }
 
-        //napravi metodu koja prikazuje pobednike
+      
+
+        //public int IzracunajUkopneGolove(int brGolova1, int brGolova2)
+        //{
+        //    using (var db = new DiplomskiBazaEntities())
+        //    {
+        //        ObjectParameter objectParameterRezultat = new ObjectParameter("rezultat", typeof(int));
+        //        db.IzracunajUkopneGolove(brGolova1, brGolova2, objectParameterRezultat);
+        //        return (int)objectParameterRezultat.Value;
+        //    }
+        //}
+
     }
 }

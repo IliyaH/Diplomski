@@ -10,69 +10,91 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Nagrade</title>
-    <style>
-        #nagradeDiv {
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style type="text/css">
+        .centerDiv {
+            width: 50%;
+            /* height: 200px;*/
+            margin: 0 auto;
             position: absolute;
-            left: 40%;
+            left: 25%;
             top: 20%;
-            border: 1px solid #ccc;
-            padding: 50px 50px;
+            padding: 10px 10px;
+        }
+
+        .color {
+            background-color: white;
+        }
+
+        .colorBody {
+            background-color: azure;
         }
     </style>
 </head>
-<body>
-    <div id="nagradeDiv">
-        <table>
-            <tr>
-                <td style="align-content:center" colspan="3">Licne Nagrade</td>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-                <td>@ViewBag.FerplejIgrac.Item1.VrstaNagrade</td>
-                <td> @ViewBag.FerplejIgrac.Item2.Ime </td>
-                <td> @ViewBag.FerplejIgrac.Item2.Prezime</td>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-                <td>@ViewBag.NajboljiIgrac.Item1.VrstaNagrade </td>
-                <td> @ViewBag.NajboljiIgrac.Item2.Ime </td>
-                <td> @ViewBag.NajboljiIgrac.Item2.Prezime</td>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-                <td>@ViewBag.NajboljiStrelac.Item1.VrstaNagrade</td>
-                <td> @ViewBag.NajboljiStrelac.Item2.Ime </td>
-                <td> @ViewBag.NajboljiStrelac.Item2.Prezime</td>
-            </tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr>
-                <td style="align-content:center" colspan="3">Timske Nagrade</td>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-                <td>@ViewBag.PrvoMesto.Item1.TipNagrade </td>
-                <td>  </td>
-                <td> @ViewBag.PrvoMesto.Item2.Ime</td>
-            </tr>
-            <tr></tr>
-            <tr>
-                <td>@ViewBag.DrugoMesto.Item1.TipNagrade </td>
-                <td>  </td>
-                <td>
-                    @ViewBag.DrugoMesto.Item2.Ime
-                </td>
-            </tr>
-        </table>
 
-        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<body class="colorBody">
+    <div id="login" class="centerDiv">
+        <div id="login-row" class="row justify-content-center  align-items-center">
+            <div id="login-column" class="color table-bordered col-md-4 ">
+                <div class="login-box col-md-12">
+                    <br />
+                    <h3 class="text-info">Licne Nagrade</h3>
+                    <br />
+                    <label for="username" class="text-info">
+                        @ViewBag.FerplejIgrac.Item1.VrstaNagrade
+                        @if (@ViewBag.FerplejIgrac.Item2 != null)
+                        {
+                            @ViewBag.FerplejIgrac.Item2.Ime
+                            @ViewBag.FerplejIgrac.Item2.Prezime
+                        }
+                    </label>
+                    <label for="username" class="text-info">
+         
+
+                        @ViewBag.NajboljiIgrac.Item1.VrstaNagrade
+                        @if (@ViewBag.NajboljiIgrac.Item2 != null)
+                        {
+                            @ViewBag.NajboljiIgrac.Item2.Ime
+                            @ViewBag.NajboljiIgrac.Item2.Prezime
+                            <br />
+                        }
+                    </label>
+                    <label for="username" class="text-info">
+                        @ViewBag.NajboljiStrelac.Item1.VrstaNagrade
+                        @if (@ViewBag.NajboljiStrelac.Item2 != null)
+                        {
+                            @ViewBag.NajboljiStrelac.Item2.Ime
+                            @ViewBag.NajboljiStrelac.Item2.Prezime
+                            <br />
+                        }
+                    </label>
+                    <br /><br /><br />
+
+                    <h3 class="text-info">Timske Nagrade</h3>
+                    <br />
+                    <label for="username" class="text-info">
+                        @ViewBag.PrvoMesto.Item1.TipNagrade
+                        @if (@ViewBag.PrvoMesto.Item2 != null)
+                        {
+                            @ViewBag.PrvoMesto.Item2.Ime
+                            <br />
+                        }
+                    </label>
+                    <label for="username" class="text-info">
+                        @ViewBag.DrugoMesto.Item1.TipNagrade
+                        @if (@ViewBag.DrugoMesto.Item2 != null)
+                        {
+                            @ViewBag.DrugoMesto.Item2.Ime
+                            <br />
+                        }
+                    </label>
+
+                </div>
+            </div>
+
+           
+        </div>
     </div>
 </body>

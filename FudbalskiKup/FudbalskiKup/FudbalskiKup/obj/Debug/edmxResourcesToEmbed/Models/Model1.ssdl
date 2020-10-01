@@ -148,6 +148,7 @@
     <Property Name="Odigrana" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="Datum" Type="date" Nullable="false" />
     <Property Name="FazaTakmicenja" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="OznakaUtakmice" Type="varchar" MaxLength="5" Nullable="false" />
   </EntityType>
   <Association Name="Igra_Sudija_FK">
     <End Role="sudija" Type="Self.sudija" Multiplicity="1" />
@@ -362,6 +363,11 @@
   <Function Name="funkcija" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
     <Parameter Name="brojgolova1" Type="int" Mode="In" />
     <Parameter Name="brojgolova2" Type="int" Mode="In" />
+  </Function>
+  <Function Name="IzracunajUkopneGolove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="brGolova1" Type="int" Mode="In" />
+    <Parameter Name="brGolova2" Type="int" Mode="In" />
+    <Parameter Name="rezultat" Type="int" Mode="InOut" />
   </Function>
   <EntityContainer Name="DiplomskiBazaModelStoreContainer">
     <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />

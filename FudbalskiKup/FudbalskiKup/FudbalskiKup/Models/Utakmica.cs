@@ -25,6 +25,7 @@ namespace FudbalskiKup.Models
         public string Odigrana { get; set; }
         public System.DateTime Datum { get; set; }
         public string FazaTakmicenja { get; set; }
+        public string OznakaUtakmice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Igra> Igra { get; set; }
