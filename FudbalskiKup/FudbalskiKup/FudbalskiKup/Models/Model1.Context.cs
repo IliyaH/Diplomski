@@ -56,5 +56,18 @@ namespace FudbalskiKup.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IzracunajUkopneGolove", brGolova1Parameter, brGolova2Parameter, rezultat);
         }
+    
+        public virtual int IzracunajIndeksnePoene(Nullable<int> asistencije, Nullable<int> brGolova, ObjectParameter indeksinPoeni)
+        {
+            var asistencijeParameter = asistencije.HasValue ?
+                new ObjectParameter("asistencije", asistencije) :
+                new ObjectParameter("asistencije", typeof(int));
+    
+            var brGolovaParameter = brGolova.HasValue ?
+                new ObjectParameter("brGolova", brGolova) :
+                new ObjectParameter("brGolova", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IzracunajIndeksnePoene", asistencijeParameter, brGolovaParameter, indeksinPoeni);
+        }
     }
 }

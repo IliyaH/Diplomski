@@ -39,6 +39,7 @@
           <Property Name="BrojPostignutihGolova" Type="int" Nullable="false" />
           <Property Name="Tim_TimId" Type="int" Nullable="false" />
           <Property Name="BrojAsistencija" Type="int" Nullable="false" />
+          <Property Name="IndeksiPoeni" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Karta">
           <Key>
@@ -369,11 +370,13 @@
           <Parameter Name="brojgolova1" Type="int" Mode="In" />
           <Parameter Name="brojgolova2" Type="int" Mode="In" />
         </Function>
-        <Function Name="IzracunajUkopneGolove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="brGolova1" Type="int" Mode="In" />
-          <Parameter Name="brGolova2" Type="int" Mode="In" />
-          <Parameter Name="rezultat" Type="int" Mode="InOut" />
+        <Function Name="IzracunajIndeksnePoene" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="asistencije" Type="int" Mode="In" />
+          <Parameter Name="brGolova" Type="int" Mode="In" />
+          <Parameter Name="indeksinPoeni" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="MaksimalnaVrednostIndeksa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MaxVrednostIndeksihPoena" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="DiplomskiBazaModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
@@ -506,6 +509,7 @@
           <Property Name="BrojAsistencija" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tim" Relationship="Self.Igrac_Tim_FK" FromRole="Igrac" ToRole="Tim" />
           <NavigationProperty Name="LicnaNagrada" Relationship="Self.LicnaNagrada_Igrac_FK" FromRole="Igrac" ToRole="LicnaNagrada" />
+          <Property Name="IndeksiPoeni" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Karta">
           <Key>
@@ -907,6 +911,13 @@
             <Parameter Name="brGolova2" Mode="In" Type="Int32" />
             <Parameter Name="rezultat" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="IzracunajIndeksnePoene">
+            <Parameter Name="asistencije" Mode="In" Type="Int32" />
+            <Parameter Name="brGolova" Mode="In" Type="Int32" />
+            <Parameter Name="indeksinPoeni" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MaksimalnaVrednostIndeksa" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="MaxVrednostIndeksihPoena" ReturnType="Collection(Int32)" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -943,6 +954,7 @@
           <EntitySetMapping Name="Igrac">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Igrac">
               <MappingFragment StoreEntitySet="Igrac">
+                <ScalarProperty Name="IndeksiPoeni" ColumnName="IndeksiPoeni" />
                 <ScalarProperty Name="IgracID" ColumnName="IgracID" />
                 <ScalarProperty Name="Ime" ColumnName="Ime" />
                 <ScalarProperty Name="Prezime" ColumnName="Prezime" />
@@ -1075,7 +1087,9 @@
               <ScalarProperty Name="Stadion_StadionID" ColumnName="Odrzava_StadionID" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="IzracunajUkopneGolove" FunctionName="DiplomskiBazaModel.Store.IzracunajUkopneGolove" />
+          <FunctionImportMapping FunctionImportName="IzracunajIndeksnePoene" FunctionName="DiplomskiBazaModel.Store.IzracunajIndeksnePoene" />
+          <FunctionImportMapping FunctionImportName="MaksimalnaVrednostIndeksa" FunctionName="DiplomskiBazaModel.Store.MaksimalnaVrednostIndeksa" />
+          <FunctionImportMapping FunctionImportName="MaxVrednostIndeksihPoena" FunctionName="DiplomskiBazaModel.Store.MaxVrednostIndeksihPoena" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

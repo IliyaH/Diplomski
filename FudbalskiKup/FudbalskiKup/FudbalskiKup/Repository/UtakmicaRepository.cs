@@ -100,7 +100,6 @@ namespace FudbalskiKup.Repository
             List<Igrac> igraciPrviTim = new List<Igrac>();
             List<Igrac> igraciDrugiTim = new List<Igrac>();
 
-            //int rezultat = IzracunajUkopneGolove(brojGolovaPrvogTima, brojGolovaDrugogTima);
 
             using (var db = new DiplomskiBazaEntities())
             {
@@ -163,17 +162,7 @@ namespace FudbalskiKup.Repository
             }
 
             UpdateIgraci(igraciPrviTim);
-            UpdateIgraci(igraciDrugiTim);
-
-            for (int i = 0; i < 6; i++)
-            {
-                Nagrada nagrada = new Nagrada();
-                using (var db = new DiplomskiBazaEntities())
-                {
-                    db.Set<Nagrada>().Add(nagrada);
-                    db.SaveChanges();
-                }
-            }
+            UpdateIgraci(igraciDrugiTim);           
         }
 
         public void kreirajUtakmicu(string fazaTakmicenja, int pobednickiTimID , string oznakaUtakmice)
@@ -293,6 +282,10 @@ namespace FudbalskiKup.Repository
                 index = random.Next(listaIgraca.Count);
                 listaIgraca[index].BrojAsistencija++;
             }
+            foreach (var igrac in listaIgraca) 
+            {
+                igrac.IndeksiPoeni += IzracunajIndeksnePoene(igrac.BrojAsistencija, igrac.BrojPostignutihGolova);
+            }
         }
 
         public void UpdateIgraci(List<Igrac> igraci)
@@ -325,19 +318,18 @@ namespace FudbalskiKup.Repository
                 timskaNagradaDrugoMesto = db.TimskaNagrada.Where(x => x.TipNagrade == "Drugo Mesto").FirstOrDefault();
                 timskaNagradaDrugoMesto.Tim_TimID = idGubitnickogTima;
 
-                //Nadji igrace pobednickog tima i odaberi najboljeg - random
+                //Nadji igrace pobednickog tima i odaberi najboljeg 
                 List<Igrac> pobednickiIgraci = new List<Igrac>();
                 pobednickiIgraci = db.Igrac.Where(x => x.Tim_TimId == idPobednickogTima).ToList();
 
-                //najbolji igrac
-                //TODO: Saberi sve golove i asistencije igraca pobednickog tima i izaberi max
-                int index = random.Next(pobednickiIgraci.Count);
+                //najbolji igrac              
                 licnaNagradaNajbolji = db.LicnaNagrada.Where(x => x.VrstaNagrade == "Najbolji Igrac").FirstOrDefault();
-                licnaNagradaNajbolji.Igrac_IgracID = pobednickiIgraci[index].IgracID;
+                Igrac najboljiIgrac = pobednickiIgraci.OrderByDescending(x => x.IndeksiPoeni).First();
+                licnaNagradaNajbolji.Igrac_IgracID = najboljiIgrac.IgracID;
 
                 //radnom ferplej igrac
                 List<Igrac> sviIgraci = db.Igrac.ToList();
-                index = rand.Next(sviIgraci.Count);
+                int index = rand.Next(sviIgraci.Count);
                 licnaNagradaFerplej = db.LicnaNagrada.Where(x => x.VrstaNagrade == "Ferplej").FirstOrDefault();
                 licnaNagradaFerplej.Igrac_IgracID = sviIgraci[index].IgracID;
 
@@ -355,17 +347,17 @@ namespace FudbalskiKup.Repository
 
         }
 
-      
 
-        //public int IzracunajUkopneGolove(int brGolova1, int brGolova2)
-        //{
-        //    using (var db = new DiplomskiBazaEntities())
-        //    {
-        //        ObjectParameter objectParameterRezultat = new ObjectParameter("rezultat", typeof(int));
-        //        db.IzracunajUkopneGolove(brGolova1, brGolova2, objectParameterRezultat);
-        //        return (int)objectParameterRezultat.Value;
-        //    }
-        //}
+
+        public int IzracunajIndeksnePoene(int asistencije, int brGolova)
+        {
+            using (var db = new DiplomskiBazaEntities())
+            {
+                ObjectParameter objectParameterRezultat = new ObjectParameter("indeksinPoeni", typeof(int));
+                db.IzracunajIndeksnePoene(asistencije, brGolova, objectParameterRezultat);
+                return (int)objectParameterRezultat.Value;
+            }
+        }
 
     }
 }

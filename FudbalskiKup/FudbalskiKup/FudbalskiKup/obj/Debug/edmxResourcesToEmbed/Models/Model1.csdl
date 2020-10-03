@@ -41,6 +41,7 @@
     <Property Name="BrojAsistencija" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Tim" Relationship="Self.Igrac_Tim_FK" FromRole="Igrac" ToRole="Tim" />
     <NavigationProperty Name="LicnaNagrada" Relationship="Self.LicnaNagrada_Igrac_FK" FromRole="Igrac" ToRole="LicnaNagrada" />
+    <Property Name="IndeksiPoeni" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Karta">
     <Key>
@@ -442,5 +443,12 @@
       <Parameter Name="brGolova2" Mode="In" Type="Int32" />
       <Parameter Name="rezultat" Mode="InOut" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="IzracunajIndeksnePoene">
+      <Parameter Name="asistencije" Mode="In" Type="Int32" />
+      <Parameter Name="brGolova" Mode="In" Type="Int32" />
+      <Parameter Name="indeksinPoeni" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MaksimalnaVrednostIndeksa" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="MaxVrednostIndeksihPoena" ReturnType="Collection(Int32)" />
   </EntityContainer>
 </Schema>

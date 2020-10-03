@@ -30,6 +30,7 @@
     <EntitySetMapping Name="Igrac">
       <EntityTypeMapping TypeName="DiplomskiBazaModel.Igrac">
         <MappingFragment StoreEntitySet="Igrac">
+          <ScalarProperty Name="IndeksiPoeni" ColumnName="IndeksiPoeni" />
           <ScalarProperty Name="IgracID" ColumnName="IgracID" />
           <ScalarProperty Name="Ime" ColumnName="Ime" />
           <ScalarProperty Name="Prezime" ColumnName="Prezime" />
@@ -162,6 +163,8 @@
         <ScalarProperty Name="Stadion_StadionID" ColumnName="Odrzava_StadionID" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="IzracunajUkopneGolove" FunctionName="DiplomskiBazaModel.Store.IzracunajUkopneGolove" />
+    <FunctionImportMapping FunctionImportName="IzracunajIndeksnePoene" FunctionName="DiplomskiBazaModel.Store.IzracunajIndeksnePoene" />
+    <FunctionImportMapping FunctionImportName="MaksimalnaVrednostIndeksa" FunctionName="DiplomskiBazaModel.Store.MaksimalnaVrednostIndeksa" />
+    <FunctionImportMapping FunctionImportName="MaxVrednostIndeksihPoena" FunctionName="DiplomskiBazaModel.Store.MaxVrednostIndeksihPoena" />
   </EntityContainerMapping>
 </Mapping>

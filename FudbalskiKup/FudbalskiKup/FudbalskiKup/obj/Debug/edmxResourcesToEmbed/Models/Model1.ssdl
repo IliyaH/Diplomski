@@ -34,6 +34,7 @@
     <Property Name="BrojPostignutihGolova" Type="int" Nullable="false" />
     <Property Name="Tim_TimId" Type="int" Nullable="false" />
     <Property Name="BrojAsistencija" Type="int" Nullable="false" />
+    <Property Name="IndeksiPoeni" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Karta">
     <Key>
@@ -364,11 +365,13 @@
     <Parameter Name="brojgolova1" Type="int" Mode="In" />
     <Parameter Name="brojgolova2" Type="int" Mode="In" />
   </Function>
-  <Function Name="IzracunajUkopneGolove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="brGolova1" Type="int" Mode="In" />
-    <Parameter Name="brGolova2" Type="int" Mode="In" />
-    <Parameter Name="rezultat" Type="int" Mode="InOut" />
+  <Function Name="IzracunajIndeksnePoene" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="asistencije" Type="int" Mode="In" />
+    <Parameter Name="brGolova" Type="int" Mode="In" />
+    <Parameter Name="indeksinPoeni" Type="int" Mode="InOut" />
   </Function>
+  <Function Name="MaksimalnaVrednostIndeksa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="MaxVrednostIndeksihPoena" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="DiplomskiBazaModelStoreContainer">
     <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
