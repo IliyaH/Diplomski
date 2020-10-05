@@ -210,14 +210,14 @@
                                 @ViewBag.Osmina[7].ImePrviTim @ViewBag.Osmina[7].BrojGolovaPrviTim
                                 @ViewBag.Osmina[7].BrojGolovaDrugiTim @ViewBag.Osmina[7].ImeDrugiTim
                             </label>
-                            
+
                         }
                         else
                         {
                             <label for="A8" class="text-info table-bordered  form-control ">
                                 A8
                             </label>
-                           
+
                         }
 
                     }
@@ -381,17 +381,17 @@
                     else if (ViewBag.Finale.OznakaUtakmice != "D1")
                     {
                         <label for="D1" class="text-info table-bordered  form-control">
-                            D1      
+                            D1
                         </label>
                     }
                 </div>
             </div>
 
-            <div id="login-row" class="row justify-content-center  colorBody ">
-                <div id="id5" class="col-md-6">
-                    @if ((string)(Session["Rola"]) == "admin")
-                    {
-                        if (ViewBag.neodigraneUtakmice.Count == 0)
+            @if ((string)(Session["Rola"]) == "admin")
+            {
+                <div id="login-row" class="row justify-content-center  colorBody ">
+                    <div id="id5" class="col-md-6">
+                        @if (ViewBag.neodigraneUtakmice.Count == 0)
                         {
                             <select name="utakmicaID" id="utakmicaID">
 
@@ -414,13 +414,26 @@
 
                             <input type="submit" value="Odigraj Utakmicu" />
                         }
-
+                    </div>
+                    @if ((string)(Session["Rola"]) == "admin")
+                    {
+                        <div id="id4" class="col-md-3">
+                            <a href="~/Utakmice/PrikaziNagrade">Prikazi Nagrade</a>
+                        </div>
                     }
+
                 </div>
-                 <div id="id4" class="col-md-3">
-                        <a href="~/Utakmice/PrikaziNagrade">Prikazi Nagrade</a>
-                 </div>
-            </div>
+            }
+
+            else if ((string)(Session["Rola"]) == "user")
+            {
+                <div id="id4" class="row justify-content-center colorBody">
+                    <a href="~/Utakmice/PrikaziNagrade">Prikazi Nagrade</a>
+                </div>
+            }
+
+
         </div>
-    }
+   
+     }
 </body>

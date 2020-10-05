@@ -21,11 +21,13 @@ namespace FudbalskiKup.Models
         }
     
         public int Karta_KartaID { get; set; }
-        public int Navijac_NavijacID { get; set; }
+        public int Korisnik_KorisnikID { get; set; }
     
         public virtual Karta Karta { get; set; }
         public virtual Korisnik Korisnik { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Odrzava> Odrzava { get; set; }
+        public virtual Kupuje Kupuje1 { get; set; }
+        public virtual Kupuje Kupuje2 { get; set; }
     }
 }

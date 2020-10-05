@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a7f54aeac2a3412990403a75f91a8ad3" Name="Diagram1">
+      <Diagram DiagramId="a311b055bb9f43049d4a9dd878f507b0" Name="Diagram1">
         <EntityTypeShape EntityType="DiplomskiBazaModel.C__RefactorLog" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DiplomskiBazaModel.Grad" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiplomskiBazaModel.Igra" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomskiBazaModel.Igra" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="DiplomskiBazaModel.Igrac" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DiplomskiBazaModel.Karta" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="DiplomskiBazaModel.Korisnik" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DiplomskiBazaModel.Kupuje" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiplomskiBazaModel.LicnaNagrada" Width="1.5" PointX="7.5" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiplomskiBazaModel.Nagrada" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomskiBazaModel.LicnaNagrada" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomskiBazaModel.Nagrada" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DiplomskiBazaModel.Odrzava" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="DiplomskiBazaModel.Stadion" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiplomskiBazaModel.sudija" Width="1.5" PointX="6" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomskiBazaModel.sudija" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DiplomskiBazaModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiplomskiBazaModel.Tim" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DiplomskiBazaModel.TimskaNagrada" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomskiBazaModel.Tim" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiplomskiBazaModel.TimskaNagrada" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DiplomskiBazaModel.Utakmica" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="DiplomskiBazaModel.Stadion_Grad_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DiplomskiBazaModel.Tim_Grad_FK" ManuallyRouted="false" />
@@ -37,6 +37,7 @@
         <AssociationConnector Association="DiplomskiBazaModel.Odrzava_Utakmica_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DiplomskiBazaModel.TimskaNagrada_Tim_FK" ManuallyRouted="false" />
         <AssociationConnector Association="DiplomskiBazaModel.Posecuje" ManuallyRouted="false" />
+        <AssociationConnector Association="DiplomskiBazaModel.FK_Kupuje_Kupuje" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

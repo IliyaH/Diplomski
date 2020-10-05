@@ -25,7 +25,7 @@ namespace FudbalskiKup.Repository
                 {
                     foreach (var tim in utakmica)
                     {
-                        //Proveri da li je prvi tim iy utakmice ili drugi(kako ne bismo ponovili utakmicu)
+                        //Proveri da li je prvi tim iz utakmice ili drugi(kako ne bismo ponovili utakmicu)
                         i++;
                         if (i == 1)
                         {
@@ -48,7 +48,7 @@ namespace FudbalskiKup.Repository
             }
         }
 
-        public void DodajKartu(int utakmicaID, int cena , int navijacID) 
+        public void DodajKartu(int utakmicaID, int cena , int KorisnikID) 
         {
             //Dodaj kartu u tabelu kao Karta kao i id karte i korsnika u medjutabelu
             Karta karta = new Karta();
@@ -56,14 +56,15 @@ namespace FudbalskiKup.Repository
 
             using (var db = new DiplomskiBazaEntities())
             {
-                int stadionID = db.Odrzava.Where(x => x.Utakmica_UtakmicaID == utakmicaID).Select(x => x.Stadion_StadionID).FirstOrDefault();
+                int stadionID = (int)db.SelektujStadionID(utakmicaID).FirstOrDefault(); //db.Odrzava.Where(x => x.Utakmica_UtakmicaID == utakmicaID).Select(x => x.Stadion_StadionID).FirstOrDefault();
                 karta.Odrzava_StadionID = stadionID;
                 karta.Cena = cena;
                 karta.Odrzava_UtakmicaID = utakmicaID;
 
                 Insert(karta);
 
-                kupuje.Navijac_NavijacID = navijacID;
+                //insertuj i u odrzava?
+                kupuje.Korisnik_KorisnikID = KorisnikID;
                 kupuje.Karta_KartaID = karta.KartaID;
 
                 db.Set<Kupuje>().Add(kupuje);

@@ -229,69 +229,69 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\C__RefactorLog.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\LogovanjePodaci.cs" />
     <Compile Include="Models\Extended\UtakmicaInfo.cs" />
     <Compile Include="Models\Grad.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Igra.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Igrac.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Karta.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Korisnik.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Kupuje.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LicnaNagrada.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Context.cs">
+    <Compile Include="Models\ModelDiplomski.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.cs">
+    <Compile Include="Models\ModelDiplomski.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
+    <Compile Include="Models\ModelDiplomski.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>ModelDiplomski.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Nagrada.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Odrzava.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Stadion.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sudija.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tim.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TimskaNagrada.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Utakmica.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
@@ -312,24 +312,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Model1.Context.tt">
+    <Content Include="Models\ModelDiplomski.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>ModelDiplomski.edmx</DependentUpon>
+      <LastGenOutput>ModelDiplomski.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model1.tt">
+    <Content Include="Models\ModelDiplomski.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>ModelDiplomski.edmx</DependentUpon>
+      <LastGenOutput>ModelDiplomski.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Model1.edmx">
+    <EntityDeploy Include="Models\ModelDiplomski.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelDiplomski.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="Models\ModelDiplomski.edmx.diagram">
+      <DependentUpon>ModelDiplomski.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

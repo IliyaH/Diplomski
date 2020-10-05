@@ -23,9 +23,9 @@ namespace FudbalskiKup.Controllers
         {
             int navijacID = 0;
 
-            if (Session["NavijacID"] != null)
+            if (Session["KorisnikID"] != null)
             {
-                navijacID = Convert.ToInt32(Session["NavijacID"]);
+                navijacID = Convert.ToInt32(Session["KorisnikID"]);
             }
 
             kartaRepository.DodajKartu(utakmicaID, cena , navijacID);

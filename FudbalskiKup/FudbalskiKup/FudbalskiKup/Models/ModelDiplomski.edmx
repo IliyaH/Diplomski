@@ -65,10 +65,10 @@
         <EntityType Name="Kupuje">
           <Key>
             <PropertyRef Name="Karta_KartaID" />
-            <PropertyRef Name="Navijac_NavijacID" />
+            <PropertyRef Name="Korisnik_KorisnikID" />
           </Key>
           <Property Name="Karta_KartaID" Type="int" Nullable="false" />
-          <Property Name="Navijac_NavijacID" Type="int" Nullable="false" />
+          <Property Name="Korisnik_KorisnikID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="LicnaNagrada">
           <Key>
@@ -156,6 +156,20 @@
           <Property Name="FazaTakmicenja" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="OznakaUtakmice" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Kupuje_Kupuje">
+          <End Role="Kupuje" Type="Self.Kupuje" Multiplicity="1" />
+          <End Role="Kupuje1" Type="Self.Kupuje" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Kupuje">
+              <PropertyRef Name="Karta_KartaID" />
+              <PropertyRef Name="Korisnik_KorisnikID" />
+            </Principal>
+            <Dependent Role="Kupuje1">
+              <PropertyRef Name="Karta_KartaID" />
+              <PropertyRef Name="Korisnik_KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Igra_Sudija_FK">
           <End Role="sudija" Type="Self.sudija" Multiplicity="1" />
           <End Role="Igra" Type="Self.Igra" Multiplicity="*" />
@@ -238,7 +252,7 @@
               <PropertyRef Name="KorisnikID" />
             </Principal>
             <Dependent Role="Kupuje">
-              <PropertyRef Name="Navijac_NavijacID" />
+              <PropertyRef Name="Korisnik_KorisnikID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -296,7 +310,7 @@
           <ReferentialConstraint>
             <Principal Role="Kupuje">
               <PropertyRef Name="Karta_KartaID" />
-              <PropertyRef Name="Navijac_NavijacID" />
+              <PropertyRef Name="Korisnik_KorisnikID" />
             </Principal>
             <Dependent Role="Posecuje">
               <PropertyRef Name="Kupuje_Karta_KartaID" />
@@ -366,17 +380,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="funkcija" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
-          <Parameter Name="brojgolova1" Type="int" Mode="In" />
-          <Parameter Name="brojgolova2" Type="int" Mode="In" />
-        </Function>
         <Function Name="IzracunajIndeksnePoene" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="asistencije" Type="int" Mode="In" />
           <Parameter Name="brGolova" Type="int" Mode="In" />
           <Parameter Name="indeksinPoeni" Type="int" Mode="InOut" />
         </Function>
-        <Function Name="MaksimalnaVrednostIndeksa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="MaxVrednostIndeksihPoena" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelektujStadionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="utakmicaID" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DiplomskiBazaModelStoreContainer">
           <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grad" EntityType="Self.Grad" Schema="dbo" store:Type="Tables" />
@@ -395,6 +407,10 @@
           <EntitySet Name="Tim" EntityType="Self.Tim" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TimskaNagrada" EntityType="Self.TimskaNagrada" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Utakmica" EntityType="Self.Utakmica" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Kupuje_Kupuje" Association="Self.FK_Kupuje_Kupuje">
+            <End Role="Kupuje" EntitySet="Kupuje" />
+            <End Role="Kupuje1" EntitySet="Kupuje" />
+          </AssociationSet>
           <AssociationSet Name="Igra_Sudija_FK" Association="Self.Igra_Sudija_FK">
             <End Role="sudija" EntitySet="sudija" />
             <End Role="Igra" EntitySet="Igra" />
@@ -507,9 +523,9 @@
           <Property Name="BrojPostignutihGolova" Type="Int32" Nullable="false" />
           <Property Name="Tim_TimId" Type="Int32" Nullable="false" />
           <Property Name="BrojAsistencija" Type="Int32" Nullable="false" />
+          <Property Name="IndeksiPoeni" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tim" Relationship="Self.Igrac_Tim_FK" FromRole="Igrac" ToRole="Tim" />
           <NavigationProperty Name="LicnaNagrada" Relationship="Self.LicnaNagrada_Igrac_FK" FromRole="Igrac" ToRole="LicnaNagrada" />
-          <Property Name="IndeksiPoeni" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Karta">
           <Key>
@@ -538,13 +554,15 @@
         <EntityType Name="Kupuje">
           <Key>
             <PropertyRef Name="Karta_KartaID" />
-            <PropertyRef Name="Navijac_NavijacID" />
+            <PropertyRef Name="Korisnik_KorisnikID" />
           </Key>
           <Property Name="Karta_KartaID" Type="Int32" Nullable="false" />
-          <Property Name="Navijac_NavijacID" Type="Int32" Nullable="false" />
+          <Property Name="Korisnik_KorisnikID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Karta" Relationship="Self.Kupuje_Karta_FK" FromRole="Kupuje" ToRole="Karta" />
           <NavigationProperty Name="Korisnik" Relationship="Self.Kupuje_Navijac_FK" FromRole="Kupuje" ToRole="Korisnik" />
           <NavigationProperty Name="Odrzava" Relationship="Self.Posecuje" FromRole="Kupuje" ToRole="Odrzava" />
+          <NavigationProperty Name="Kupuje1" Relationship="DiplomskiBazaModel.FK_Kupuje_Kupuje" FromRole="Kupuje" ToRole="Kupuje1" />
+          <NavigationProperty Name="Kupuje2" Relationship="DiplomskiBazaModel.FK_Kupuje_Kupuje" FromRole="Kupuje1" ToRole="Kupuje" />
         </EntityType>
         <EntityType Name="LicnaNagrada">
           <Key>
@@ -635,9 +653,9 @@
           <Property Name="Odigrana" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FazaTakmicenja" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OznakaUtakmice" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Igra" Relationship="Self.Igra_Utakmica_FK" FromRole="Utakmica" ToRole="Igra" />
           <NavigationProperty Name="Odrzava" Relationship="Self.Odrzava_Utakmica_FK" FromRole="Utakmica" ToRole="Odrzava" />
-          <Property Name="OznakaUtakmice" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="Stadion_Grad_FK">
           <End Role="Grad" Type="Self.Grad" Multiplicity="1" />
@@ -757,7 +775,7 @@
               <PropertyRef Name="KorisnikID" />
             </Principal>
             <Dependent Role="Kupuje">
-              <PropertyRef Name="Navijac_NavijacID" />
+              <PropertyRef Name="Korisnik_KorisnikID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -825,7 +843,7 @@
           <End Role="Kupuje" Type="Self.Kupuje" Multiplicity="*" />
           <End Role="Odrzava" Type="Self.Odrzava" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="DiplomskiBazaEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DiplomskiBazaEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
           <EntitySet Name="Grad" EntityType="Self.Grad" />
           <EntitySet Name="Igra" EntityType="Self.Igra" />
@@ -906,25 +924,40 @@
             <End Role="Kupuje" EntitySet="Kupuje" />
             <End Role="Odrzava" EntitySet="Odrzava" />
           </AssociationSet>
-          <FunctionImport Name="IzracunajUkopneGolove">
-            <Parameter Name="brGolova1" Mode="In" Type="Int32" />
-            <Parameter Name="brGolova2" Mode="In" Type="Int32" />
-            <Parameter Name="rezultat" Mode="InOut" Type="Int32" />
-          </FunctionImport>
+          <FunctionImport Name="MaxVrednostIndeksihPoena" ReturnType="Collection(Int32)" />
           <FunctionImport Name="IzracunajIndeksnePoene">
             <Parameter Name="asistencije" Mode="In" Type="Int32" />
             <Parameter Name="brGolova" Mode="In" Type="Int32" />
             <Parameter Name="indeksinPoeni" Mode="InOut" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="MaksimalnaVrednostIndeksa" ReturnType="Collection(Int32)" />
-          <FunctionImport Name="MaxVrednostIndeksihPoena" ReturnType="Collection(Int32)" />
+          <AssociationSet Name="FK_Kupuje_Kupuje" Association="DiplomskiBazaModel.FK_Kupuje_Kupuje">
+            <End Role="Kupuje" EntitySet="Kupuje" />
+            <End Role="Kupuje1" EntitySet="Kupuje" />
+          </AssociationSet>
+          <FunctionImport Name="SelektujStadionID" ReturnType="Collection(Int32)">
+            <Parameter Name="utakmicaID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <Association Name="FK_Kupuje_Kupuje">
+          <End Type="DiplomskiBazaModel.Kupuje" Role="Kupuje" Multiplicity="1" />
+          <End Type="DiplomskiBazaModel.Kupuje" Role="Kupuje1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Kupuje">
+              <PropertyRef Name="Karta_KartaID" />
+              <PropertyRef Name="Korisnik_KorisnikID" />
+            </Principal>
+            <Dependent Role="Kupuje1">
+              <PropertyRef Name="Karta_KartaID" />
+              <PropertyRef Name="Korisnik_KorisnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DiplomskiBazaModelStoreContainer" CdmEntityContainer="DiplomskiBazaEntities1">
+        <EntityContainerMapping StorageEntityContainer="DiplomskiBazaModelStoreContainer" CdmEntityContainer="DiplomskiBazaEntities3">
           <EntitySetMapping Name="C__RefactorLog">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.C__RefactorLog">
               <MappingFragment StoreEntitySet="__RefactorLog">
@@ -954,13 +987,13 @@
           <EntitySetMapping Name="Igrac">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Igrac">
               <MappingFragment StoreEntitySet="Igrac">
-                <ScalarProperty Name="IndeksiPoeni" ColumnName="IndeksiPoeni" />
                 <ScalarProperty Name="IgracID" ColumnName="IgracID" />
                 <ScalarProperty Name="Ime" ColumnName="Ime" />
                 <ScalarProperty Name="Prezime" ColumnName="Prezime" />
                 <ScalarProperty Name="BrojPostignutihGolova" ColumnName="BrojPostignutihGolova" />
                 <ScalarProperty Name="Tim_TimId" ColumnName="Tim_TimId" />
                 <ScalarProperty Name="BrojAsistencija" ColumnName="BrojAsistencija" />
+                <ScalarProperty Name="IndeksiPoeni" ColumnName="IndeksiPoeni" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -991,7 +1024,7 @@
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Kupuje">
               <MappingFragment StoreEntitySet="Kupuje">
                 <ScalarProperty Name="Karta_KartaID" ColumnName="Karta_KartaID" />
-                <ScalarProperty Name="Navijac_NavijacID" ColumnName="Navijac_NavijacID" />
+                <ScalarProperty Name="Korisnik_KorisnikID" ColumnName="Korisnik_KorisnikID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1069,27 +1102,27 @@
           <EntitySetMapping Name="Utakmica">
             <EntityTypeMapping TypeName="DiplomskiBazaModel.Utakmica">
               <MappingFragment StoreEntitySet="Utakmica">
-                <ScalarProperty Name="OznakaUtakmice" ColumnName="OznakaUtakmice" />
                 <ScalarProperty Name="UtakmicaID" ColumnName="UtakmicaID" />
                 <ScalarProperty Name="Odigrana" ColumnName="Odigrana" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="FazaTakmicenja" ColumnName="FazaTakmicenja" />
+                <ScalarProperty Name="OznakaUtakmice" ColumnName="OznakaUtakmice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="Posecuje" TypeName="DiplomskiBazaModel.Posecuje" StoreEntitySet="Posecuje">
             <EndProperty Name="Kupuje">
               <ScalarProperty Name="Karta_KartaID" ColumnName="Kupuje_Karta_KartaID" />
-              <ScalarProperty Name="Navijac_NavijacID" ColumnName="Kupuje_Navijac_NavijacID" />
+              <ScalarProperty Name="Korisnik_KorisnikID" ColumnName="Kupuje_Navijac_NavijacID" />
             </EndProperty>
             <EndProperty Name="Odrzava">
               <ScalarProperty Name="Utakmica_UtakmicaID" ColumnName="Odrzava_UtakmicaID" />
               <ScalarProperty Name="Stadion_StadionID" ColumnName="Odrzava_StadionID" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="IzracunajIndeksnePoene" FunctionName="DiplomskiBazaModel.Store.IzracunajIndeksnePoene" />
-          <FunctionImportMapping FunctionImportName="MaksimalnaVrednostIndeksa" FunctionName="DiplomskiBazaModel.Store.MaksimalnaVrednostIndeksa" />
           <FunctionImportMapping FunctionImportName="MaxVrednostIndeksihPoena" FunctionName="DiplomskiBazaModel.Store.MaxVrednostIndeksihPoena" />
+          <FunctionImportMapping FunctionImportName="IzracunajIndeksnePoene" FunctionName="DiplomskiBazaModel.Store.IzracunajIndeksnePoene" />
+          <FunctionImportMapping FunctionImportName="SelektujStadionID" FunctionName="DiplomskiBazaModel.Store.SelektujStadionID" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

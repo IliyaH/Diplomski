@@ -40,7 +40,7 @@
 <body class="colorBody">
     <h1 class="text-center text-info">Korisnicki Nalog</h1>
     <div id="login" class="centerDiv">
-        <div id="login-row" class="row justify-content-center color table-bordered">
+        <div id="login-row" class="col-md-4 col-lg-12 col-sm-4 row justify-content-center color table-bordered">
                 <div id="login-column" class="col-md-4">
                     <div class="login-box col-md-12">
                         <h3 class="text-center text-info">Informacije Naloga</h3>
@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="KorisnickoIme" class="text-info">Korisnicko Ime:</label><br>
+                                <label for="KorisnickoIme" class="text-info">Korisničko Ime:</label><br>
                                 <input type="text" required name="KorisnickoIme" id="KorisnickoIme" class="form-control" value="@Model.KorisnickoIme">
                             </div>
 
@@ -71,15 +71,15 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password" class="text-info">Sifra:</label><br>
+                                <label for="password" class="text-info">Lozinka:</label><br>
                                 <input type="password" required name="Sifra" id="Sifra" class="form-control">
-                                (<i>unesite vasu lozinku kako biste mogli izvrsiti izmenu/brisanje naloga</i>)
+                                (<i>unesite vašu lozinku kako biste mogli izvršiti izmenu/brisanje naloga</i>)
                             </div>
 
                             <div class="form-group">
                                 <input type="submit" name="submitButton" value="Izmeni Nalog" class="btn btn-info btn-md form-control" />
                                 <br /> <br />
-                                <input type="submit" name="submitButton" value="Obrisi Nalog" class="btn btn-info btn-md form-control" />
+                                <input type="submit" name="submitButton" value="Obriši Nalog" class="btn btn-info btn-md form-control" />
                             </div>
                         </form>
                     </div>
@@ -91,7 +91,7 @@
                     <div class=" col-md-12">
                         <h3 class="text-center text-info">Opcije Naloga</h3>
                         <hr />
-                        <label for="username" class="text-info">Prikazi izabrani tim:</label>
+                        <label for="username" class="text-info">Prikaži izabrani tim:</label>
                         <br /><br />
                         @using (Html.BeginForm("PrikazTima", "Tim", FormMethod.Get))
                         {
@@ -117,7 +117,7 @@
                         }
                         <hr />
 
-                        <label for="username" class="text-info">Prikazi utakmice:</label>
+                        <label for="username" class="text-info">Prikaži utakmice:</label>
                         <br />
                         @using (Html.BeginForm("Utakmice", "Utakmice", FormMethod.Get))
                         {

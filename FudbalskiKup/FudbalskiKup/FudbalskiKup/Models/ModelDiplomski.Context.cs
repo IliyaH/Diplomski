@@ -44,17 +44,9 @@ namespace FudbalskiKup.Models
         public virtual DbSet<TimskaNagrada> TimskaNagrada { get; set; }
         public virtual DbSet<Utakmica> Utakmica { get; set; }
     
-        public virtual int IzracunajUkopneGolove(Nullable<int> brGolova1, Nullable<int> brGolova2, ObjectParameter rezultat)
+        public virtual ObjectResult<Nullable<int>> MaxVrednostIndeksihPoena()
         {
-            var brGolova1Parameter = brGolova1.HasValue ?
-                new ObjectParameter("brGolova1", brGolova1) :
-                new ObjectParameter("brGolova1", typeof(int));
-    
-            var brGolova2Parameter = brGolova2.HasValue ?
-                new ObjectParameter("brGolova2", brGolova2) :
-                new ObjectParameter("brGolova2", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IzracunajUkopneGolove", brGolova1Parameter, brGolova2Parameter, rezultat);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("MaxVrednostIndeksihPoena");
         }
     
         public virtual int IzracunajIndeksnePoene(Nullable<int> asistencije, Nullable<int> brGolova, ObjectParameter indeksinPoeni)
@@ -68,6 +60,15 @@ namespace FudbalskiKup.Models
                 new ObjectParameter("brGolova", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("IzracunajIndeksnePoene", asistencijeParameter, brGolovaParameter, indeksinPoeni);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SelektujStadionID(Nullable<int> utakmicaID)
+        {
+            var utakmicaIDParameter = utakmicaID.HasValue ?
+                new ObjectParameter("utakmicaID", utakmicaID) :
+                new ObjectParameter("utakmicaID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SelektujStadionID", utakmicaIDParameter);
         }
     }
 }
