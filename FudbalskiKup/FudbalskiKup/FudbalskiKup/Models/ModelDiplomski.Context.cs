@@ -70,5 +70,32 @@ namespace FudbalskiKup.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SelektujStadionID", utakmicaIDParameter);
         }
+    
+        public virtual ObjectResult<string> SelektujImeTima(Nullable<int> timID)
+        {
+            var timIDParameter = timID.HasValue ?
+                new ObjectParameter("timID", timID) :
+                new ObjectParameter("timID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SelektujImeTima", timIDParameter);
+        }
+    
+        public virtual ObjectResult<SelektujLicnuNagradu_Result> SelektujLicnuNagradu(Nullable<int> tipNagrade)
+        {
+            var tipNagradeParameter = tipNagrade.HasValue ?
+                new ObjectParameter("tipNagrade", tipNagrade) :
+                new ObjectParameter("tipNagrade", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelektujLicnuNagradu_Result>("SelektujLicnuNagradu", tipNagradeParameter);
+        }
+    
+        public virtual ObjectResult<SelektujLNagradu_Result> SelektujLNagradu(string tipNagrade)
+        {
+            var tipNagradeParameter = tipNagrade != null ?
+                new ObjectParameter("tipNagrade", tipNagrade) :
+                new ObjectParameter("tipNagrade", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelektujLNagradu_Result>("SelektujLNagradu", tipNagradeParameter);
+        }
     }
 }

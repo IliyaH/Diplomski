@@ -275,6 +275,12 @@
     <Compile Include="Models\Odrzava.cs">
       <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SelektujLicnuNagradu_Result.cs">
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SelektujLNagradu_Result.cs">
+      <DependentUpon>ModelDiplomski.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Stadion.cs">
       <DependentUpon>ModelDiplomski.tt</DependentUpon>
     </Compile>

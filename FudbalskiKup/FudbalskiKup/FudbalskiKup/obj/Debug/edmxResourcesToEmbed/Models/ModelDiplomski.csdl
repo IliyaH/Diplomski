@@ -453,6 +453,15 @@
     <FunctionImport Name="SelektujStadionID" ReturnType="Collection(Int32)">
       <Parameter Name="utakmicaID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="SelektujImeTima" ReturnType="Collection(String)">
+      <Parameter Name="timID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SelektujLicnuNagradu" ReturnType="Collection(DiplomskiBazaModel.SelektujLicnuNagradu_Result)">
+      <Parameter Name="tipNagrade" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SelektujLNagradu" ReturnType="Collection(DiplomskiBazaModel.SelektujLNagradu_Result)">
+      <Parameter Name="tipNagrade" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <Association Name="FK_Kupuje_Kupuje">
     <End Type="DiplomskiBazaModel.Kupuje" Role="Kupuje" Multiplicity="1" />
@@ -468,4 +477,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="SelektujLicnuNagradu_Result">
+    <Property Type="Int32" Name="NagradaID" Nullable="false" />
+    <Property Type="String" Name="VrstaNagrade" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="Igrac_IgracID" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SelektujLNagradu_Result">
+    <Property Type="Int32" Name="NagradaID" Nullable="false" />
+    <Property Type="String" Name="VrstaNagrade" Nullable="false" MaxLength="30" />
+    <Property Type="Int32" Name="Igrac_IgracID" Nullable="true" />
+  </ComplexType>
 </Schema>

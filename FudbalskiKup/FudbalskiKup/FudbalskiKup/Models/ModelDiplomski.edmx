@@ -386,6 +386,12 @@
           <Parameter Name="indeksinPoeni" Type="int" Mode="InOut" />
         </Function>
         <Function Name="MaxVrednostIndeksihPoena" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelektujImeTima" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="timID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SelektujLNagradu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipNagrade" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SelektujStadionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="utakmicaID" Type="int" Mode="In" />
         </Function>
@@ -935,7 +941,16 @@
             <End Role="Kupuje1" EntitySet="Kupuje" />
           </AssociationSet>
           <FunctionImport Name="SelektujStadionID" ReturnType="Collection(Int32)">
-            <Parameter Name="utakmicaID" Mode="In" Type="Int32" />
+          <Parameter Name="utakmicaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SelektujImeTima" ReturnType="Collection(String)">
+          <Parameter Name="timID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SelektujLicnuNagradu" ReturnType="Collection(DiplomskiBazaModel.SelektujLicnuNagradu_Result)">
+            <Parameter Name="tipNagrade" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SelektujLNagradu" ReturnType="Collection(DiplomskiBazaModel.SelektujLNagradu_Result)">
+            <Parameter Name="tipNagrade" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <Association Name="FK_Kupuje_Kupuje">
@@ -952,6 +967,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SelektujLicnuNagradu_Result">
+          <Property Type="Int32" Name="NagradaID" Nullable="false" />
+          <Property Type="String" Name="VrstaNagrade" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="Igrac_IgracID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SelektujLNagradu_Result">
+          <Property Type="Int32" Name="NagradaID" Nullable="false" />
+          <Property Type="String" Name="VrstaNagrade" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="Igrac_IgracID" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1123,6 +1148,16 @@
           <FunctionImportMapping FunctionImportName="MaxVrednostIndeksihPoena" FunctionName="DiplomskiBazaModel.Store.MaxVrednostIndeksihPoena" />
           <FunctionImportMapping FunctionImportName="IzracunajIndeksnePoene" FunctionName="DiplomskiBazaModel.Store.IzracunajIndeksnePoene" />
           <FunctionImportMapping FunctionImportName="SelektujStadionID" FunctionName="DiplomskiBazaModel.Store.SelektujStadionID" />
+          <FunctionImportMapping FunctionImportName="SelektujImeTima" FunctionName="DiplomskiBazaModel.Store.SelektujImeTima" />
+          <FunctionImportMapping FunctionImportName="SelektujLNagradu" FunctionName="DiplomskiBazaModel.Store.SelektujLNagradu">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DiplomskiBazaModel.SelektujLNagradu_Result">
+                <ScalarProperty Name="NagradaID" ColumnName="NagradaID" />
+                <ScalarProperty Name="VrstaNagrade" ColumnName="VrstaNagrade" />
+                <ScalarProperty Name="Igrac_IgracID" ColumnName="Igrac_IgracID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

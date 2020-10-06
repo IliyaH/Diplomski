@@ -381,6 +381,12 @@
     <Parameter Name="indeksinPoeni" Type="int" Mode="InOut" />
   </Function>
   <Function Name="MaxVrednostIndeksihPoena" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SelektujImeTima" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="timID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SelektujLNagradu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tipNagrade" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="SelektujStadionID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="utakmicaID" Type="int" Mode="In" />
   </Function>
