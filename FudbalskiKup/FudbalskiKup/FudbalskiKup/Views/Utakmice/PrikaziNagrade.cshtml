@@ -43,58 +43,65 @@
                     <h3 class="text-info">Licne Nagrade</h3>
                     <br />
                     <label for="username" class="text-info">
-                        @ViewBag.FerplejIgrac.Item1.VrstaNagrade
-                        @if (@ViewBag.FerplejIgrac.Item2 != null)
-                        {
-
-                            @ViewBag.FerplejIgrac.Item2.Ime
-                            @ViewBag.FerplejIgrac.Item2.Prezime
-
-                        }
+                        @ViewBag.FerplejIgrac.Item1.VrstaNagrade :
                     </label>
                     <br />
-                    <label for="username" class="text-info">
+                    @if (@ViewBag.FerplejIgrac.Item2 != null)
+                    {
 
+                        @ViewBag.FerplejIgrac.Item2.Ime
+                        @ViewBag.FerplejIgrac.Item2.Prezime
 
-                        @ViewBag.NajboljiIgrac.Item1.VrstaNagrade
-                        @if (@ViewBag.NajboljiIgrac.Item2 != null)
-                        {
-                            @ViewBag.NajboljiIgrac.Item2.Ime
-                            @ViewBag.NajboljiIgrac.Item2.Prezime
-                            <br />
-                        }
-                    </label>
+                    }
+                    <br />
                     <br />
                     <label for="username" class="text-info">
-                        @ViewBag.NajboljiStrelac.Item1.VrstaNagrade
-                        @if (@ViewBag.NajboljiStrelac.Item2 != null)
-                        {
-                            @ViewBag.NajboljiStrelac.Item2.Ime
-                            @ViewBag.NajboljiStrelac.Item2.Prezime
-                            <br />
-                        }
+                        @ViewBag.NajboljiIgrac.Item1.VrstaNagrade :
                     </label>
-                    <br /><br /><br />
+                    <br />
+                    @if (@ViewBag.NajboljiIgrac.Item2 != null)
+                    {
+                        @ViewBag.NajboljiIgrac.Item2.Ime
+                        @ViewBag.NajboljiIgrac.Item2.Prezime
+                    }
+                    <br />
+                    <br />
+                    <label for="username" class="text-info">
+                        @ViewBag.NajboljiStrelac.Item1.VrstaNagrade :
+
+                    </label>
+                    <br />
+                    @if (@ViewBag.NajboljiStrelac.Item2 != null)
+                    {
+                        @ViewBag.NajboljiStrelac.Item2.Ime
+                        @ViewBag.NajboljiStrelac.Item2.Prezime
+                    }
+                    <br /><br />
 
                     <h3 class="text-info">Timske Nagrade</h3>
                     <br />
                     <label for="username" class="text-info">
                         @ViewBag.PrvoMesto.Item1.TipNagrade
-                        @if (@ViewBag.PrvoMesto.Item2 != null)
-                        {
-                            @ViewBag.PrvoMesto.Item2.Ime
-                           
-                        }
+
                     </label>
+                    <br />
+                    @if (@ViewBag.PrvoMesto.Item2 != null)
+                    {
+                        @ViewBag.PrvoMesto.Item2.Ime
+
+                    }
+                    <br />
                     <br />
                     <label for="username" class="text-info">
                         @ViewBag.DrugoMesto.Item1.TipNagrade
-                        @if (@ViewBag.DrugoMesto.Item2 != null)
-                        {
-                            @ViewBag.DrugoMesto.Item2.Ime
-                           
-                        }
+
                     </label>
+                    <br />
+                    @if (@ViewBag.DrugoMesto.Item2 != null)
+                    {
+                        @ViewBag.DrugoMesto.Item2.Ime
+
+                    }
 
                 </div>
             </div>

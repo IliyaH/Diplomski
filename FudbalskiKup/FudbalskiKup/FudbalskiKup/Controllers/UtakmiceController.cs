@@ -17,9 +17,9 @@ namespace FudbalskiKup.Controllers
 
         List<UtakmicaInfo> sveUtakmice = new List<UtakmicaInfo>();
         List<UtakmicaInfo> neodigraneUtakmice = new List<UtakmicaInfo>();
-        List<UtakmicaInfo> utakmiceOsmina = new List<UtakmicaInfo>();
-        List<UtakmicaInfo> utakmiceCetvrtina = new List<UtakmicaInfo>();
-        List<UtakmicaInfo> utakmicePolu = new List<UtakmicaInfo>();
+        List<UtakmicaInfo> utakmiceOsmina = new List<UtakmicaInfo>(8);
+        List<UtakmicaInfo> utakmiceCetvrtina = new List<UtakmicaInfo>(4);
+        List<UtakmicaInfo> utakmicePolu = new List<UtakmicaInfo>(2);
         UtakmicaInfo finale = new UtakmicaInfo();
         List<bool> osminaPomocnaLista = new List<bool>() { false, false, false, false , false, false, false, false };
         List<bool> cetvrirnaPomocnaLista = new List<bool>() { false , false , false , false };
@@ -30,7 +30,8 @@ namespace FudbalskiKup.Controllers
         public ActionResult Utakmice()
         {
             sveUtakmice = utakmicaRepository.PribaviUtakmice();
-            
+            sveUtakmice = sveUtakmice.OrderBy(x => x.OznakaUtakmice).ToList();
+
             foreach (var utakmica in sveUtakmice) 
             {
                 if (utakmica.Odigrana == false) 
@@ -88,7 +89,7 @@ namespace FudbalskiKup.Controllers
                     if (utakmica.OznakaUtakmice == "B1")
                     {
                         cetvrirnaPomocnaLista[0] = true;
-                        utakmiceCetvrtina.Insert(0 , utakmica);
+                        utakmiceCetvrtina.Insert(0 ,utakmica);
                     }
                     else if (utakmica.OznakaUtakmice == "B2")
                     {
@@ -112,12 +113,12 @@ namespace FudbalskiKup.Controllers
                     if (utakmica.OznakaUtakmice == "C1")
                     {
                         poluPomocnaLista[0] = true;
-                        utakmicePolu.Insert(0, utakmica);
+                        utakmicePolu.Insert(0 ,utakmica);
                     }
                     else if (utakmica.OznakaUtakmice == "C2")
                     {
                         poluPomocnaLista[1] = true;
-                        utakmicePolu.Insert(1, utakmica);
+                        utakmicePolu.Insert(0, utakmica);
                     }
                 }
                 else if (utakmica.FazaTakmicenja == "Finale")

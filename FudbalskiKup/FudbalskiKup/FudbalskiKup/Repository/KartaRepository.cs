@@ -29,12 +29,12 @@ namespace FudbalskiKup.Repository
                         i++;
                         if (i == 1)
                         {
-                            ime1 = db.SelektujImeTima(tim.Tim_TimID).FirstOrDefault();
+                            ime1 = db.Tim.Where(x=>x.TimID == tim.Tim_TimID).Select(x=>x.Ime).FirstOrDefault();
                             id = db.Utakmica.Where(x => x.UtakmicaID == tim.Utakmica_UtakmicaID).Select(c => c.UtakmicaID).FirstOrDefault();
                         }
                         if (i == 2)
                         {
-                            ime2 = db.SelektujImeTima(tim.Tim_TimID).FirstOrDefault();
+                            ime2 = db.Tim.Where(x => x.TimID == tim.Tim_TimID).Select(x => x.Ime).FirstOrDefault();
                         }
                     }
 
